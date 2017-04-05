@@ -1,0 +1,56 @@
+.navbar-fixed {
+  z-index: 4;
+}
+
+.main-nav {
+  height: 30px;
+}
+
+.main-nav nav {
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+}
+
+/deep/ .main-nav nav li a i {
+  line-height: 30px;
+  height: 30px;
+}
+
+nav ul:not(.side-nav) {
+  width: 100%;
+}
+
+nav ul a.disabled:hover {
+  background-color: inherit;
+}
+
+nav ul a.disabled {
+  cursor: default;
+}
+
+header {
+  position: relative;
+  z-index: 10;
+}
+
+.side-nav {
+  transition: all 80ms ease-in;
+}
+
+.side-nav.active {
+  transform: translateX(0px);
+}
+
+.button-collapse {
+  position: relative;
+  top: -16px;
+  cursor: pointer;
+}
+
+/deep/ .side-nav .dropdown-content.active,
+/deep/ .side-nav .dropdown-content.active li,
+/deep/ .side-nav .dropdown-content.active li > a {
+  width: 100% !important;
+  color: rgba(0,0,0,0.87);
+}
