@@ -36,7 +36,15 @@ export class AppComponent implements OnInit {
   toggleSidebar(): void {}
 
   ngOnInit(): void {
-    this.sessionService.generateToken({token : this.sessionService.getStoredToken()})
+    if(this.sessionService.getStoredToken()) {
+      this.getNewToken({ token: this.sessionService.getStoredToken() });
+    } else {
+      this.getNewToken({ email: 'r.tete@skilvioo.net', password: '123456'});
+    }
+  }
+
+  getNewToken(authInfo: Object): void {
+    this.sessionService.generateToken(authInfo)
       .then((token) => {
         if(token) {
           this.retriveUserProfile();
