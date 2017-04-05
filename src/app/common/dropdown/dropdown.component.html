@@ -1,0 +1,14 @@
+<a
+  class="dropdown-button"
+  [class.active]="opened"
+  (click)="toggle()"
+>
+  {{  selectValue || btnLabel}}
+  <i class="material-icons right">
+    <template [ngIf]="!opened">arrow_drop_down</template>
+    <template [ngIf]="opened">arrow_drop_up</template>
+  </i>
+</a>
+<ul class="dropdown-content active" *ngIf="opened">
+  <li *ngFor="let item of values" (click)="selectItem(item)"><a>{{ item.label }}</a></li>
+</ul>
