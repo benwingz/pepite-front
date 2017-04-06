@@ -1,19 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../service/user.service';
+import { RouterModule } from '@angular/router';
+
+import { AuthService } from '../../service/auth.service';
 import { ReferenceService } from '../../service/reference.service';
 import { GradeService } from '../../service/grade.service';
-// import { ProfileProvider, PROFILE_DATA_URI } from '../../service/common/profile/profile-provider.service';
-// import { PhaseProvider } from '../../service/common/phase/phase-provider.service';
-// import { PdfGenerator } from '../../service/common/pdf/pdf-generator.service';
-// import { Phase } from '../../common/phase/phase';
-// import { Skill } from '../../common/skill/skill';
-// import { Category } from '../../common/category/category';
+
 import { User } from '../../models/user.model';
 import { Phase } from '../../models/phase.model';
 import { Category } from '../../models/category.model';
 import { Grade } from '../../models/grade.model';
-// import { Certification } from '../../model/certification';
-import { RouterModule } from '@angular/router';
 
 
 declare var pdfMake: any;
@@ -42,7 +37,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private referenceService: ReferenceService,
-    private userService: UserService,
+    private authService: AuthService,
     private gradeService: GradeService
   ) {
 
@@ -50,7 +45,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     // Start by retrive user
-    this.userService.getCurrentUser()
+    this.authService.getCurrentUser()
     .subscribe((user) => {
       this.currentUser = user;
     });

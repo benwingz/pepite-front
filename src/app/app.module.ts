@@ -11,8 +11,7 @@ import { AppComponent } from './app.component';
 import { DropdownComponent } from './common/dropdown/dropdown.component';
 import { BackToTopComponent } from './common/back-to-top/back-to-top.component';
 
-import { SessionService } from './service/session.service';
-import { UserService } from './service/user.service';
+import { AuthService } from './service/auth.service';
 import { ReferenceService } from './service/reference.service';
 import { GradeService } from './service/grade.service';
 
@@ -48,8 +47,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
       useFactory: authHttpServiceFactory,
       deps: [Http, RequestOptions]
     },
-    SessionService,
-    UserService,
+    AuthService,
     ReferenceService,
     GradeService
   ],

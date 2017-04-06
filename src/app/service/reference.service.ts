@@ -26,6 +26,15 @@ export class ReferenceService {
       });
   }
 
+  getPhase(id: string): Observable<Phase> {
+    return this.authHttp.get('http://localhost:8080/api/phase/' + id)
+      .map((phase) => {
+        let phaseReturned = phase.json();
+        phaseReturned = new Phase(phaseReturned._id, phaseReturned.title, phaseReturned.order);
+        return phaseReturned;
+      });
+  }
+
   getPhaseCategories(phase): Observable<Category[]> {
     return this.authHttp.get('http://localhost:8080/api/phase/' + phase.getId() + '/categories')
       .map((categories) => {

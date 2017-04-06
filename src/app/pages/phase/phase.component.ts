@@ -12,9 +12,17 @@ import { Phase } from '../../models/phase.model';
 })
 export class PhaseComponent implements OnInit {
 
-  constructor() { }
+  private phase_id: string;
+
+  constructor(
+    private route: ActivatedRoute,
+    private referenceService: ReferenceService
+  ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => this.phase_id = params['id']);
+    this.referenceService.getPhase(this.phase_id)
+      .subscribe(phase => console.log('phase', phase));
   }
 
 }

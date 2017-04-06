@@ -2,8 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DropdownValue } from './common/dropdown/dropdown.component';
 
-import { SessionService } from './service/session.service';
-import { UserService } from './service/user.service';
+import { AuthService } from './service/auth.service';
 
 import { User } from './models/user.model';
 
@@ -20,8 +19,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private sessionService: SessionService,
-    private userService: UserService
+    private authService: AuthService,
   ) {
     this.dropdownValues = [
       new DropdownValue('auto_eval', 'Auto-evaluation', true),
@@ -36,15 +34,15 @@ export class AppComponent implements OnInit {
   toggleSidebar(): void {}
 
   ngOnInit(): void {
-    if(this.sessionService.getStoredToken()) {
-      this.getNewToken({ token: this.sessionService.getStoredToken() });
+    if(this.authService.getStoredToken()) {
+      this.getNewToken({ token: this.authService.getStoredToken() });
     } else {
       this.getNewToken({ email: 'r.tete@skilvioo.net', password: '123456'});
     }
   }
 
   getNewToken(authInfo: Object): void {
-    this.sessionService.generateToken(authInfo)
+    this.authService.generateToken(authInfo)
       .then((token) => {
         if(token) {
           this.retriveUserProfile();
@@ -56,7 +54,7 @@ export class AppComponent implements OnInit {
   }
 
   retriveUserProfile(): void{
-    this.userService.getCurrentUser().subscribe(user => {
+    this.authService.getCurrentUser().subscribe(user => {
       this.currentUser = new User(user._id, user.lastname, user.firstname, user.password, user.salt);
     });
   }
