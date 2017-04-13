@@ -1,0 +1,155 @@
+.category-card {
+  position: relative;
+  transition: all 100ms ease-in;
+}
+
+.grade-category {
+  padding-right: 36px;
+}
+
+.category-card .collection,
+.category-card .card-content {
+  overflow: visible;
+}
+
+.category-card .collection {
+  border: none;
+
+  .collection-header {
+    .btn-floating.waves-effect {
+      position: absolute;
+      bottom: -20px;
+      left: calc(50% - 20px);
+    }
+  }
+}
+
+.category-card .card-content {
+  min-height: 200px;
+}
+
+.category-card .card-title {
+  cursor: pointer;
+  width: 100%;
+  i {
+    line-height: 40px;
+  }
+}
+
+.card-title h4 {
+  width: 100%;
+}
+
+.card-title__content {
+  display: inline-block;
+  width: 85%;
+  padding-left: 24px;
+}
+
+.grade-levels__icon {
+  position: relative;
+  right: 25px;
+  top: 10px;
+  cursor: help;
+}
+
+.grade-levels__icon.active {
+  color: #26a69a;
+}
+
+.grade-levels__icon.active:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  width: 12px;
+  height: 12px;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid #333333;
+}
+
+.grade-levels__tooltip {
+  position: absolute;
+  right: 0;
+  top: 80px;
+  border-top: none;
+  font-size: 0.5em;
+  color: #ffffff;
+  background: #333333;
+  border-radius: 2px;
+  z-index: 10;
+}
+
+.grade-levels__tooltip-item {
+  padding: 0 15px;
+  text-align: left;
+}
+
+.grade-levels__tooltip-item i {
+  position: relative;
+  top: 5px;
+}
+
+.category-card.focused {
+  position: fixed;
+  left: 15px;
+  top: 10%;
+  width: calc(100% - 30px);
+  z-index: 15;
+  max-height: 80%;
+  overflow: auto;
+}
+
+.category__skill {
+  display: none;
+  height: 0;
+  opacity: 0;
+  transition: all 80ms ease-in;
+}
+
+.category__skill.shown {
+  display: block;
+  height: auto;
+  opacity: 1;
+}
+
+.collection-item {
+  border:0px black solid;
+  padding: 0px;
+}
+
+.collection-item-label {
+  padding: 20px 0px 0px 15px;
+}
+
+.collection {
+  p {
+    margin-bottom: 20px;
+  }
+  &.expanded {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0!important;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+
+  .category-card.focused {
+    top: 75px;
+  }
+
+}
+
+.category__comment-box {
+  min-height: 64px;
+}
+
+.comments-container {
+  margin-top: 15px;
+}
+
+.card-action {
+  border-top-style: hidden;
+}

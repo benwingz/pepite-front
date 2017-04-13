@@ -1,3 +1,23 @@
-<p>
-  phase works with the id {{phase_id}}!
-</p>
+<div class="navbar-fixed blue-grey darken-4 z-depth-1 phase-title white-text" *ngIf="phase">
+  <div class="row">
+    <div class="col s12">
+      <div [class.invisible]="categoryFocus" class="col s1">
+        <i class="material-icons medium phase-navigation phase-navigation__previous" (click)="previousPhase()">keyboard_arrow_left</i>
+      </div>
+      <div class="col s10">
+        <h3 class="center-align phase-title__content">Phase {{ phase.order +1 }} - {{ phase.title }}</h3>
+      </div>
+      <div  [class.invisible]="categoryFocus" class="col s1">
+          <i class="material-icons medium phase-navigation phase-navigation__next" (click)="nextPhase()">keyboard_arrow_right</i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section phase__categories" *ngIf="phase && categories">
+  <div class="row">
+      <div *ngFor="let category of categories; let i = index" class="col s12 l10 offset-l1" >
+          <span id="{{ category.getId() }}" class="hash-handle">&nbsp;</span>
+          <app-category [category]="category" (focus)="onCategoryFocus($event)" [attr.data-idx]="i%2"></app-category>
+      </div>
+  </div>
+</div>

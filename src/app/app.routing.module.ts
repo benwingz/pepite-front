@@ -8,7 +8,8 @@ import { PhaseComponent } from './pages/phase/phase.component';
     imports: [
         RouterModule.forRoot([
           { path: 'home', component: HomeComponent },
-          { path: 'phase/:id', component: PhaseComponent }
+          { path: 'phase/:id', component: PhaseComponent },
+          { path: '', redirectTo: '/home', pathMatch:  'full'}
         ]),
     ],
     exports: [

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 
 import { DropdownComponent } from './common/dropdown/dropdown.component';
 import { BackToTopComponent } from './common/back-to-top/back-to-top.component';
+import { CategoryComponent } from './common/category/category.component';
 
 import { AuthService } from './service/auth.service';
 import { ReferenceService } from './service/reference.service';
@@ -34,7 +35,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     BackToTopComponent,
     HomeComponent,
     EvaluatedGradePipe,
-    PhaseComponent
+    PhaseComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

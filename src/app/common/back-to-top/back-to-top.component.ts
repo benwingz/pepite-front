@@ -27,7 +27,6 @@ export class BackToTopComponent implements OnInit {
   }
 
   toggle(offset: number) {
-    console.log(offset);
     if (offset >= TRESHOLD_OFFSET) {
       this.visible = true;
     } else if (this.visible) {

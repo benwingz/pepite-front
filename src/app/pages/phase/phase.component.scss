@@ -1,0 +1,75 @@
+.navbar-fixed {
+  position: fixed;
+  width: 100vw;
+  z-index: 4;
+}
+
+.phase-title {
+  z-index: 4;
+  height: 80px;
+}
+
+.phase-title__content {
+  line-height: 32px;
+}
+
+.phase__categories {
+  position: relative;
+  top: 75px;
+  overflow: hidden;
+}
+
+.category-overlay:before {
+  content: '';
+  display: block;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.4;
+  z-index: 10;
+}
+
+.phase-navigation {
+  transition: all 80ms ease-in;
+  line-height: 85px;
+}
+
+.phase-navigation:hover {
+  cursor: pointer;
+  transform: scale3D(1.25, 1.25, 1);
+}
+
+.invisible{
+  visibility:hidden;
+}
+
+.phase__categories.focused {
+  height: calc(100vh - 200px);
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 960px){
+  .phase-title__content {
+      font-size: 2.8rem;
+  }
+}
+
+@media only screen and (min-width: 630px) and (max-width: 960px){
+  .phase-title__content {
+      font-size: 1.9rem;
+  }
+}
+
+@media only screen and (max-width: 630px){
+  .phase-title__content {
+      font-size: 1.3rem;
+  }
+}
+
+.hash-handle {
+  padding-top: 100px;
+  font-size: 0px;
+}

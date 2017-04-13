@@ -46,7 +46,9 @@ export class AppComponent implements OnInit {
       .then((token) => {
         if(token) {
           this.retriveUserProfile();
-          this.router.navigate(['home']);
+          if (this.router.url == '/') {
+            this.router.navigate(['home']);
+          }
         } else {
           //go to login page
         }
