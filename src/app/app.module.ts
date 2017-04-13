@@ -11,10 +11,13 @@ import { AppComponent } from './app.component';
 import { DropdownComponent } from './common/dropdown/dropdown.component';
 import { BackToTopComponent } from './common/back-to-top/back-to-top.component';
 import { CategoryComponent } from './common/category/category.component';
+import { CommentComponent } from './common/comment/comment.component';
+import { CommentlineComponent } from './common/commentline/commentline.component';
 
 import { AuthService } from './service/auth.service';
 import { ReferenceService } from './service/reference.service';
 import { GradeService } from './service/grade.service';
+import { CommentService } from './service/comment.service';
 
 import { EvaluatedGradePipe } from './pipes/evaluatedgrade.pipe'
 
@@ -36,7 +39,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     HomeComponent,
     EvaluatedGradePipe,
     PhaseComponent,
-    CategoryComponent
+    CategoryComponent,
+    CommentComponent,
+    CommentlineComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     },
     AuthService,
     ReferenceService,
-    GradeService
+    GradeService,
+    CommentService
   ],
   bootstrap: [AppComponent]
 })

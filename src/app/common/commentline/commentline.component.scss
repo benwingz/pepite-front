@@ -1,0 +1,31 @@
+.metadata-container {
+  width: 100%;
+}
+
+.metadata-container .title {
+  margin-right: 40px;
+  font-weight: bold;
+}
+
+.metadata-container .date {
+  font-style: italic;
+}
+
+.comment-container {
+  clear: both;
+}
+
+.comment {
+  padding: 10px;
+  background: #e1f5fe;
+  border-radius: 2px;
+}
+
+.delete-comment {
+  transition: all 80ms ease-in;
+}
+
+.delete-comment:hover{
+  cursor: pointer;
+  transform: scale(1.25);
+}

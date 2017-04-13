@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     if(this.authService.getStoredToken()) {
       this.getNewToken({ token: this.authService.getStoredToken() });
     } else {
-      this.getNewToken({ email: 'r.tete@skilvioo.net', password: '123456'});
+      this.getNewToken({ email: 'ben.rou@skilvioo.com', password: '123456'});
     }
   }
 

@@ -60,7 +60,7 @@ export class AuthService {
   }
 
   storeUser(user) {
-    this.currentUser = new User (user._id, user.lastname, user.firstname, user.password, user.salt);
+    this.currentUser = new User (user._id, user.lastname, user.firstname, user.type, user.password, user.salt);
     return user;
   }
 

@@ -1,7 +1,7 @@
 export class User {
-  constructor(public _id: number, public lastname: string, public firstname: string, public password: string, public salt: string) {};
+  constructor(public _id: string, public lastname: string, public firstname: string, public type: string, public password?: string, public salt?: string) {};
 
-  getId(): number {
+  getId(): string {
     return this._id;
   }
 

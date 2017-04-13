@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 
-
 import { Category } from '../../models/category.model';
 
 @Component({
