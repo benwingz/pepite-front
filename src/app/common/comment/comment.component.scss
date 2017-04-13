@@ -1,0 +1,75 @@
+.comments-header {
+  margin-top: 50px;
+}
+
+.comments-btn {
+  border-radius:25px;
+}
+
+.hide-comments-btn {
+  position: relative;
+  top: -40px;
+  margin-bottom: -40px;
+  text-transform: none !important;
+  @media screen and (min-width: 992px) and (max-width: 1550px){
+      float: left !important;
+      width: 100%;
+      top: -80px;
+      margin-bottom: -80px;
+  }
+  @media screen and (min-width: 1550px) and (max-width: 1665px){
+      margin-left: 0px;
+      padding-left: 10px;
+      margin-right: 20px;
+      padding-right: 10px;
+  }
+}
+
+.hide-comments-btn .material-icons {
+  position: relative;
+  top: 6px;
+}
+
+.collection{
+  border: none;
+}
+
+.collection-item {
+  border: none;
+}
+
+.comments-btn__title {
+  position: relative;
+  top: -3px;
+}
+
+.category__comments-count.badge.new {
+  min-width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  position: relative;
+  top: 6px;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+/* label color */
+ .input-field label {
+   color: #4fc3f7 ;
+ }
+
+ /* label focus color */
+ .input-field textarea:focus + label {
+   color: #4fc3f7 ;
+ }
+
+ /* label underline focus color */
+ .input-field textarea:focus {
+   border-bottom: 1px solid #4fc3f7;
+   box-shadow: 0 1px 0 0 #4fc3f7;
+ }
+
+ /* icon prefix focus color */
+ .input-field .prefix.active {
+   color: #4fc3f7;
+ }

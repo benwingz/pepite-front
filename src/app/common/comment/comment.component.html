@@ -1,0 +1,33 @@
+<div class="comments-header" *ngIf="!(comments && comments.length === 0 && !editable)">
+  <a class="btn waves-effect waves-light blue-grey white-text comments-btn" (click)="toggleComments($event)" *ngIf="!commentsActive">
+    <i class="material-icons white-text">comment</i>
+    <span class="comments-btn__title">Voir les commentaires</span>
+    <span class="badge new category__comments-count white grey-text text-darken-2" data-badge-caption="" *ngIf="comments">{{comments.length}}</span>
+  </a>
+  <h5 class="center-align" *ngIf="commentsActive">Commentaires</h5>
+  <a class="hide-comments-btn right waves-effect btn-flat blue-grey-text text-lighten-3 move_on_small_screen" *ngIf="commentsActive" (click)="toggleComments($event)"><span class="material-icons">expand_less</span>Masquer les commentaires</a>
+</div>
+  <div *ngIf="commentsActive">
+    <ul *ngIf="comments.length > 0" class="collection">
+      <li class="collection-item comment" *ngFor="let comment of comments">
+        <app-commentline [comment]="comment" [user]="currentUser" [editable]="editable" (commentEvent)="deleteComment($event)"> </app-commentline>
+      </li>
+    </ul>
+    <div *ngIf="editable" class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">mode_edit</i>
+            <textarea class="materialize-textarea" [(ngModel)]="textField" (focus)="messageSent = false;" id="{{ commentId }}" name="{{ commentId }}"></textarea>
+            <label for="{{ commentId }}" (click)="focusInput($event)">Votre commentaire...</label>
+          </div>
+        </div>
+        <div class="row">
+          <button id="category__comments-create-comment" class="btn waves-effect waves-light right light-blue lighten-2" type="submit" name="action" (click)="createComment($event)"  [class.disabled]="textField === ''">Envoyer
+            <i class="material-icons right" *ngIf="!messageSent">send</i>
+            <i *ngIf="messageSent" class="material-icons right">done</i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

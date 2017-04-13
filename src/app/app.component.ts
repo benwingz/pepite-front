@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     if(this.authService.getStoredToken()) {
       this.getNewToken({ token: this.authService.getStoredToken() });
     } else {
-      this.getNewToken({ email: 'r.tete@skilvioo.net', password: '123456'});
+      this.getNewToken({ email: 'ben.rou@skilvioo.com', password: '123456'});
     }
   }
 
@@ -46,7 +46,9 @@ export class AppComponent implements OnInit {
       .then((token) => {
         if(token) {
           this.retriveUserProfile();
-          this.router.navigate(['home']);
+          if (this.router.url == '/') {
+            this.router.navigate(['home']);
+          }
         } else {
           //go to login page
         }

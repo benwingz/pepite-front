@@ -1,0 +1,12 @@
+<div class="metadata-container">
+  <span class="title left">{{comment._user.firstname}} {{comment._user.lastname}}</span><span class="date left">{{comment.date | date:mediumDate}} </span>
+  <i
+    *ngIf="editable && (comment._user._id == user._id || (user.type != 'user' && user.type != 'validator'))"
+    class="right delete-comment material-icons secondary-content red-text text-lighten-2"
+    (click)="emitCommentToDelete($event,comment._id)">
+    clear
+  </i>
+</div>
+<div class="comment-container">
+  <p class="left-align comment">“{{comment.content}}”</p>
+</div>
