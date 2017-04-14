@@ -4,7 +4,7 @@
       <div class="nav-wrapper light-blue accent-3 white-text">
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li class="right"><a class="white-text disabled" *ngIf="currentUser" [innerHTML]="currentUser.getFullname()"></a></li>
-            <li class="left"><a class="white-text">Accueil</a></li>
+            <li class="left"><a [routerLink]="['/home']" class="white-text">Accueil</a></li>
             <li class="right"><a class="white-text" *ngIf="">[[action]]</a></li>
             <li class="left"><app-dropdown [btnLabel]="'Sélectionner un scenario'" [values]="dropdownValues" (select)="select($event)"></app-dropdown></li>
         </ul>
