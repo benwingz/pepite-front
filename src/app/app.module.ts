@@ -13,6 +13,7 @@ import { BackToTopComponent } from './common/back-to-top/back-to-top.component';
 import { CategoryComponent } from './common/category/category.component';
 import { CommentComponent } from './common/comment/comment.component';
 import { CommentlineComponent } from './common/commentline/commentline.component';
+import { GradeComponent } from './common/grade/grade.component';
 
 import { AuthService } from './service/auth.service';
 import { ReferenceService } from './service/reference.service';
@@ -41,7 +42,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     PhaseComponent,
     CategoryComponent,
     CommentComponent,
-    CommentlineComponent
+    CommentlineComponent,
+    GradeComponent
   ],
   imports: [
     BrowserModule,

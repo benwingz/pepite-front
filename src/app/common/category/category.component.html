@@ -14,14 +14,13 @@
             </ul>
           </h4>
           <div class="grade-category">
-            <!-- <app-grade
-              *ngIf="profileProvider.getCurrentProfile()"
-              [mainGrade]="category | mainGrade:profileProvider.getCurrentProfile().getSkillLink(category):false"
-              [secondaryGrade]="category | secondaryGrade:profileProvider.getCurrentProfile().getSkillLink(category):false"
+            <app-grade
+              [grade]="categoryGrade"
+              [category]="category"
               [readOnly]="false"
               (gradeEvent)="changeGrade($event)"
               class="teal-text grade-container">
-            </app-grade> -->
+            </app-grade>
           </div>
           <a class="btn-floating waves-effect waves-light grey" title="plus de détail">
             <i class="material-icons" *ngIf="focused" (click)="expendCat($event)">expand_less</i>
@@ -45,7 +44,7 @@
           <i class="material-icons right">star</i>
         </span>
         <span class="card-metadata chip">
-          <span *ngIf="categoryGrade" class="card-metadata__counter red accent-4 blue-grey-text text-lighten-5">{{(categoryGrade.validator_eval)? 1: 0}}</span>
+          <span *ngIf="categoryGrade" class="card-metadata__counter red accent-4 blue-grey-text text-lighten-5">{{(categoryGrade._validator)? 1: 0}}</span>
           <span *ngIf="!categoryGrade" class="card-metadata__counter red accent-4 blue-grey-text text-lighten-5">0</span>
            Validées
           <i class="material-icons right">done</i>

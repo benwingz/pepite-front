@@ -32,15 +32,19 @@ export class CategoryComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.getCatGrade()
+    this.focused = false;
+    this.buttonBool = false;
+  };
+
+  getCatGrade(): void {
     this.gradeService.getCategoryGrades(this.category)
       .subscribe((grades) => {
         if (grades.length > 0) {
           this.categoryGrade = grades[0];
         }
       })
-    this.focused = false;
-    this.buttonBool = false;
-  };
+  }
 
   handleClick(event) {
     this.focused = !this.focused;
@@ -58,7 +62,21 @@ export class CategoryComponent implements OnInit {
   };
 
   changeGrade($event) {
-  //  this.profileProvider.getCurrentProfile().addGrade(this.userProvider.getCurrentUser(), this.category, $event.value);
+    if ($event.emptyGrade) {
+      this.gradeService.postGrade($event.userId, $event.categoryId, $event.value)
+        .subscribe((result) => {
+          if (result.success) {
+            this.getCatGrade();
+          }
+        });
+    } else {
+      this.gradeService.patchGrade({id: $event.gradeId, user_eval: {value: $event.value} })
+        .subscribe((result) => {
+          if (result.nModified == 1) {
+            this.getCatGrade();
+          }
+        });
+    }
   }
 
 }

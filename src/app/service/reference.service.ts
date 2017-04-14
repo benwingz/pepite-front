@@ -52,7 +52,7 @@ export class ReferenceService {
         if (grades.json().length > 1) {
           let gradesReturned = grades.json();
           gradesReturned.forEach((grade, index) => {
-            gradesReturned[index] = new Grade(grade._id, grade._category, grade._user, grade.user_eval, grade._validator, grade.validator_eval);
+            gradesReturned[index] = new Grade(grade._category, grade._user, grade.user_eval, grade._id, grade._validator, grade.validator_eval);
           })
           return gradesReturned;
         } else {
