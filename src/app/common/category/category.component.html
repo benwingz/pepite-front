@@ -38,15 +38,19 @@
           <span class="card-metadata__counter light-blue blue-grey-text text-lighten-5">1</span> Compétences
           <i class="material-icons right">star_border</i>
         </span>
-        <!-- <span class="card-metadata chip">
-          <span class="card-metadata__counter light-green blue-grey-text text-lighten-5">{{category.skills | selfEvaluatedSkillsCount}}</span> Auto-évaluées
+        <span class="card-metadata chip">
+          <span *ngIf="categoryGrade" class="card-metadata__counter light-green blue-grey-text text-lighten-5">{{(categoryGrade.user_eval)? 1: 0}}</span>
+          <span *ngIf="!categoryGrade" class="card-metadata__counter light-green blue-grey-text text-lighten-5">0</span>
+           Auto-évaluées
           <i class="material-icons right">star</i>
         </span>
         <span class="card-metadata chip">
-          <span class="card-metadata__counter red accent-4 blue-grey-text text-lighten-5">{{category.skills | validatedSkillsCount}}</span> Validées
+          <span *ngIf="categoryGrade" class="card-metadata__counter red accent-4 blue-grey-text text-lighten-5">{{(categoryGrade.validator_eval)? 1: 0}}</span>
+          <span *ngIf="!categoryGrade" class="card-metadata__counter red accent-4 blue-grey-text text-lighten-5">0</span>
+           Validées
           <i class="material-icons right">done</i>
         </span>
-      </div> -->
+      </div>
       <div class="comments-container center-align">
         <app-comment [categoryId]="category._id" [editable]=true> </app-comment>
       </div>

@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 
+import { GradeService } from '../../service/grade.service';
+
 import { Category } from '../../models/category.model';
+import { Grade } from '../../models/grade.model';
 
 @Component({
   selector: 'app-category',
@@ -19,13 +22,22 @@ export class CategoryComponent implements OnInit {
   @Output()
   focus = new EventEmitter();
 
+  private categoryGrade: Grade;
+
   constructor(
-    myElement: ElementRef
+    myElement: ElementRef,
+    private gradeService: GradeService
   ) {
     this.elementRef = myElement;
   };
 
   ngOnInit(): void {
+    this.gradeService.getCategoryGrades(this.category)
+      .subscribe((grades) => {
+        if (grades.length > 0) {
+          this.categoryGrade = grades[0];
+        }
+      })
     this.focused = false;
     this.buttonBool = false;
   };
