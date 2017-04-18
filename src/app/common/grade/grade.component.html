@@ -14,7 +14,7 @@
     (mouseenter)="changeHover(item)"
     (mouseout)="changeHover(0)"
     class="grade-star__icon material-icons teal-text"
-    [class.text-lighten-3]="item <= grade.validator_eval.value && item > grade.user_eval.value && item > hoverValue"
+    [class.text-lighten-3]="item <= grade.user_eval.value && item > grade.validator_eval.value && item > hoverValue"
     [class.readonly]="readOnly">
     <template [ngIf]="item <= grade.user_eval.value || item <= hoverValue || item <= grade.validator_eval.value">star</template>
     <template [ngIf]="item > grade.user_eval.value && item > hoverValue && item > grade.validator_eval.value">star_border</template>
