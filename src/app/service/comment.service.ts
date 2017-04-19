@@ -19,16 +19,20 @@ export class CommentService {
     return this.authHttp.get('http://localhost:8080/api/category/' + categoryid + '/comments')
       .map((comments) => {
         let commentsReturned = comments.json();
-        commentsReturned.forEach((commentsJson, index) => {
-          commentsReturned[index] = new Comment(
-            commentsJson._id,
-            new Category(commentsJson._category._id, commentsJson._category.title, commentsJson._category.skills, commentsJson._category.order),
-            new User (commentsJson._user._id, commentsJson._user.lastname, commentsJson._user.firstname, commentsJson._user.type),
-            commentsJson.content,
-            commentsJson.date
-          );
-        });
-        return commentsReturned;
+        if (commentsReturned.length > 0) {
+          commentsReturned.forEach((commentsJson, index) => {
+            commentsReturned[index] = new Comment(
+              commentsJson._id,
+              new Category(commentsJson._category._id, commentsJson._category.title, commentsJson._category.skills, commentsJson._category.order),
+              new User (commentsJson._user._id, commentsJson._user.lastname, commentsJson._user.firstname, commentsJson._user.type),
+              commentsJson.content,
+              commentsJson.date
+            );
+          });
+          return commentsReturned;
+        } else {
+          return [];
+        }
       });
   }
 

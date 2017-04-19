@@ -14,6 +14,7 @@ import { CategoryComponent } from './common/category/category.component';
 import { CommentComponent } from './common/comment/comment.component';
 import { CommentlineComponent } from './common/commentline/commentline.component';
 import { GradeComponent } from './common/grade/grade.component';
+import { GlobalPhaseComponent } from './common/global-phase/global-phase.component';
 
 import { AuthService } from './service/auth.service';
 import { ReferenceService } from './service/reference.service';
@@ -23,6 +24,7 @@ import { CommentService } from './service/comment.service';
 import { EvaluatedGradePipe } from './pipes/evaluatedgrade.pipe'
 
 import { HomeComponent } from './pages/home/home.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { PhaseComponent } from './pages/phase/phase.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -38,12 +40,14 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     DropdownComponent,
     BackToTopComponent,
     HomeComponent,
+    ProfileComponent,
     EvaluatedGradePipe,
     PhaseComponent,
     CategoryComponent,
     CommentComponent,
     CommentlineComponent,
-    GradeComponent
+    GradeComponent,
+    GlobalPhaseComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,166 @@
+.global-phase__click {
+  cursor: pointer;
+}
+
+.center-grade {
+  text-align: center;
+}
+
+.card {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 25px;
+}
+
+.card-content {
+  text-align: left;
+}
+
+.phase-card .card-panel {
+  width: 60%;
+  display: inline-block;
+  margin: 10px auto;
+  height: 80px;
+  border-radius: 55px;
+  padding-left: 40px;
+  overflow: hidden;
+  font-family: raleway;
+  background: rgba(255,255,255,0.2);
+  background: -moz-linear-gradient(top, rgba(255,255,255,0.2) 0%, rgba(245,245,245,0.08) 47%, rgba(240,240,240,0) 77%, rgba(237,237,237,0) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,0.2)), color-stop(47%, rgba(245,245,245,0.08)), color-stop(77%, rgba(240,240,240,0)), color-stop(100%, rgba(237,237,237,0)));
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0.2) 0%, rgba(245,245,245,0.08) 47%, rgba(240,240,240,0) 77%, rgba(237,237,237,0) 100%);
+  background: -o-linear-gradient(top, rgba(255,255,255,0.2) 0%, rgba(245,245,245,0.08) 47%, rgba(240,240,240,0) 77%, rgba(237,237,237,0) 100%);
+  background: -ms-linear-gradient(top, rgba(255,255,255,0.2) 0%, rgba(245,245,245,0.08) 47%, rgba(240,240,240,0) 77%, rgba(237,237,237,0) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(245,245,245,0.08) 47%, rgba(240,240,240,0) 77%, rgba(237,237,237,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+}
+
+.global-phase__category-title{
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.phase-card .work {
+  background: #00C9EA;
+}
+
+.work a i, .global-phase__category-title.work{
+  color: #00C9EA;
+}
+
+.phase-card .explore{
+  background: #3A4D57;
+}
+
+.explore a i , .global-phase__category-title.explore {
+  color: #3A4D57;
+}
+
+.phase-card .build {
+  background: #EA3C38;
+}
+
+.build a i, .global-phase__category-title.build{
+  color: #EA3C38;
+}
+
+.phase-card .play_circle_outline {
+  background: #D0DC2D;
+}
+
+.play_circle_outline a i, .global-phase__category-title.play_circle_outline{
+  color: #D0DC2D;
+}
+
+.phase-card__content {
+  transition: all 120ms ease-in;
+  display: inline-block;
+}
+
+
+.hoverable{
+  cursor: pointer;
+}
+
+.phase-card__icon {
+  display: inline-block;
+  width: 64px;
+  height: 44px;
+  border-right: 1px solid #ffffff;
+  margin-right: 20px;
+  padding-right: 20px;
+}
+.phase-card__content-title {
+  position: relative;
+  font-weight: bold;
+
+}
+
+.global-phase__toggle.medium {
+  font-size: 3rem;
+  top: -8px;
+  position: relative;
+}
+
+.phase-card__icon i.medium {
+  font-size: 3rem;
+}
+
+.phase-badge {
+  position: relative;
+  right: -5px;
+  top: -5px;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 40px;
+  background: #ffffff;
+  text-align: center;
+  padding-top: 10px;
+  margin-left: 20px;
+}
+
+.phase-badge span {
+  line-height: 40px;
+  font-size: 1.2em;
+}
+
+.phase-badge .phase-number {
+  font-size: 3em;
+  line-height: 0.8em;
+  font-weight: bold;
+}
+
+
+@media only screen and (max-width: 992px) {
+  .phases-wrapper {
+    text-align: left;
+  }
+
+  .phase-card .card-panel {
+    border-radius: 0 55px 55px 0;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1254px){
+  .phase-card__content-title{
+    font-size: 1.4rem;
+  }
+}
+
+
+
+@media only screen and (max-width: 1095px) {
+  .phase-card__content-title{
+    font-size: 1.2rem;
+  }
+}
+
+.comments-container{
+	margin: 40px;
+}
+
+.card .collection {
+  overflow: visible;
+}
