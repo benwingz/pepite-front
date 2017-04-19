@@ -48,7 +48,10 @@ export class AuthService {
 
   getCurrentUser(): Observable<User> {
     return this.authHttp.get('http://localhost:8080/api/user/' + this.getUserIdFromLocalStorage())
-      .map(user => this.storeUser(user.json()));
+      .map(userReturned => {
+        let user = userReturned.json();
+        return new User (user._id, user.lastname, user.firstname, user.type, user.password, user.salt);
+      });
   }
 
   getUserIdFromLocalStorage(): string {
@@ -61,17 +64,8 @@ export class AuthService {
 
   storeUser(user) {
     this.currentUser = new User (user._id, user.lastname, user.firstname, user.type, user.password, user.salt);
+    console.log(this.currentUser);
     return user;
-  }
-
-  getUser(): any {
-    return new Promise<User>(function(resolve, reject) {
-      if (this.currentUser) {
-        resolve(this.currentUser);
-      } else {
-        reject(false);
-      }
-    });
   }
 
 }
