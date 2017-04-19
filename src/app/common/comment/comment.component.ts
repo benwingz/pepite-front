@@ -29,17 +29,21 @@ export class CommentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.currentUser = this.authService.currentUser;
-    this.commentsActive = false;
-    this.messageSent = false;
-    this.textField = '';
-    this.commentId = 'new-comment-textarea' + this.categoryId;
-    this.getComments();
+    this.authService.getCurrentUser()
+      .subscribe((user) => {
+        this.currentUser = user;
+        this.commentsActive = false;
+        this.messageSent = false;
+        this.textField = '';
+        this.commentId = 'new-comment-textarea' + this.categoryId;
+        this.getComments();
+      });
   }
 
   getComments(): void {
     this.commentService.getCategoryComments(this.categoryId)
       .subscribe((comments) => {
+        console.log('comments', comments)
         this.comments = comments;
       });
   }
