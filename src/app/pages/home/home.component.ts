@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../service/auth.service';
 import { ReferenceService } from '../../service/reference.service';
@@ -38,39 +38,44 @@ export class HomeComponent implements OnInit {
   constructor(
     private referenceService: ReferenceService,
     private authService: AuthService,
-    private gradeService: GradeService
+    private gradeService: GradeService,
+    private router: Router
   ) {
 
   }
 
   ngOnInit() {
-    // Start by retrive user
-    this.authService.getCurrentUser()
-    .subscribe((user) => {
-      this.currentUser = user;
-    });
-    //Then retrieve references
-    this.referenceService.getPhases()
-    .subscribe((phases) => {
-      phases.forEach((phase, index) => {
-        this.referenceService.getGradesByPhase(phase)
-          .subscribe((grades) => {
-            phase.grades = grades;
-            this.referenceService.getPhaseCategories(phase)
-              .subscribe((categories) => {
-                phase.setCategories(categories);
-                categories.forEach((category) => {
-                  this.categories.push(category);
-                });
-                this.reference[phase.order] = phase;
-              });
-          });
+    if (!this.authService.currentUser) {
+      this.router.navigate(['login']);
+    } else {
+      // Start by retrive user
+      this.authService.getCurrentUser()
+      .subscribe((user) => {
+        this.currentUser = user;
       });
-    });
+      //Then retrieve references
+      this.referenceService.getPhases()
+      .subscribe((phases) => {
+        phases.forEach((phase, index) => {
+          this.referenceService.getGradesByPhase(phase)
+            .subscribe((grades) => {
+              phase.grades = grades;
+              this.referenceService.getPhaseCategories(phase)
+                .subscribe((categories) => {
+                  phase.setCategories(categories);
+                  categories.forEach((category) => {
+                    this.categories.push(category);
+                  });
+                  this.reference[phase.order] = phase;
+                });
+            });
+        });
+      });
 
-    //And finally grades
-    this.gradeService.getGrades()
-    .subscribe((grades) => { this.grades = grades });
+      //And finally grades
+      this.gradeService.getGrades()
+      .subscribe((grades) => { this.grades = grades });
+    }
   };
 
   downloadCertificate(): void {

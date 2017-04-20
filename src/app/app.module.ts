@@ -26,6 +26,7 @@ import { EvaluatedGradePipe } from './pipes/evaluatedgrade.pipe'
 import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PhaseComponent } from './pages/phase/phase.component';
+import { LoginComponent } from './pages/login/login.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -47,13 +48,14 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     CommentComponent,
     CommentlineComponent,
     GradeComponent,
-    GlobalPhaseComponent
+    GlobalPhaseComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [{
       provide: AuthHttp,
