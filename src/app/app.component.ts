@@ -37,6 +37,17 @@ export class AppComponent implements OnInit {
     this.authService.userIsLogged$.subscribe(user => {
       if (user) {
         this.currentUser = new User(user._id, user.lastname, user.firstname, user.password, user.salt);
+      } else {
+        delete this.currentUser;
+      }
+    });
+  }
+
+  logout(): void{
+    this.authService.logout().then((resolve) => {
+      console.log(resolve);
+      if (resolve) {
+        this.router.navigate(['login']);
       }
     });
   }

@@ -1,0 +1,42 @@
+main {
+  flex: 1 0 auto;
+
+  h5 {
+    text-align: center;
+  }
+
+  .container {
+
+    .row {
+      padding: 15px 15px 0px 15px;
+      border: 1px solid #EEE;
+    }
+  }
+}
+
+.create-account-link {
+  text-align: center;
+}
+
+body {
+  background: #fff;
+}
+
+section {
+  width: 100%;
+}
+
+.input-field input[type=date]:focus + label,
+.input-field input[type=text]:focus + label,
+.input-field input[type=email]:focus + label,
+.input-field input[type=password]:focus + label {
+  color: #e91e63;
+}
+
+.input-field input[type=date]:focus,
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus {
+  border-bottom: 2px solid #e91e63;
+  box-shadow: none;
+}

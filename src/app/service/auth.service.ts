@@ -85,4 +85,14 @@ export class AuthService {
     return user;
   }
 
+  logout(): Promise<any> {
+    const userLoggedSubject = this.userLogged;
+    return new Promise(function(resolve, reject) {
+      sessionStorage.removeItem('user_id');
+      sessionStorage.removeItem('token');
+      userLoggedSubject.next(null);
+      resolve(true);
+    });
+  }
+
 }

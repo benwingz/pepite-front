@@ -6,6 +6,7 @@
             <li class="right"><a class="white-text disabled" [innerHTML]="currentUser.getFullname()"></a></li>
             <li class="left"><a [routerLink]="['/home']" [routerLinkActive]="['active']" class="white-text">Accueil</a></li>
             <li class="right"><a [routerLink]="['/profile']" [routerLinkActive]="['active']" class="white-text" *ngIf="currentUser">Mon profile</a></li>
+            <li class="right"><a (click)="logout()" *ngIf="currentUser">Se déconnecter</a></li>
             <!-- <li class="left"><app-dropdown [btnLabel]="'Sélectionner un scenario'" [values]="dropdownValues" (select)="select($event)"></app-dropdown></li> -->
         </ul>
         <a class="button-collapse right" (click)="toggleSidebar()"><i class="material-icons">menu</i></a>
@@ -13,6 +14,7 @@
           <li><a class="disabled center-align" [innerHTML]="currentUser.getFullname()"></a></li>
           <li><a [routerLink]="['/home']" [routerLinkActive]="['active']">Accueil</a></li>
           <li><a [routerLink]="['/profile']" [routerLinkActive]="['active']" *ngIf="currentUser">Mon profile</a></li>
+          <li><a *ngIf="currentUser">Se déconnecter</a></li>
           <!-- <li><app-dropdown [btnLabel]="'Sélectionner un scenario'" [values]="dropdownValues" (select)="select($event)"></app-dropdown></li> -->
         </ul>
       </div>
