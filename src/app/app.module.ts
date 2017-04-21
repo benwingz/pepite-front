@@ -20,13 +20,16 @@ import { AuthService } from './service/auth.service';
 import { ReferenceService } from './service/reference.service';
 import { GradeService } from './service/grade.service';
 import { CommentService } from './service/comment.service';
+import { UsersService } from './service/users.service';
 
 import { EvaluatedGradePipe } from './pipes/evaluatedgrade.pipe'
+import { FilterUserPipe } from './pipes/filteruser.pipe';
 
 import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PhaseComponent } from './pages/phase/phase.component';
 import { LoginComponent } from './pages/login/login.component';
+import { UsersComponent } from './pages/users/users.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -49,7 +52,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     CommentlineComponent,
     GradeComponent,
     GlobalPhaseComponent,
-    LoginComponent
+    LoginComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AuthService,
     ReferenceService,
     GradeService,
-    CommentService
+    CommentService,
+    UsersService,
+    FilterUserPipe
   ],
   bootstrap: [AppComponent]
 })

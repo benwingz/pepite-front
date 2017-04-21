@@ -57,7 +57,6 @@ export class AuthService {
   }
 
   getCurrentUser(): Observable<any> {
-    console.log('getUserIdFromLocalStorage', this.getUserIdFromLocalStorage())
     if (this.getUserIdFromLocalStorage()) {
       return this.authHttp.get('http://localhost:8080/api/user/' + this.getUserIdFromLocalStorage())
         .map(userReturned => {
