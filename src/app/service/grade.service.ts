@@ -9,14 +9,19 @@ import { User } from '../models/user.model';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
+import { AppConfig } from '../app.config';
+
 @Injectable()
 export class GradeService {
 
-  constructor(private authHttp: AuthHttp) {
+  constructor(
+    private authHttp: AuthHttp,
+    private appConf: AppConfig
+  ) {
   };
 
   getGrades(): Observable<Grade[]> {
-    return this.authHttp.get('http://localhost:8080/api/grades/')
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'grades/')
       .map((grades) => {
         let gradesReturned = grades.json();
         gradesReturned.forEach((gradesJson, index) => {
@@ -34,7 +39,7 @@ export class GradeService {
   }
 
   getUserGrades(userId: string): Observable<Grade[]> {
-    return this.authHttp.get('http://localhost:8080/api/user/' +  userId + '/grades/')
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'user/' +  userId + '/grades/')
       .map((grades) => {
         let gradesReturned = grades.json();
         gradesReturned.forEach((gradesJson, index) => {
@@ -52,7 +57,7 @@ export class GradeService {
   }
 
   getCategoryGrades(category: Category): Observable<Grade[]> {
-    return this.authHttp.get('http://localhost:8080/api/category/' + category.getId() + '/grades')
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'category/' + category.getId() + '/grades')
       .map((grades) => {
         let gradesReturned = grades.json();
         if(gradesReturned.length > 0) {
@@ -72,17 +77,17 @@ export class GradeService {
   }
 
   removeGrade(grade: Grade): Observable<any> {
-    return this.authHttp.delete('http://localhost:8080/api/grade/' + grade._id)
+    return this.authHttp.delete(this.appConf.apiBaseUrl + 'grade/' + grade._id)
       .map(result => result.json());
   }
 
   postGrade(userId: string, categoryId: string, value: number): Observable<any> {
-    return this.authHttp.post('http://localhost:8080/api/grade/',{user: userId, category: categoryId, value: value})
+    return this.authHttp.post(this.appConf.apiBaseUrl + 'grade/',{user: userId, category: categoryId, value: value})
       .map(result => result.json());
   }
 
   patchGrade(gradeModifications: object): Observable<any> {
-    return this.authHttp.patch('http://localhost:8080/api/grade/',gradeModifications)
+    return this.authHttp.patch(this.appConf.apiBaseUrl + 'grade/',gradeModifications)
       .map(result => result.json());
   }
 }

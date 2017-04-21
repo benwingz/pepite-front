@@ -5,17 +5,20 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 import { User } from  '../models/user.model';
 
+import { AppConfig } from '../app.config';
+
 @Injectable()
 export class UsersService {
 
 
   constructor(
-    private authHttp: AuthHttp
+    private authHttp: AuthHttp,
+    private appConf: AppConfig
   ) {
   };
 
   getUsers(): Observable<any> {
-    return this.authHttp.get('http://localhost:8080/api/users')
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'users')
       .map(response => {
         let userList: User[] = [];
         const jsonResponse = response.json();

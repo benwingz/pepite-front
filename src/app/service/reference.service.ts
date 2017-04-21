@@ -9,14 +9,20 @@ import { Grade } from '../models/grade.model';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
+
+import { AppConfig } from '../app.config';
+
 @Injectable()
 export class ReferenceService {
 
-  constructor(private authHttp: AuthHttp) {
+  constructor(
+    private authHttp: AuthHttp,
+    private appConf: AppConfig
+  ) {
   };
 
   getPhases(): Observable<Phase[]> {
-    return this.authHttp.get('http://localhost:8080/api/phases/')
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'phases/')
       .map((phases) => {
         let phasesReturned = phases.json();
         phasesReturned.forEach((phase) => {
@@ -27,7 +33,7 @@ export class ReferenceService {
   }
 
   getPhase(id: string): Observable<Phase> {
-    return this.authHttp.get('http://localhost:8080/api/phase/' + id)
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'phase/' + id)
       .map((phase) => {
         let phaseReturned = phase.json();
         phaseReturned = new Phase(phaseReturned._id, phaseReturned.title, phaseReturned.order);
@@ -36,7 +42,7 @@ export class ReferenceService {
   }
 
   getPhaseCategories(phase): Observable<Category[]> {
-    return this.authHttp.get('http://localhost:8080/api/phase/' + phase.getId() + '/categories')
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'phase/' + phase.getId() + '/categories')
       .map((categories) => {
         let categoriesReturned = categories.json();
         categoriesReturned.forEach((categoriesJson) => {
@@ -49,9 +55,9 @@ export class ReferenceService {
   getGradesByPhase(phase: Phase, userId?: string): Observable<Grade[]> {
     let query: Observable<any>;
     if (userId) {
-      query = this.authHttp.get('http://localhost:8080/api/phase/' + phase.getId() + '/grades', { params: {'user': userId} });
+      query = this.authHttp.get(this.appConf.apiBaseUrl + 'phase/' + phase.getId() + '/grades', { params: {'user': userId} });
     } else {
-      query = this.authHttp.get('http://localhost:8080/api/phase/' + phase.getId() + '/grades');
+      query = this.authHttp.get(this.appConf.apiBaseUrl + 'phase/' + phase.getId() + '/grades');
     }
     return query.map((grades) => {
       if (grades.json().length > 1) {
