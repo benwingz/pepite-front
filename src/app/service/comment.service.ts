@@ -9,14 +9,19 @@ import { User } from '../models/user.model';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
+import { AppConfig } from '../app.config';
+
 @Injectable()
 export class CommentService {
 
-  constructor(private authHttp: AuthHttp) {
+  constructor(
+    private authHttp: AuthHttp,
+    private appConf: AppConfig
+  ) {
   };
 
   getCategoryComments(categoryid: string): Observable<Comment[]> {
-    return this.authHttp.get('http://localhost:8080/api/category/' + categoryid + '/comments')
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'category/' + categoryid + '/comments')
       .map((comments) => {
         let commentsReturned = comments.json();
         if (commentsReturned.length > 0) {
@@ -37,7 +42,7 @@ export class CommentService {
   }
 
   deleteComment(commentid: string): any {
-    return this.authHttp.delete('http://localhost:8080/api/comment/' + commentid)
+    return this.authHttp.delete(this.appConf.apiBaseUrl + 'comment/' + commentid)
       .map(response => response.json());
   }
 
@@ -48,7 +53,7 @@ export class CommentService {
     content.set('category', categoryId);
     content.set('user', userId);
     content.set('content', text);
-    return this.authHttp.post('http://localhost:8080/api/comment', content.toString(), {headers: headers})
+    return this.authHttp.post(this.appConf.apiBaseUrl + 'comment', content.toString(), {headers: headers})
       .map(response => response.json());
   }
 }

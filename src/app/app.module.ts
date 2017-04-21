@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app.routing.module';
 
 import { AppComponent } from './app.component';
 
+import { AppConfig } from './app.config';
+
 import { DropdownComponent } from './common/dropdown/dropdown.component';
 import { BackToTopComponent } from './common/back-to-top/back-to-top.component';
 import { CategoryComponent } from './common/category/category.component';
@@ -71,7 +73,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     GradeService,
     CommentService,
     UsersService,
-    FilterUserPipe
+    FilterUserPipe,
+    AppConfig
   ],
   bootstrap: [AppComponent]
 })
