@@ -43,7 +43,6 @@ export class CommentComponent implements OnInit {
   getComments(): void {
     this.commentService.getCategoryComments(this.categoryId)
       .subscribe((comments) => {
-        console.log('comments', comments)
         this.comments = comments;
       });
   }

@@ -33,6 +33,24 @@ export class GradeService {
       });
   }
 
+  getUserGrades(userId: string): Observable<Grade[]> {
+    return this.authHttp.get('http://localhost:8080/api/user/' +  userId + '/grades/')
+      .map((grades) => {
+        let gradesReturned = grades.json();
+        gradesReturned.forEach((gradesJson, index) => {
+          gradesReturned[index] = new Grade(
+            gradesJson._category,
+            gradesJson._user,
+            gradesJson.user_eval,
+            gradesJson._id,
+            (gradesJson._validator) ? gradesJson._validator: null,
+            (gradesJson.validator_eval) ? gradesJson.validator_eval: null
+          );
+        });
+        return gradesReturned;
+      });
+  }
+
   getCategoryGrades(category: Category): Observable<Grade[]> {
     return this.authHttp.get('http://localhost:8080/api/category/' + category.getId() + '/grades')
       .map((grades) => {

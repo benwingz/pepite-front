@@ -2,7 +2,8 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper blue-grey darken-4">
-      <a class="brand-logo center">ACCUEIL</a>
+      <a *ngIf="!currentValidatedUser" class="brand-logo center">ACCUEIL</a>
+      <a *ngIf="currentValidatedUser" class="brand-logo center">Profil de {{currentValidatedUser.getFullname()}}</a>
     </div>
   </nav>
 </div>

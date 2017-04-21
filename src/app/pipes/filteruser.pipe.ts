@@ -20,7 +20,6 @@ export class FilterUserPipe implements PipeTransform {
           filterList.push(userList[i]);
         }
       }
-      console.log(filterList);
       if(searchTerms == '') {
         return users;
       } else {

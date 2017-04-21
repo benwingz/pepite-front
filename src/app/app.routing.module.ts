@@ -12,6 +12,7 @@ import { UsersComponent } from './pages/users/users.component';
         RouterModule.forRoot([
           { path: 'login', component: LoginComponent},
           { path: 'home', component: HomeComponent },
+          { path: 'users/:id', component: HomeComponent },
           { path: 'profile', component: ProfileComponent },
           { path: 'phase/:id', component: PhaseComponent },
           { path: 'users', component: UsersComponent },

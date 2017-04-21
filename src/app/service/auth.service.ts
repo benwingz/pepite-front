@@ -32,7 +32,6 @@ export class AuthService {
       this.fetchDistantToken(userInfo)
         .subscribe((responseJson) => {
           if (responseJson.token) {
-            console.log('User Id:', responseJson.user_id);
             this.storeNewtoken(responseJson.token);
             this.storeUserId(responseJson.user_id);
           }
@@ -70,6 +69,14 @@ export class AuthService {
     }
   }
 
+  getUser(userId: string): Observable<User> {
+    return this.authHttp.get('http://localhost:8080/api/user/' + userId)
+      .map(userReturned => {
+        let user = userReturned.json();
+        return new User (user._id, user.lastname, user.firstname, user.type);
+      });
+  }
+
   getUserIdFromLocalStorage(): string {
     return sessionStorage.getItem('user_id');
   }
@@ -80,7 +87,6 @@ export class AuthService {
 
   storeUser(user) {
     this.currentUser = new User (user._id, user.lastname, user.firstname, user.type, user.password, user.salt);
-    console.log(this.currentUser);
     return user;
   }
 

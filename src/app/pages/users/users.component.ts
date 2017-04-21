@@ -50,7 +50,6 @@ export class UsersComponent implements OnInit {
   }
 
   searchUser(term: string): Observable<User[]> {
-    console.log('terms', term);
     return this.filteruser.transform(this.userList, term);
   }
 

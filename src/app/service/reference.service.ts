@@ -46,18 +46,23 @@ export class ReferenceService {
       });
   }
 
-  getGradesByPhase(phase): Observable<Grade[]> {
-    return this.authHttp.get('http://localhost:8080/api/phase/' + phase.getId() + '/grades')
-      .map((grades) => {
-        if (grades.json().length > 1) {
-          let gradesReturned = grades.json();
-          gradesReturned.forEach((grade, index) => {
-            gradesReturned[index] = new Grade(grade._category, grade._user, grade.user_eval, grade._id, grade._validator, grade.validator_eval);
-          })
-          return gradesReturned;
-        } else {
-          return [];
-        }
-      })
+  getGradesByPhase(phase: Phase, userId?: string): Observable<Grade[]> {
+    let query: Observable<any>;
+    if (userId) {
+      query = this.authHttp.get('http://localhost:8080/api/phase/' + phase.getId() + '/grades', { params: {'user': userId} });
+    } else {
+      query = this.authHttp.get('http://localhost:8080/api/phase/' + phase.getId() + '/grades');
+    }
+    return query.map((grades) => {
+      if (grades.json().length > 1) {
+        let gradesReturned = grades.json();
+        gradesReturned.forEach((grade, index) => {
+          gradesReturned[index] = new Grade(grade._category, grade._user, grade.user_eval, grade._id, grade._validator, grade.validator_eval);
+        })
+        return gradesReturned;
+      } else {
+        return [];
+      }
+    })
   }
 }
