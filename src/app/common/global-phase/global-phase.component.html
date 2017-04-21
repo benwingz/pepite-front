@@ -1,0 +1,38 @@
+<div class="phase-card" *ngIf="phase">
+  <div class="hoverable card-panel {{icons[phaseNumber]}}" (click)="toggle($event)">
+      <span class="phase-card__icon white-text left">
+          <i class="material-icons medium">{{icons[phaseNumber]}}</i>
+      </span>
+    <span class="white-text flow-text phase-card__content" *ngIf="phase">
+        <span class="phase-card__content-title">{{ phase.title }}</span>
+    </span>
+    <span class="phase-badge right">
+        <a class="global-phase__click" (click)="toggle($event)">
+            <i class="material-icons global-phase__toggle medium">{{ expand }}</i>
+        </a>
+    </span>
+  </div>
+</div>
+<div class="row" *ngIf="!hidden">
+  <div class="col s12" *ngFor="let category of categories">
+    <div class="card">
+      <div class="card-content">
+          <h5 class="card-title global-phase__category-title center-align  {{icons[phaseNumber]}}">{{ category.title }}</h5>
+          <div class="center-grade">
+            <app-grade
+              [grade]="categoriesGrade[category._id]"
+              [category]="category"
+              [readOnly]="true"
+              class="teal-text grade-container">
+            </app-grade>
+          </div>
+          <ul class="collection" *ngIf="detailShown">
+              <li class="collection-item category__skill" *ngFor="let skill of category.skills" [innerHTML]="skill"></li>
+           </ul>
+           <div class="collection-item category__comment-box center-align">
+              <app-comment [categoryId]="category._id"></app-comment>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>

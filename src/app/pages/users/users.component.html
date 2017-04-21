@@ -1,0 +1,17 @@
+<div class="sestion">
+  <div class="row">
+    <div class="container col m8 offset-m2 s12">
+      <h5 class="light-blue-text">Liste des utilisateurs :</h5>
+      <div class="input-field">
+        <i class="material-icons prefix">search</i>
+        <input #searchBox id="icon_prefix" type="text" class="validate" (keyup)="search(searchBox.value)">
+        <label for="icon_prefix">Affiner votre recherche</label>
+      </div>
+      <ul class="userList">
+        <li *ngFor="let user of userList | async" class="chip">
+          <a [routerLink]="['/users', user._id]" [innerHtml]="user.getFullname()"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

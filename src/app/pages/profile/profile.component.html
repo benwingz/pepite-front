@@ -1,0 +1,40 @@
+<div class="navbar-fixed blue-grey darken-4 z-depth-1 white-text">
+    <h3 class="center-align profile-title__content" *ngIf="currentUser" [innerHTML]="'Profil de ' + currentUser.getFullname()"></h3>
+</div>
+<div class="section row">
+  <div class="col s12 center-align btn-export">
+    <a class="waves-effect waves-light btn push-on-medium-screen" (click)='exportPdf(1)'>Exporter le profil complet</a>
+    <a class="waves-effect waves-light btn push-on-medium-screen" (click)='exportPdf(2)'>Exporter le profil auto-évaluée</a>
+    <a class="waves-effect waves-light btn push-on-medium-screen" (click)='exportPdf(3)'>Exporter le profil validé</a>
+    <a
+        *ngIf="currentUser && currentUser.type == 'validator'"
+        class="waves-effect waves-light btn deliver-certificate-btn push-on-medium-screen"
+         [class.disabled]="currentUser.is_certified"
+        (click)="deliverCertificate()"
+      >
+        <i class="material-icons left">school</i>
+        <i class="material-icons right" *ngIf="currentUser.is_certified">done</i>
+        <template [ngIf]="!currentUser.is_certified">Délivrer le certificat</template>
+        <template [ngIf]="currentUser.is_certified">Certificat délivré</template>
+    </a>
+    <br/>
+    <br/>
+    <a class="waves-effect waves-light btn push-on-medium-screen" (click)='displayDetails = !displayDetails'>
+      <span *ngIf="!displayDetails">Afficher</span><span *ngIf="displayDetails">Cacher</span> le detail des compétences
+    </a>
+  </div>
+</div>
+
+<div class="section phases-wrapper" *ngIf="phases.length != 0">
+  <div class="row">
+      <div *ngFor="let phase of phases; let phaseNumber = index;" class="col s12">
+           <app-global-phase [phase]="phase" [phaseNumber]="phaseNumber" [detailShown]="displayDetails"></app-global-phase>
+      </div>
+  </div>
+</div>
+
+<div class="fixed-action-btn" *ngIf="visible">
+  <a class="waves-effect waves-light btn push-on-medium-screen btn-display-detail" (click)='displayDetails = !displayDetails'>
+    <i class="material-icons">subject</i>
+  </a>
+<div>

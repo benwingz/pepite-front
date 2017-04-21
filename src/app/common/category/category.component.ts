@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 
+import { GradeService } from '../../service/grade.service';
+
 import { Category } from '../../models/category.model';
+import { Grade } from '../../models/grade.model';
 
 @Component({
   selector: 'app-category',
@@ -19,16 +22,29 @@ export class CategoryComponent implements OnInit {
   @Output()
   focus = new EventEmitter();
 
+  private categoryGrade: Grade;
+
   constructor(
-    myElement: ElementRef
+    myElement: ElementRef,
+    private gradeService: GradeService
   ) {
     this.elementRef = myElement;
   };
 
   ngOnInit(): void {
+    this.getCatGrade()
     this.focused = false;
     this.buttonBool = false;
   };
+
+  getCatGrade(): void {
+    this.gradeService.getCategoryGrades(this.category)
+      .subscribe((grades) => {
+        if (grades.length > 0) {
+          this.categoryGrade = grades[0];
+        }
+      })
+  }
 
   handleClick(event) {
     this.focused = !this.focused;
@@ -46,7 +62,21 @@ export class CategoryComponent implements OnInit {
   };
 
   changeGrade($event) {
-  //  this.profileProvider.getCurrentProfile().addGrade(this.userProvider.getCurrentUser(), this.category, $event.value);
+    if ($event.emptyGrade) {
+      this.gradeService.postGrade($event.userId, $event.categoryId, $event.value)
+        .subscribe((result) => {
+          if (result.success) {
+            this.getCatGrade();
+          }
+        });
+    } else {
+      this.gradeService.patchGrade({id: $event.gradeId, user_eval: {value: $event.value} })
+        .subscribe((result) => {
+          if (result.nModified == 1) {
+            this.getCatGrade();
+          }
+        });
+    }
   }
 
 }

@@ -1,0 +1,32 @@
+
+<i
+  [class.grade-icon__hidden] ="!grade.validator"
+  class="material-icons category-grade__validated teal-text "
+  (mouseover)="toggleValidationLegend($event)"
+  (mouseout)="toggleValidationLegend($event)"
+  [class.active]="legendActive" >
+  done
+</i>
+
+<template ngFor let-item [ngForOf]="createRange()">
+  <i
+    (click)="changeGrade(item)"
+    (mouseenter)="changeHover(item)"
+    (mouseout)="changeHover(0)"
+    class="grade-star__icon material-icons teal-text"
+    [class.text-lighten-3]="item <= grade.user_eval.value && item > grade.validator_eval.value && item > hoverValue"
+    [class.readonly]="readOnly">
+    <template [ngIf]="item <= grade.user_eval.value || item <= hoverValue || item <= grade.validator_eval.value">star</template>
+    <template [ngIf]="item > grade.user_eval.value && item > hoverValue && item > grade.validator_eval.value">star_border</template>
+  </i>
+</template>
+<i [class.grade-icon__hidden]="grade.user_eval.value == 0 || readOnly"
+  (click)="removeGrade()"
+  class="material-icons red-text text-lighten-2 grade-star__icon">
+  clear
+</i>
+<span
+  class="grade-validation__tooltip"
+  *ngIf="validationLegend && grade.validator">
+  Validé par {{ grade.validator.getFullname() }}
+</span>

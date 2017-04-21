@@ -1,0 +1,40 @@
+.btn-display-detail {
+  position: absolute;
+  bottom : 3px;
+  right : 50px;
+}
+
+.navbar-fixed {
+  position: fixed;
+  width: 100vw;
+  z-index: 4;
+  height: 80px;
+}
+
+.profile-title__content {
+  line-height: 35px;
+}
+
+.navbar-fixed + .row {
+  position: relative;
+  top: 84px;
+}
+
+.navbar-fixed + .row + div {
+  position: relative;
+  top: 84px;
+}
+
+.phases-wrapper {
+  text-align: center;
+}
+
+.btn-export a {
+  border-radius: 25px
+}
+
+.push-on-medium-screen{
+  @media screen and (max-width: 1253px){
+      margin-bottom: 10px;
+  }
+}

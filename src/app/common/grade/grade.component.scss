@@ -1,0 +1,26 @@
+.grade-star__icon:not(.readonly) {
+  cursor: pointer;
+}
+
+.grade-icon__hidden {
+    visibility: hidden;
+}
+
+:host {
+  position: relative;
+}
+
+.grade-validation__tooltip {
+    top: 20px;
+    position: absolute;
+    padding: 4px;
+    color: #ffffff;
+    background: #333333;
+    border-radius: 2px;
+    z-index: 10;
+    right: 0px;
+}
+
+.grade-validation__tooltip.secondary {
+    // right: -40px;
+}

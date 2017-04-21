@@ -4,7 +4,8 @@
 }
 
 .grade-category {
-  padding-right: 36px;
+  padding-bottom: 20px;
+  padding-top: 10px;
 }
 
 .category-card .collection,
@@ -22,10 +23,6 @@
       left: calc(50% - 20px);
     }
   }
-}
-
-.category-card .card-content {
-  min-height: 200px;
 }
 
 .category-card .card-title {
