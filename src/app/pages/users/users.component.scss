@@ -6,7 +6,13 @@ h5 {
   text-align: center;
 
   li {
-    text-align: left;
-    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    app-userstat {
+      .chips-container {
+        display: inline-block;
+      }
+    }
   }
 }

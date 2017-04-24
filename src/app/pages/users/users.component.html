@@ -10,6 +10,7 @@
       <ul class="userList">
         <li *ngFor="let user of userList | async" class="chip">
           <a [routerLink]="['/users', user._id]" [innerHtml]="user.getFullname()"></a>
+          <app-userstat [user]="user._id" [hideCategories]="true"></app-userstat>
         </li>
       </ul>
     </div>

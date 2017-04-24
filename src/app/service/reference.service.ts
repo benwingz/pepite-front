@@ -41,6 +41,17 @@ export class ReferenceService {
       });
   }
 
+  getCategories(): Observable<Category[]> {
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'categories/')
+      .map((categories) => {
+        let categoriesReturned = categories.json();
+        categoriesReturned.forEach((categoriesJson) => {
+          categoriesReturned[categoriesJson.order] = new Category(categoriesJson._id, categoriesJson.title, categoriesJson.skills, categoriesJson.order);
+        });
+        return categoriesReturned;
+      });
+  }
+
   getPhaseCategories(phase): Observable<Category[]> {
     return this.authHttp.get(this.appConf.apiBaseUrl + 'phase/' + phase.getId() + '/categories')
       .map((categories) => {

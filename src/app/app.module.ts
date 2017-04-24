@@ -17,6 +17,7 @@ import { CommentComponent } from './common/comment/comment.component';
 import { CommentlineComponent } from './common/commentline/commentline.component';
 import { GradeComponent } from './common/grade/grade.component';
 import { GlobalPhaseComponent } from './common/global-phase/global-phase.component';
+import { UserstatComponent } from './common/userstat/userstat.component';
 
 import { AuthService } from './service/auth.service';
 import { ReferenceService } from './service/reference.service';
@@ -56,6 +57,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     GlobalPhaseComponent,
     LoginComponent,
     UsersComponent,
+    UserstatComponent
   ],
   imports: [
     BrowserModule,

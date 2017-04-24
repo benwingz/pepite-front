@@ -20,26 +20,31 @@ export class GradeService {
   ) {
   };
 
-  getGrades(): Observable<Grade[]> {
-    return this.authHttp.get(this.appConf.apiBaseUrl + 'grades/')
-      .map((grades) => {
-        let gradesReturned = grades.json();
-        if (gradesReturned.length > 0) {
-          gradesReturned.forEach((gradesJson, index) => {
-            gradesReturned[index] = new Grade(
-              gradesJson._category,
-              gradesJson._user,
-              gradesJson.user_eval,
-              gradesJson._id,
-              (gradesJson._validator) ? gradesJson._validator: null,
-              (gradesJson.validator_eval) ? gradesJson.validator_eval: null
-            );
-          });
-        } else {
-          gradesReturned = [];
-        }
-        return gradesReturned;
-      });
+  getGrades(user?: string): Observable<Grade[]> {
+    let query;
+    if (user) {
+      query = this.authHttp.get(this.appConf.apiBaseUrl + 'grades/', {params: {'user': user}});
+    } else {
+      query = this.authHttp.get(this.appConf.apiBaseUrl + 'grades/');
+    }
+    return query.map((grades) => {
+      let gradesReturned = grades.json();
+      if (gradesReturned.length > 0) {
+        gradesReturned.forEach((gradesJson, index) => {
+          gradesReturned[index] = new Grade(
+            gradesJson._category,
+            gradesJson._user,
+            gradesJson.user_eval,
+            gradesJson._id,
+            (gradesJson._validator) ? gradesJson._validator: null,
+            (gradesJson.validator_eval) ? gradesJson.validator_eval: null
+          );
+        });
+      } else {
+        gradesReturned = [];
+      }
+      return gradesReturned;
+    });
   }
 
   getUserGrades(userId: string): Observable<Grade[]> {
