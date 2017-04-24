@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   getNewToken(token?:any): void {
-    console.log('newToken');
     let authInfo:any = {};
     if (token) {
       authInfo = token;
@@ -40,11 +39,12 @@ export class LoginComponent implements OnInit {
     }
     this.authService.generateToken(authInfo)
       .then((response) => {
+        console.log(response);
         if(response.success) {
           this.retriveUserProfile().then(
             (user) => {
               this.currentUser = user;
-              console.log('user', user);
+              //console.log('user', user);
               switch (user.type) {
                 // case "user":
                 //   this.router.navigate(['home']);
@@ -60,6 +60,9 @@ export class LoginComponent implements OnInit {
         } else {
           this.errorMessage = response.message;
         }
+      },
+      (error) => {
+        this.errorMessage = error.error;
       });
   }
 

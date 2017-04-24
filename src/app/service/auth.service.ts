@@ -39,6 +39,8 @@ export class AuthService {
             this.storeUserId(responseJson.user_id);
           }
           resolve(responseJson);
+        }, (error) => {
+            reject(error.json());
         });
     });
   }
