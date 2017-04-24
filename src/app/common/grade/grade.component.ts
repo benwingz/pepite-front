@@ -52,13 +52,18 @@ export class GradeComponent implements OnChanges {
 
   changeGrade(value: number): void {
     if (!this.readOnly) {
-      this.gradeEvent.emit({
+      let gradeEmmit = {
         gradeId: (!this.emptyGrade)? this.grade._id: null,
         value: value,
         userId: this.user._id,
         categoryId: this.category._id,
-        emptyGrade: this.emptyGrade
-      });
+        emptyGrade: this.emptyGrade,
+        type: 'auto-eval'
+      }
+      if (this.user.type == 'validator' || this.user.type == 'admin' || this.user.type == 'pepite-admin' ) {
+        gradeEmmit.type = 'validation-eval';
+      }
+      this.gradeEvent.emit(gradeEmmit);
       if(this.emptyGrade) {
         this.emptyGrade = false;
       }

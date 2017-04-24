@@ -12,7 +12,7 @@ export class EvaluatedGradePipe implements PipeTransform {
 
   transform(grades: Grade[]): any {
     let gradeFiltered = grades.filter((grade) => {
-      return grade.validator && grade.validator_eval;
+      return grade.validator_eval;
     });
     return gradeFiltered;
   }

@@ -36,7 +36,8 @@
 <br/>
 <div class="phases-wrapper" *ngIf="reference">
     <div class="phase-card" *ngFor="let phase of reference; let i = index;">
-      <div [routerLink]="['/phase', phase._id]" class="hoverable card-panel" *ngIf="phase">
+      <div (click)="navigateToCategories(phase)" class="hoverable card-panel" *ngIf="phase">
+      <!-- <div [routerLink]="['/phase', phase._id, {queryParams {'user': userId}}]" class="hoverable card-panel" *ngIf="phase"> -->
           <span class="phase-card__icon white-text left">
               <i class="material-icons medium">{{icons[i]}}</i>
           </span>

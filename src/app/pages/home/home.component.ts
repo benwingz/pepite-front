@@ -106,6 +106,14 @@ export class HomeComponent implements OnInit {
     }
   };
 
+  navigateToCategories(phase: Phase): void{
+    if (this.userId) {
+      this.router.navigate(['/phase', phase._id], {queryParams: {'user': this.userId}});
+    } else {
+      this.router.navigate(['/phase', phase._id]);
+    }
+  }
+
   downloadCertificate(): void {
     // let user: User = this.profileProvider.getCurrentProfile().getUser();
     // let certification: Certification = user.getCertification();
