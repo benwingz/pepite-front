@@ -21,13 +21,7 @@ export class CommentService {
   };
 
   getCategoryComments(categoryid: string, user?: string): Observable<Comment[]> {
-    let query;
-    if (user) {
-      query = this.authHttp.get(this.appConf.apiBaseUrl + 'category/' + categoryid + '/comments', {params: {user: user}})
-    } else {
-      query = this.authHttp.get(this.appConf.apiBaseUrl + 'category/' + categoryid + '/comments')
-    }
-    return query.map((comments) => {
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'category/' + categoryid + '/comments', {params: {user: user}}).map((comments) => {
       let commentsReturned = comments.json();
       if (commentsReturned.length > 0) {
         commentsReturned.forEach((commentsJson, index) => {
@@ -51,13 +45,14 @@ export class CommentService {
       .map(response => response.json());
   }
 
-  createComment(text: string, userId: string, categoryId: string): Observable<any> {
+  createComment(text: string, userId: string, categoryId: string, userlink?: string): Observable<any> {
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     var content = new URLSearchParams();
     content.set('category', categoryId);
     content.set('user', userId);
     content.set('content', text);
+    content.set('userlink', (userlink)? userlink: userId);
     return this.authHttp.post(this.appConf.apiBaseUrl + 'comment', content.toString(), {headers: headers})
       .map(response => response.json());
   }
