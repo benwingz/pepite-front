@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="input-field">
+    <i class="material-icons prefix">search</i>
+    <input #searchBox id="icon_prefix" type="text" class="validate" (keyup)="search(searchBox.value)">
+    <label for="icon_prefix">Affiner votre recherche</label>
+  </div>
+  <ul class="userList">
+    <li
+      style="width: 100%"
+      *ngFor="let user of userList | async"
+      class="chip"
+      [class.validator]="user.type=='validator'"
+      [class.user]="user.type=='user'"
+      [class.pepite]="user.type=='pepite-admin'"
+      [class.admin]="user.type=='admin'">
+      <a [routerLink]="['/user', user._id]" [innerHtml]="user.getFullname()"></a>
+    </li>
+  </ul>
+</div>

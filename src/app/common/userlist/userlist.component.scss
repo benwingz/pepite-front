@@ -1,0 +1,14 @@
+.userList {
+  text-align: center;
+
+  li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    app-userstat {
+      .chips-container {
+        display: inline-block;
+      }
+    }
+  }
+}
