@@ -56,19 +56,15 @@ export class CommentComponent implements OnInit {
   };
 
   createComment(e): void {
-    this.commentService.createComment(this.textField, this.currentUser._id, this.categoryId)
-      .subscribe((response) => {
-        if (response.success) {
-          e.stopPropagation();
-          this.textField = '';
-          this.messageSent = true;
-          this.getComments();
-        }
-      });
-    // e.stopPropagation();
-    // this.getComments().push(new Comment(new Date().valueOf(), this.textField, this.currentUser, new Date())); // Generate Random Id : DIRTY
-    // this.textField = '';
-    // this.messageSent = true;
+    this.commentService.createComment(this.textField, this.currentUser._id, this.categoryId, this.user)
+    .subscribe((response) => {
+      if (response.success) {
+        e.stopPropagation();
+        this.textField = '';
+        this.messageSent = true;
+        this.getComments();
+      }
+    });
   }
 
   deleteComment(e): void {
