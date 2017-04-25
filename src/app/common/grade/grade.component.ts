@@ -71,13 +71,30 @@ export class GradeComponent implements OnChanges {
   }
 
   removeGrade(): void {
-    this.gradeService.removeGrade(this.grade)
-      .subscribe((result) => {
-        if(result.success) {
-          this.emptyGrade = true;
-          this.grade = this.createEmptyGrade();
-        }
-      });
+    let gradeEmmit
+    if (this.user.type == 'validator' || this.user.type == 'admin' || this.user.type == 'pepite-admin' ) {
+      console.log('emmit as validator');
+      gradeEmmit = {
+        gradeId: (!this.emptyGrade)? this.grade._id: null,
+        value: 0,
+        userId: this.user._id,
+        categoryId: this.category._id,
+        emptyGrade: false,
+        type: 'validation-eval'
+      }
+    } else {
+      gradeEmmit = {
+        removeGrade: true
+      }
+      this.gradeService.removeGrade(this.grade)
+        .subscribe((result) => {
+          if(result.success) {
+            this.emptyGrade = true;
+            this.grade = this.createEmptyGrade();
+          }
+        });
+    }
+    this.gradeEvent.emit(gradeEmmit);
   }
 
   changeHover(value: number) {

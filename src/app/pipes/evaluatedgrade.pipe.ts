@@ -10,10 +10,18 @@ export class EvaluatedGradePipe implements PipeTransform {
 
   }
 
-  transform(grades: Grade[]): any {
-    let gradeFiltered = grades.filter((grade) => {
-      return grade.validator_eval;
-    });
-    return gradeFiltered;
+  transform(grades: any): any {
+    if (!grades) {
+      return false;
+    } else {
+      if (grades.length > 1) {
+        let gradeFiltered = grades.filter((grade) => {
+          return grade.validator_eval;
+        });
+        return gradeFiltered;
+      } else {
+        return (grades.validator_eval) ? true: false;
+      }
+    }
   }
 }

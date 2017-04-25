@@ -69,29 +69,34 @@ export class CategoryComponent implements OnInit {
   };
 
   changeGrade($event) {
-    let query;
-    if ($event.emptyGrade) {
-      if ($event.type != 'validation-eval') {
-        query = this.gradeService.postGrade($event.userId, $event.categoryId, $event.value);
-      } else {
-        query = this.gradeService.postGrade(this.user, $event.categoryId, $event.value, $event.userId, $event.value);
-      }
-      query.subscribe((result) => {
-        if (result.success) {
-          this.getCatGrade();
-        }
-      });
+    if ($event.removeGrade) {
+      delete this.categoryGrade;
     } else {
-      if ($event.type != 'validation-eval') {
-        query = this.gradeService.patchGrade({id: $event.gradeId, user_eval: {value: $event.value} });
-      } else {
-        query = this.gradeService.patchGrade({id: $event.gradeId, _validator:$event.userId, validator_eval: {value: $event.value} })
-      }
-      query.subscribe((result) => {
-        if (result.nModified == 1) {
-          this.getCatGrade();
+      let query;
+      if ($event.emptyGrade) {
+        if ($event.type != 'validation-eval') {
+          query = this.gradeService.postGrade($event.userId, $event.categoryId, $event.value);
+        } else {
+          query = this.gradeService.postGrade(this.user, $event.categoryId, $event.value, $event.userId, $event.value);
         }
-      });
+        query.subscribe((result) => {
+          if (result.success) {
+            this.getCatGrade();
+          }
+        });
+      } else {
+        if ($event.type != 'validation-eval') {
+          query = this.gradeService.patchGrade({id: $event.gradeId, user_eval: {value: $event.value} });
+        } else {
+          console.log('event type validation-eval');
+          query = this.gradeService.patchGrade({id: $event.gradeId, _validator:$event.userId, validator_eval: {value: $event.value} })
+        }
+        query.subscribe((result) => {
+          if (result.nModified == 1) {
+            this.getCatGrade();
+          }
+        });
+      }
     }
   }
 
