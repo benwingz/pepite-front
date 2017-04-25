@@ -47,6 +47,10 @@ export class LoginComponent implements OnInit {
                 // case "user":
                 //   this.router.navigate(['home']);
                 //   break;
+                case "pepite-admin":
+                console.log(user._pepite);
+                this.router.navigate(['pepite/', user._pepite]);
+                  break;
                 case "validator":
                   this.router.navigate(['users']);
                   break;
@@ -68,7 +72,7 @@ export class LoginComponent implements OnInit {
     const authServ = this.authService;
     return new Promise(function(resolve, reject) {
       authServ.getCurrentUser().subscribe(user => {
-        resolve(new User(user._id, user.lastname, user.firstname, user.type));
+        resolve(new User(user._id, user.email, user.lastname, user.firstname, user.type, (user._pepite)? user._pepite: null));
       });
     })
   }
