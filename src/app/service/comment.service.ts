@@ -20,25 +20,30 @@ export class CommentService {
   ) {
   };
 
-  getCategoryComments(categoryid: string): Observable<Comment[]> {
-    return this.authHttp.get(this.appConf.apiBaseUrl + 'category/' + categoryid + '/comments')
-      .map((comments) => {
-        let commentsReturned = comments.json();
-        if (commentsReturned.length > 0) {
-          commentsReturned.forEach((commentsJson, index) => {
-            commentsReturned[index] = new Comment(
-              commentsJson._id,
-              new Category(commentsJson._category._id, commentsJson._category.title, commentsJson._category.skills, commentsJson._category.order),
-              new User (commentsJson._user._id, commentsJson._user.lastname, commentsJson._user.firstname, commentsJson._user.type),
-              commentsJson.content,
-              commentsJson.date
-            );
-          });
-          return commentsReturned;
-        } else {
-          return [];
-        }
-      });
+  getCategoryComments(categoryid: string, user?: string): Observable<Comment[]> {
+    let query;
+    if (user) {
+      query = this.authHttp.get(this.appConf.apiBaseUrl + 'category/' + categoryid + '/comments', {params: {user: user}})
+    } else {
+      query = this.authHttp.get(this.appConf.apiBaseUrl + 'category/' + categoryid + '/comments')
+    }
+    return query.map((comments) => {
+      let commentsReturned = comments.json();
+      if (commentsReturned.length > 0) {
+        commentsReturned.forEach((commentsJson, index) => {
+          commentsReturned[index] = new Comment(
+            commentsJson._id,
+            new Category(commentsJson._category._id, commentsJson._category.title, commentsJson._category.skills, commentsJson._category.order),
+            new User (commentsJson._user._id, commentsJson._user.lastname, commentsJson._user.firstname, commentsJson._user.type),
+            commentsJson.content,
+            commentsJson.date
+          );
+        });
+        return commentsReturned;
+      } else {
+        return [];
+      }
+    });
   }
 
   deleteComment(commentid: string): any {

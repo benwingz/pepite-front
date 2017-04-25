@@ -44,14 +44,14 @@
           <i class="material-icons right">star</i>
         </span>
         <span class="card-metadata chip">
-          <span *ngIf="categoryGrade | evaluatedgrade" class="card-metadata__counter red accent-4 blue-grey-text text-lighten-5">1</span>
+          <span *ngIf="(categoryGrade | evaluatedgrade)" class="card-metadata__counter red accent-4 blue-grey-text text-lighten-5">1</span>
           <span *ngIf="!(categoryGrade | evaluatedgrade)" class="card-metadata__counter red accent-4 blue-grey-text text-lighten-5">0</span>
            Validées
           <i class="material-icons right">done</i>
         </span>
       </div>
       <div class="comments-container center-align">
-        <app-comment [categoryId]="category._id" [editable]=true> </app-comment>
+        <app-comment [user]="user" [categoryId]="category._id" [editable]=true> </app-comment>
       </div>
     </div>
   </div>

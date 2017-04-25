@@ -15,6 +15,8 @@ export class CommentComponent implements OnInit {
   private categoryId: string;
   @Input()
   private editable: boolean;
+  @Input()
+  private user: string;
 
   private commentsActive: boolean;
   private textField: string;
@@ -41,7 +43,7 @@ export class CommentComponent implements OnInit {
   }
 
   getComments(): void {
-    this.commentService.getCategoryComments(this.categoryId)
+    this.commentService.getCategoryComments(this.categoryId, this.user)
       .subscribe((comments) => {
         this.comments = comments;
       });
