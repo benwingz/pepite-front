@@ -33,6 +33,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { PhaseComponent } from './pages/phase/phase.component';
 import { LoginComponent } from './pages/login/login.component';
 import { UsersComponent } from './pages/users/users.component';
+import { PepiteHomeComponent } from './pages/pepite-home/pepite-home.component';
+import { UserlistComponent } from './common/userlist/userlist.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -57,7 +59,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     GlobalPhaseComponent,
     LoginComponent,
     UsersComponent,
-    UserstatComponent
+    UserstatComponent,
+    PepiteHomeComponent,
+    UserlistComponent
   ],
   imports: [
     BrowserModule,
