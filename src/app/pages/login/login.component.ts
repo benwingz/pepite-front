@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
                 //   this.router.navigate(['home']);
                 //   break;
                 case "pepite-admin":
-                console.log(user._pepite);
                 this.router.navigate(['pepite/', user._pepite]);
                   break;
                 case "validator":

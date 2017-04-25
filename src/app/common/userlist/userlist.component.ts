@@ -22,8 +22,10 @@ import { FilterUserPipe } from '../../pipes/filteruser.pipe'
 })
 export class UserlistComponent implements OnInit {
 
-  private userList: Observable<User[]>;
+  @Input()
+  showGrades: boolean = false;
 
+  private userList: Observable<User[]>;
   private searchTerms = new Subject<string>();
 
   constructor(
@@ -51,7 +53,7 @@ export class UserlistComponent implements OnInit {
   }
 
   searchUser(term: string): Observable<User[]> {
-    return this.filteruser.transform(this.userList, term);
+    return this.filteruser.transform(this.userList, term, ['fullname', 'email']);
   }
 
   populateUserList(): Observable<User[]> {

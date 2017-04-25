@@ -14,6 +14,7 @@
       [class.pepite]="user.type=='pepite-admin'"
       [class.admin]="user.type=='admin'">
       <a [routerLink]="['/user', user._id]" [innerHtml]="user.getFullname()"></a>
+      <app-userstat *ngIf="showGrades" [user]="user._id" [hideCategories]="true"></app-userstat>
     </li>
   </ul>
 </div>
