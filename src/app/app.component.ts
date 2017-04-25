@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authService.userIsLogged$.subscribe(user => {
       if (user) {
-        this.currentUser = new User(user._id, user.lastname, user.firstname, user.password, user.salt);
+        this.currentUser = new User(user._id, user.lastname, user.firstname, user.type);
       } else {
         delete this.currentUser;
       }
