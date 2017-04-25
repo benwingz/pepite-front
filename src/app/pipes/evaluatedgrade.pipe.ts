@@ -20,7 +20,7 @@ export class EvaluatedGradePipe implements PipeTransform {
         });
         return gradeFiltered;
       } else {
-        return (grades.validator_eval) ? true: false;
+        return (grades.validator) ? true: false;
       }
     }
   }

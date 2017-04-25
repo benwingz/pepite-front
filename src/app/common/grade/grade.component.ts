@@ -37,6 +37,7 @@ export class GradeComponent implements OnChanges {
     private gradeService: GradeService,
     private authService: AuthService
   ) {
+    this.user = authService.currentUser;
   }
 
   createEmptyGrade(): Grade {
@@ -119,7 +120,6 @@ export class GradeComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    this.user = this.authService.currentUser;
     if (!this.grade) {
       this.emptyGrade = true;
       this.grade = this.createEmptyGrade();
