@@ -39,12 +39,10 @@ export class LoginComponent implements OnInit {
     }
     this.authService.generateToken(authInfo)
       .then((response) => {
-        console.log(response);
         if(response.success) {
           this.retriveUserProfile().then(
             (user) => {
               this.currentUser = user;
-              //console.log('user', user);
               switch (user.type) {
                 // case "user":
                 //   this.router.navigate(['home']);
