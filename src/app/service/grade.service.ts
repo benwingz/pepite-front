@@ -82,10 +82,10 @@ export class GradeService {
         gradesReturned.forEach((gradesJson, index) => {
           gradesReturned[index] = new Grade(
             gradesJson._category,
-            new User(gradesJson._user._id, gradesJson._user.lastname, gradesJson._user.firstname, gradesJson._user.type),
+            new User(gradesJson._user._id, gradesJson._user.email, gradesJson._user.lastname, gradesJson._user.firstname, gradesJson._user.type),
             gradesJson.user_eval,
             gradesJson._id,
-            (gradesJson._validator) ? new User(gradesJson._validator._id, gradesJson._validator.lastname, gradesJson._validator.firstname, gradesJson._validator.type): null,
+            (gradesJson._validator) ? new User(gradesJson._validator._id, gradesJson._user.email, gradesJson._validator.lastname, gradesJson._validator.firstname, gradesJson._validator.type): null,
             (gradesJson.validator_eval) ? gradesJson.validator_eval: {value: 0}
           );
         });

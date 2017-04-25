@@ -28,7 +28,7 @@ export class CommentService {
           commentsReturned[index] = new Comment(
             commentsJson._id,
             new Category(commentsJson._category._id, commentsJson._category.title, commentsJson._category.skills, commentsJson._category.order),
-            new User (commentsJson._user._id, commentsJson._user.lastname, commentsJson._user.firstname, commentsJson._user.type),
+            new User (commentsJson._user._id, commentsJson._user.email, commentsJson._user.lastname, commentsJson._user.firstname, commentsJson._user.type),
             commentsJson.content,
             commentsJson.date
           );

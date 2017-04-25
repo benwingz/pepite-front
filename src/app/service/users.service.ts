@@ -24,7 +24,7 @@ export class UsersService {
         const jsonResponse = response.json();
         if (jsonResponse.length > 0) {
           for (let i = 0; i <= jsonResponse.length -1; i++) {
-            userList.push(new User(jsonResponse[i]._id, jsonResponse[i].lastname, jsonResponse[i].firstname, jsonResponse[i].type))
+            userList.push(new User(jsonResponse[i]._id, jsonResponse[i].email, jsonResponse[i].lastname, jsonResponse[i].firstname, jsonResponse[i].type, jsonResponse[i]._pepite))
           }
           return userList;
         }
