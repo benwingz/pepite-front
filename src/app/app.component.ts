@@ -21,12 +21,9 @@ export class AppComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
   ) {
-    // this.dropdownValues = [
-    //   new DropdownValue('auto_eval', 'Auto-evaluation', true),
-    //   new DropdownValue('validation', 'Validation'),
-    //   new DropdownValue('certification_deliver', 'Délivrer un certificat'),
-    //   new DropdownValue('certification_download', 'Télécharger un certificat'),
-    // ];
+    this.authService.getUser().subscribe((user) => {
+      this.currentUser = user;
+    });
   }
 
   select(value: string) {}
