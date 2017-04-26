@@ -10,6 +10,7 @@ export class FilterUserTypePipe implements PipeTransform {
 
   transform(users: Observable<User[]>, types:any): Observable<any> {
     if (!users) return Observable.of([]);
+    if (!types) return users;
     return users.map( usersList => usersList.filter( user => types.indexOf(user.type) < 0));
   }
 
