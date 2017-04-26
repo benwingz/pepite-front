@@ -26,6 +26,8 @@ export class UserlistComponent implements OnInit {
   showGrades: boolean = false;
   @Input()
   hideTypes: string[];
+  @Input()
+  externalUserList: Observable<User[]>;
 
   private userList: Observable<User[]>;
   private searchTerms = new Subject<string>();
@@ -55,18 +57,22 @@ export class UserlistComponent implements OnInit {
   }
 
   searchUser(term: string): Observable<User[]> {
-    return this.filteruser.transform(this.userList, term, ['fullname', 'email']);
+    return this.filteruser.transform(this.populateUserList(), term, ['fullname', 'email']);
   }
 
   populateUserList(): Observable<User[]> {
-    return this.usersService.getUsers()
-      .map((users) => {
-        if (users.length > 0) {
-          return users;
-        } else {
-          return [];
-        }
-      })
+    if (this.externalUserList) {
+      return this.externalUserList;
+    } else {
+      return this.usersService.getUsers()
+        .map((users) => {
+          if (users.length > 0) {
+            return users;
+          } else {
+            return [];
+          }
+        })
+    }
   }
 
 }

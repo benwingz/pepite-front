@@ -17,6 +17,7 @@ import { PepiteHomeComponent } from './pages/pepite-home/pepite-home.component';
           { path: 'profile', component: ProfileComponent },
           { path: 'phase/:id', component: PhaseComponent },
           { path: 'users', component: UsersComponent },
+          { path: 'users/:id', component: UsersComponent },
           { path: 'pepite/:id', component: PepiteHomeComponent},
           { path: '', redirectTo: '/login', pathMatch:  'full'}
         ]),

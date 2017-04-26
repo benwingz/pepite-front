@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UsersService } from '../../service/users.service';
 
 import { Subject } from 'rxjs/Subject';
@@ -22,11 +23,24 @@ import { FilterUserPipe } from '../../pipes/filteruser.pipe'
 })
 export class UsersComponent implements OnInit {
 
+  validatorUserList: Observable<User[]>;
+
   constructor(
+    private route: ActivatedRoute,
+    private usersService: UsersService
   ) { }
 
   ngOnInit() {
-
+    this.route.params.subscribe((params) => {
+      this.validatorUserList = this.usersService.getUsers(params.id)
+        .map((users) => {
+          if (users.length > 0) {
+            return users;
+          } else {
+            return [];
+          }
+        })
+    })
   }
 
 }
