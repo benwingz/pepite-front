@@ -1,10 +1,15 @@
+<nav>
+  <div class="nav-wrapper blue-grey darken-4">
+    <a *ngIf="currentPepite" class="brand-logo center">{{currentPepite.name}}</a>
+  </div>
+</nav>
 <div class="sestion">
   <div class="row">
-    <div class="container col m8 offset-m2 s12">
+    <div class="container col m8 offset-m2 s12" *ngIf="currentPepite">
       <div class="row">
-        <h5 class="light-blue-text">Liste des utilisateurs de la pépite [pepite name] :</h5>
+        <h5 class="light-blue-text">Liste des utilisateurs de la pépite:</h5>
       </div>
-      <app-userlist></app-userlist>
+      <app-userlist [hideTypes]="['pepite-admin', 'admin']"></app-userlist>
     </div>
   </div>
 </div>

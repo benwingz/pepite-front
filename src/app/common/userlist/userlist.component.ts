@@ -13,7 +13,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 
 import { User } from '../../models/user.model';
 
-import { FilterUserPipe } from '../../pipes/filteruser.pipe'
+import { FilterUserPipe } from '../../pipes/filteruser.pipe';
 
 @Component({
   selector: 'app-userlist',
@@ -24,6 +24,8 @@ export class UserlistComponent implements OnInit {
 
   @Input()
   showGrades: boolean = false;
+  @Input()
+  hideTypes: string[];
 
   private userList: Observable<User[]>;
   private searchTerms = new Subject<string>();

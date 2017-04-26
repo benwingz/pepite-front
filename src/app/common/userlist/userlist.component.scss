@@ -1,10 +1,23 @@
 .userList {
   text-align: center;
 
+  li.validator > a {
+    color: red;
+  }
+
+  li.admin > a {
+    color: black;
+  }
+
+  li.pepite > a {
+    color: white;
+  }
+
   li {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
     app-userstat {
       .chips-container {
         display: inline-block;

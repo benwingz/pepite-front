@@ -7,7 +7,7 @@
   <ul class="userList">
     <li
       style="width: 100%"
-      *ngFor="let user of userList | async"
+      *ngFor="let user of userList | filterUserType:hideTypes | async"
       class="chip"
       [class.validator]="user.type=='validator'"
       [class.user]="user.type=='user'"
