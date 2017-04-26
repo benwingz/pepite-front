@@ -75,16 +75,20 @@ export class AuthService {
   }
 
   getUser(userId?: string): Observable<User> {
-    let userDataObservable;
-    if (!userId) {
-      userDataObservable = this.authHttp.get(this.appConf.apiBaseUrl + 'user/' + this.getUserIdFromLocalStorage());
+    if (this.getUserIdFromLocalStorage()) {
+      let userDataObservable;
+      if (!userId) {
+        userDataObservable = this.authHttp.get(this.appConf.apiBaseUrl + 'user/' + this.getUserIdFromLocalStorage());
+      } else {
+        userDataObservable = this.authHttp.get(this.appConf.apiBaseUrl + 'user/' + userId);
+      }
+      return userDataObservable.map(userReturned => {
+        let user = userReturned.json();
+        return new User (user._id, user.email, user.lastname, user.firstname, user.type);
+      });
     } else {
-      userDataObservable = this.authHttp.get(this.appConf.apiBaseUrl + 'user/' + userId);
+      return Observable.of(null);
     }
-    return userDataObservable.map(userReturned => {
-      let user = userReturned.json();
-      return new User (user._id, user.email, user.lastname, user.firstname, user.type);
-    });
   }
 
   getUserIdFromLocalStorage(): string {
