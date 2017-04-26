@@ -92,3 +92,11 @@ body {
 .red.accent-4:not(.disabled) {
   background-color: #EA3C38 !important;
 }
+
+/*----------------------------------------------------
+---------------------- ERROR MSG --------------------
+-----------------------------------------------------*/
+.error-message {
+  text-align: center;
+  color: #F44336;
+}

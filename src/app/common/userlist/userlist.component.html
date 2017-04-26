@@ -15,6 +15,9 @@
       [class.admin]="user.type=='admin'">
       <a *ngIf="user.type=='user' || !user.type" [routerLink]="['/user', user._id]" [innerHtml]="user.getFullname()"></a>
       <a *ngIf="user.type && user.type!='user'" [routerLink]="['/users', user._id]" [innerHtml]="user.getFullname()"></a>
+      <div *ngIf="displayValidator && !user._validator && user.type!='validator'">
+        <a>Assigner un validateur</a>
+      </div>
       <app-userstat *ngIf="showGrades" [user]="user._id" [hideCategories]="true"></app-userstat>
     </li>
   </ul>

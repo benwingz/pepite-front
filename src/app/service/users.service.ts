@@ -30,9 +30,10 @@ export class UsersService {
     //return this.authHttp.get(this.appConf.apiBaseUrl + 'users').map( (response) => {
       let userList: User[] = [];
       const jsonResponse = response.json();
+      console.log(jsonResponse);
       if (jsonResponse.length > 0) {
         for (let i = 0; i <= jsonResponse.length -1; i++) {
-          userList.push(new User(jsonResponse[i]._id, jsonResponse[i].email, jsonResponse[i].lastname, jsonResponse[i].firstname, jsonResponse[i].type, jsonResponse[i]._pepite))
+          userList.push(new User(jsonResponse[i]._id, jsonResponse[i].email, jsonResponse[i].lastname, jsonResponse[i].firstname, jsonResponse[i].type, jsonResponse[i]._pepite, jsonResponse[i]._validator))
         }
         return userList;
       }

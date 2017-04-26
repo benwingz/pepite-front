@@ -25,6 +25,8 @@ export class UserlistComponent implements OnInit {
   @Input()
   showGrades: boolean = false;
   @Input()
+  displayValidator: boolean = false;
+  @Input()
   hideTypes: string[];
   @Input()
   externalUserList: Observable<User[]>;
@@ -39,7 +41,6 @@ export class UserlistComponent implements OnInit {
 
   ngOnInit() {
     this.userList = this.populateUserList();
-
     this.searchTerms
       .debounceTime(300)        // wait 300ms after each keystroke before considering the term
       .distinctUntilChanged()   // ignore if next search term is same as previous
@@ -66,6 +67,7 @@ export class UserlistComponent implements OnInit {
     } else {
       return this.usersService.getUsers()
         .map((users) => {
+          console.log(users);
           if (users.length > 0) {
             return users;
           } else {
