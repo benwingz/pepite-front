@@ -10,7 +10,16 @@ export class User {
     public _pepite?: string,
     public _validator?: string,
     public password?: string,
-    public salt?: string) {
+    public salt?: string,
+    public gender?: string,
+    public birthdate?: Date,
+    public ine?: string,
+    public studyLevel?: number,
+    public studyType?: string,
+    public address?: string,
+    public cp?: number,
+    public town?: number,
+    public country?: number) {
     this.fullname = this.getFullname();
   };
 

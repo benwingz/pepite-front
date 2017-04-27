@@ -7,6 +7,7 @@ import { PhaseComponent } from './pages/phase/phase.component';
 import { LoginComponent } from './pages/login/login.component';
 import { UsersComponent } from './pages/users/users.component';
 import { PepiteHomeComponent } from './pages/pepite-home/pepite-home.component';
+import { ActivateComponent } from './pages/activate/activate.component';
 
 @NgModule({
     imports: [
@@ -19,6 +20,7 @@ import { PepiteHomeComponent } from './pages/pepite-home/pepite-home.component';
           { path: 'users', component: UsersComponent },
           { path: 'users/:id', component: UsersComponent },
           { path: 'pepite/:id', component: PepiteHomeComponent},
+          { path: 'activate/:id', component: ActivateComponent},
           { path: '', redirectTo: '/login', pathMatch:  'full'}
         ]),
     ],

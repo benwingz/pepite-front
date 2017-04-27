@@ -18,6 +18,7 @@ import { CommentlineComponent } from './common/commentline/commentline.component
 import { GradeComponent } from './common/grade/grade.component';
 import { GlobalPhaseComponent } from './common/global-phase/global-phase.component';
 import { UserstatComponent } from './common/userstat/userstat.component';
+import { UserlistComponent } from './common/userlist/userlist.component';
 
 import { AuthService } from './service/auth.service';
 import { ReferenceService } from './service/reference.service';
@@ -28,6 +29,7 @@ import { PepiteService } from './service/pepite.service';
 
 import { EvaluatedGradePipe } from './pipes/evaluatedgrade.pipe'
 import { FilterUserPipe } from './pipes/filteruser.pipe';
+import { FilterUserTypePipe } from './pipes/filter-user-type.pipe';
 
 import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -35,8 +37,7 @@ import { PhaseComponent } from './pages/phase/phase.component';
 import { LoginComponent } from './pages/login/login.component';
 import { UsersComponent } from './pages/users/users.component';
 import { PepiteHomeComponent } from './pages/pepite-home/pepite-home.component';
-import { UserlistComponent } from './common/userlist/userlist.component';
-import { FilterUserTypePipe } from './pipes/filter-user-type.pipe';
+import { ActivateComponent } from './pages/activate/activate.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -64,7 +65,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     UserstatComponent,
     PepiteHomeComponent,
     UserlistComponent,
-    FilterUserTypePipe
+    FilterUserTypePipe,
+    ActivateComponent
   ],
   imports: [
     BrowserModule,

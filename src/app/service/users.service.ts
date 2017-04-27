@@ -14,6 +14,7 @@ export class UsersService {
 
 
   constructor(
+    private http: Http,
     private authHttp: AuthHttp,
     private appConf: AppConfig
   ) {
@@ -43,6 +44,35 @@ export class UsersService {
   createUser(userInfo): Observable<any> {
     return this.authHttp.post(this.appConf.apiBaseUrl + 'user', {email: userInfo.email, type: userInfo.type, pepite: userInfo._pepite})
       .map(response => response.json());
+  }
+
+  activateUser(userId:string): Observable<any> {
+    return this.http.get(this.appConf.apiBaseUrl + 'activate/' + userId)
+      .map( (userReturned) => {
+        console.log(userReturned);
+        let user = userReturned.json();
+        return new User (user._id, user.email, user.lastname, user.firstname, user.type, user._pepite);
+      });
+  }
+
+  doActivateUser(user: User, accountId: string): Observable<any> {
+    console.log('user', user);
+    return this.http.post(this.appConf.apiBaseUrl + 'activate/',{
+      email: user.email,
+      password: user.password,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      gender: user.gender,
+      ine: user.ine,
+      birthdate: user.birthdate,
+      studyLevel: user.studyLevel,
+      studyType: user.studyType,
+      address: user.address,
+      cp: user.cp,
+      town: user.town,
+      country: user.country,
+      activationAccountId: accountId
+    }).map(response => response.json());
   }
 
 }

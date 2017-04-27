@@ -1,0 +1,131 @@
+<div class="section"></div>
+<main>
+    <div class="section"></div>
+
+    <h5 class="light-blue-text">Activation du compte</h5>
+    <div class="section"></div>
+    <div class="row" *ngIf="userInfo">
+        <div class="container col m4 offset-m4 s12">
+        <div class="z-depth-1 grey lighten-4 row">
+          <div class="col s12">
+            <p>Address email: {{userInfo.email}}</p>
+            <form (ngSubmit)="patchUser()">
+              <div class='row error-message' *ngIf="errorMessage">
+                <div class='col s12' [innerHtml]="errorMessage">
+                </div>
+              </div>
+
+              <div class='row form-group'>
+                <div class='input-field col s12'>
+                  <input class='validate' type='password' name='password' id='password' [(ngModel)]='userInfo.password' #password="ngModel" />
+                  <label for='password'>Entrez votre mot de passe</label>
+                </div>
+              </div>
+
+              <div class='row form-group'>
+                <p>
+                  <input class="with-gap" id="gender1" name="gender" [(ngModel)]="userInfo.gender" type="radio" value="homme" checked/>
+                  <label for="gender1">Homme</label>
+                </p>
+                <p>
+                  <input class="with-gap" id="gender2" name="gender" [(ngModel)]="userInfo.gender" type="radio" value="femme"/>
+                  <label for="gender2">Femme</label>
+                </p>
+              </div>
+
+              <div class='row form-group'>
+                <div class='input-field col s12'>
+                  <input required type="text" name='firstname' id='firstname' [(ngModel)]='userInfo.firstname' #fistname="ngModel" />
+                  <label data-error="Veuillez rentrer un prénom" for='firstname'>Entrez votre prénom</label>
+                </div>
+              </div>
+
+              <div class='row form-group'>
+                <div class='input-field col s12'>
+                  <input required type="text" name='lastname' id='lastname' [(ngModel)]='userInfo.lastname' #lastname="ngModel" />
+                  <label data-error="Veuillez rentrer un nom de famille" for='lastname'>Entrez votre nom de famille</label>
+                </div>
+              </div>
+
+              <div *ngIf="userInfo.type=='user'" class='row form-group'>
+                <div class='input-field col s12'>
+                  <input required type="text" name='ine' id='ine' [(ngModel)]='userInfo.ine' #ine="ngModel" />
+                  <label data-error="Veuillez rentrer un INE" for='ine'>Entrez votre INE (11 caratères)</label>
+                </div>
+              </div>
+
+              <div *ngIf="userInfo.type =='user'" class='row form-group'>
+                <div class='input-field col s12'>
+                  <p style="color: #9E9E9E">Date de naissance :</p>
+                  <input required type="date" name='birthdate' id='birthdate' [(ngModel)]='userInfo.birthdate' #birthdate="ngModel" />
+                </div>
+              </div>
+
+              <div *ngIf="userInfo.type =='user'" class='row form-group'>
+                <div class='input-field col s12'>
+                  <p style="color: #9E9E9E">Dernier niveau d'étude le plus élevé :</p>
+                  <select required class="browser-default" [(ngModel)]="userInfo.studyLevel" name="studyLevel">
+                    <option *ngFor="let studyLevel of studyLevels" [selected]="studyLevel==0" [value]="studyLevel">
+                      Bac<span *ngIf="studyLevel!=0">+{{studyLevel}}</span>
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div *ngIf="userInfo.type =='user'" class='row form-group'>
+                <p>
+                  <input id="studyType1" class="with-gap" name="studyType" [(ngModel)]="userInfo.studyType" type="radio" value="Droit, science politiques, science économiques, science de gestion, AES"/>
+                  <label for="studyType1">Droit, science politiques, science économiques, science de gestion, AES</label>
+                </p>
+                <p>
+                  <input id="studyType2" class="with-gap" name="studyType" [(ngModel)]="userInfo.studyType" type="radio" value="Lettres, art, langues, sciences humaines"/>
+                  <label for="studyType2">Lettres, art, langues, sciences humaines</label>
+                </p>
+                <p>
+                  <input id="studyType3" class="with-gap" name="studyType" [(ngModel)]="userInfo.studyType" type="radio" value="STAPS"/>
+                  <label for="studyType3">STAPS</label>
+                </p>
+                <p>
+                <input id="studyType4" class="with-gap" name="studyType" [(ngModel)]="userInfo.studyType" type="radio" value="Santé, paramédical et social"/>
+                  <label for="studyType4">Santé, paramédical et social</label>
+                </p>
+              </div>
+
+              <div class='row form-group'>
+                <div class='input-field col s12'>
+                  <input required type="text" name='address' [(ngModel)]='userInfo.address' #address="ngModel" />
+                  <label data-error="Veuillez rentrer votre adresse postale" for='address'>Adresse postale</label>
+                </div>
+              </div>
+
+              <div class='row form-group'>
+                <div class='input-field col s12'>
+                  <input required type="number" name='cp' [(ngModel)]='userInfo.cp' #cp="ngModel" />
+                  <label data-error="Veuillez rentrer votre code postal" for='cp'>Code postale</label>
+                </div>
+              </div>
+
+              <div class='row form-group'>
+                <div class='input-field col s12'>
+                  <input required type="text" name='town' [(ngModel)]='userInfo.town' #town="ngModel" />
+                  <label data-error="Veuillez rentrer votre ville" for='town'>Ville</label>
+                </div>
+              </div>
+
+              <div class='row form-group'>
+                <div class='input-field col s12'>
+                  <input required type="text" name='country' [(ngModel)]='userInfo.country' #country="ngModel" />
+                  <label data-error="Veuillez rentrer votre pays" for='country'>Pays</label>
+                </div>
+              </div>
+
+              <br />
+              <div class='row'>
+                <button type='submit' class='col s12 btn btn-large waves-effect light-blue'>Valider</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
