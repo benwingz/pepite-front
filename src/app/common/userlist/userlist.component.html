@@ -7,6 +7,7 @@
   <ul class="userList">
     <li
       *ngFor="let user of userList | filterUserType:hideTypes | async"
+      (click)="goToUser(user)"
       [class.unvalidated]="user.firstname ==''"
       [class.validator]="user.type=='validator'"
       [class.user]="user.type=='user'"
@@ -16,7 +17,8 @@
         <a *ngIf="user.type=='user' || !user.type" [routerLink]="['/user', user._id]" [innerHtml]="user.getFullname()"></a>
         <a *ngIf="user.type && user.type!='user'" [routerLink]="['/users', user._id]" [innerHtml]="user.getFullname()"></a>
         <a (click)="validatorAssign(user._id)" *ngIf="user._validator && user._validator.firstname">Validateur: {{user._validator.firstname}} {{user._validator.lastname}}</a>
-        <p>email: {{user.email}}</p>
+        <div>email: {{user.email}}</div>
+        <div *ngIf="user.type=='user'">INE: {{user.ine}}</div>
       </div>
       <div class="user-status block" *ngIf="displayValidator && !user._validator && user.type!='validator'">
         <a (click)="validatorAssign(user._id)">Assigner un validateur</a>

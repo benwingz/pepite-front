@@ -2,6 +2,7 @@
   text-align: center;
 
   li {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -23,8 +24,12 @@
       justify-content: center;
     }
 
+    .user-info {
+      text-align: left;
+    }
+
     &.validator {
-      background-color: #ffcccc;
+      background-color: #b5ccf2;
     }
     .admin > a {
       color: black;

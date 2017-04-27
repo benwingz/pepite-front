@@ -1,4 +1,6 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { UsersService } from '../../service/users.service';
 
 import { Subject } from 'rxjs/Subject';
@@ -41,6 +43,7 @@ export class UserlistComponent implements OnInit, OnChanges {
   private searchTerms = new Subject<string>();
 
   constructor(
+    private router: Router,
     private usersService: UsersService,
     private filteruser: FilterUserPipe
   ) { }
@@ -105,6 +108,18 @@ export class UserlistComponent implements OnInit, OnChanges {
           this.userAssignatedId = null;
         }
       });
+  }
+
+  goToUser(user): void {
+    if (!this.assignMode) {
+      switch (user.type) {
+        case 'validator':
+          this.router.navigate(['/users', user._id]);
+          break;
+        default:
+          this.router.navigate(['/user', user._id]);
+      }
+    }
   }
 
 }
