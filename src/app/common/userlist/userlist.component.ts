@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { UsersService } from '../../service/users.service';
 
 import { Subject } from 'rxjs/Subject';
@@ -20,7 +20,7 @@ import { FilterUserPipe } from '../../pipes/filteruser.pipe';
   templateUrl: './userlist.component.html',
   styleUrls: ['./userlist.component.scss']
 })
-export class UserlistComponent implements OnInit {
+export class UserlistComponent implements OnInit, OnChanges {
 
   @Input()
   showGrades: boolean = false;
@@ -30,7 +30,10 @@ export class UserlistComponent implements OnInit {
   hideTypes: string[];
   @Input()
   externalUserList: Observable<User[]>;
+  @Input()
+  changeUserList: number;
 
+  private changeUserListOld: number = 0;
   private userList: Observable<User[]>;
   private searchTerms = new Subject<string>();
 
@@ -51,6 +54,13 @@ export class UserlistComponent implements OnInit {
           this.userList = this.populateUserList();
         }
       })
+  }
+
+  ngOnChanges() {
+    if (this.changeUserList > this.changeUserListOld) {
+      this.changeUserListOld = this.changeUserList;
+      this.userList = this.populateUserList();
+    }
   }
 
   search(term: string): void {

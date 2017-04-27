@@ -1,22 +1,37 @@
 .userList {
   text-align: center;
 
-  li.validator > a {
-    color: red;
-  }
-
-  li.admin > a {
-    color: black;
-  }
-
-  li.pepite > a {
-    color: white;
-  }
-
   li {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: #E6E6E6;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+
+    &.unvalidated {
+      opacity: 0.4;
+    }
+    .chip {
+      height: auto!important;
+    }
+
+    .block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &.validator {
+      background-color: #ffcccc;
+    }
+    .admin > a {
+      color: black;
+    }
+    .pepite > a {
+      color: white;
+    }
 
     app-userstat {
       .chips-container {

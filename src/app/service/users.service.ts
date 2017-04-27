@@ -40,4 +40,9 @@ export class UsersService {
     });
   }
 
+  createUser(userInfo): Observable<any> {
+    return this.authHttp.post(this.appConf.apiBaseUrl + 'user', {email: userInfo.email, type: userInfo.type, pepite: userInfo._pepite})
+      .map(response => response.json());
+  }
+
 }
