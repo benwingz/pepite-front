@@ -33,6 +33,9 @@ export class UserlistComponent implements OnInit, OnChanges {
   @Input()
   changeUserList: number;
 
+  private oldTypeFilter: Array<string>;
+  private assignMode: boolean = false;
+  private userAssignatedId: string;
   private changeUserListOld: number = 0;
   private userList: Observable<User[]>;
   private searchTerms = new Subject<string>();
@@ -77,7 +80,6 @@ export class UserlistComponent implements OnInit, OnChanges {
     } else {
       return this.usersService.getUsers()
         .map((users) => {
-          console.log(users);
           if (users.length > 0) {
             return users;
           } else {
@@ -85,6 +87,24 @@ export class UserlistComponent implements OnInit, OnChanges {
           }
         })
     }
+  }
+
+  validatorAssign(userId): void {
+    this.oldTypeFilter = this.hideTypes;
+    this.hideTypes = ['admin', 'pepite-admin', 'user'];
+    this.assignMode = true;
+    this.userAssignatedId = userId;
+  }
+
+  doAssignValidator(validatorId): void {
+    this.usersService.assignValidator(this.userAssignatedId, validatorId)
+      .subscribe( (response) => {
+        if (response.ok) {
+          this.hideTypes = this.oldTypeFilter;
+          this.assignMode = false;
+          this.userAssignatedId = null;
+        }
+      });
   }
 
 }

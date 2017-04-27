@@ -15,12 +15,16 @@
       <div class="user-info block">
         <a *ngIf="user.type=='user' || !user.type" [routerLink]="['/user', user._id]" [innerHtml]="user.getFullname()"></a>
         <a *ngIf="user.type && user.type!='user'" [routerLink]="['/users', user._id]" [innerHtml]="user.getFullname()"></a>
+        <a (click)="validatorAssign(user._id)" *ngIf="user._validator && user._validator.firstname">Validateur: {{user._validator.firstname}} {{user._validator.lastname}}</a>
         <p>email: {{user.email}}</p>
       </div>
       <div class="user-status block" *ngIf="displayValidator && !user._validator && user.type!='validator'">
-        <a>Assigner un validateur</a>
+        <a (click)="validatorAssign(user._id)">Assigner un validateur</a>
       </div>
-      <div class="user-stats block" *ngIf="showGrades">
+      <div class="user-assign block" *ngIf="user.type=='validator' && assignMode">
+        <a (click)="doAssignValidator(user._id)">Assigner à ce validateur</a>
+      </div>
+      <div class="user-stats block" *ngIf="showGrades && user.type=='user'">
         <app-userstat [user]="user._id" [hideCategories]="true"></app-userstat>
       </div>
     </li>
