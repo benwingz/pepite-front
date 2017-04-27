@@ -41,7 +41,7 @@
             </div>
           </div>
 
-          <div class='row form-group'>
+          <div *ngIf="userinfo.type=='user'" class='row form-group'>
             <div class='input-field col s12'>
               <input required type="text" name='project' id='project' [(ngModel)]='userinfo.project' #project="ngModel" />
               <label data-error="Veuillez rentrer le nom du projet ou de la société créée" for='lastname'>Nom du projet ou de la société créée</label>
