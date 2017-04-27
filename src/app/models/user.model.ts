@@ -19,7 +19,8 @@ export class User {
     public address?: string,
     public cp?: number,
     public town?: number,
-    public country?: number) {
+    public country?: number,
+    public project?: string) {
     this.fullname = this.getFullname();
   };
 

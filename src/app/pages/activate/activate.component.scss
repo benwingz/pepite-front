@@ -40,3 +40,7 @@ section {
   border-bottom: 2px solid #e91e63;
   box-shadow: none;
 }
+
+ngui-auto-complete {
+  z-index: 1000!important;
+}

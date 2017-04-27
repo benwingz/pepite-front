@@ -9,7 +9,7 @@
         <div class="z-depth-1 grey lighten-4 row">
           <div class="col s12">
             <p>Address email: {{userInfo.email}}</p>
-            <form (ngSubmit)="patchUser()">
+            <form (ngSubmit)="patchUser()" #formUser="ngForm">
               <div class='row error-message' *ngIf="errorMessage">
                 <div class='col s12' [innerHtml]="errorMessage">
                 </div>
@@ -17,7 +17,7 @@
 
               <div class='row form-group'>
                 <div class='input-field col s12'>
-                  <input class='validate' type='password' name='password' id='password' [(ngModel)]='userInfo.password' #password="ngModel" />
+                  <input required class='validate' type='password' name='password' id='password' [(ngModel)]='userInfo.password' #password="ngModel" />
                   <label for='password'>Entrez votre mot de passe</label>
                 </div>
               </div>
@@ -44,6 +44,13 @@
                 <div class='input-field col s12'>
                   <input required type="text" name='lastname' id='lastname' [(ngModel)]='userInfo.lastname' #lastname="ngModel" />
                   <label data-error="Veuillez rentrer un nom de famille" for='lastname'>Entrez votre nom de famille</label>
+                </div>
+              </div>
+
+              <div class='row form-group'>
+                <div class='input-field col s12'>
+                  <input required type="text" name='project' id='project' [(ngModel)]='userInfo.project' #project="ngModel" />
+                  <label data-error="Veuillez rentrer le nom du projet ou de la société créée" for='lastname'>Nom du projet ou de la société créée</label>
                 </div>
               </div>
 
@@ -74,19 +81,43 @@
 
               <div *ngIf="userInfo.type =='user'" class='row form-group'>
                 <p>
-                  <input id="studyType1" class="with-gap" name="studyType" [(ngModel)]="userInfo.studyType" type="radio" value="Droit, science politiques, science économiques, science de gestion, AES"/>
+                  <input
+                    id="studyType1"
+                    class="with-gap"
+                    name="studyType"
+                    [(ngModel)]="userInfo.studyType"
+                    type="radio"
+                    value="Droit, science politiques, science économiques, science de gestion, AES"/>
                   <label for="studyType1">Droit, science politiques, science économiques, science de gestion, AES</label>
                 </p>
                 <p>
-                  <input id="studyType2" class="with-gap" name="studyType" [(ngModel)]="userInfo.studyType" type="radio" value="Lettres, art, langues, sciences humaines"/>
+                  <input
+                    id="studyType2"
+                    class="with-gap"
+                    name="studyType"
+                    [(ngModel)]="userInfo.studyType"
+                    type="radio"
+                    value="Lettres, art, langues, sciences humaines"/>
                   <label for="studyType2">Lettres, art, langues, sciences humaines</label>
                 </p>
                 <p>
-                  <input id="studyType3" class="with-gap" name="studyType" [(ngModel)]="userInfo.studyType" type="radio" value="STAPS"/>
+                  <input
+                    id="studyType3"
+                    class="with-gap"
+                    name="studyType"
+                    [(ngModel)]="userInfo.studyType"
+                    type="radio"
+                    value="STAPS"/>
                   <label for="studyType3">STAPS</label>
                 </p>
                 <p>
-                <input id="studyType4" class="with-gap" name="studyType" [(ngModel)]="userInfo.studyType" type="radio" value="Santé, paramédical et social"/>
+                <input
+                  id="studyType4"
+                  class="with-gap"
+                  name="studyType"
+                  [(ngModel)]="userInfo.studyType"
+                  type="radio"
+                  value="Santé, paramédical et social"/>
                   <label for="studyType4">Santé, paramédical et social</label>
                 </p>
               </div>
@@ -114,14 +145,22 @@
 
               <div class='row form-group'>
                 <div class='input-field col s12'>
-                  <input required type="text" name='country' [(ngModel)]='userInfo.country' #country="ngModel" />
-                  <label data-error="Veuillez rentrer votre pays" for='country'>Pays</label>
+                  <input
+                    required
+                    autocomplete="off"
+                    auto-complete type="text"
+                    name='country'
+                    placeholder="Pays"
+                    [max-num-list]="3"
+                    [(ngModel)]='userInfo.country'
+                    #country="ngModel"
+                    [source]="countrySource" />
                 </div>
               </div>
 
               <br />
               <div class='row'>
-                <button type='submit' class='col s12 btn btn-large waves-effect light-blue'>Valider</button>
+                <button [disabled]="!formUser.form.valid" type='submit' class='col s12 btn btn-large waves-effect light-blue'>Valider</button>
               </div>
             </form>
           </div>
