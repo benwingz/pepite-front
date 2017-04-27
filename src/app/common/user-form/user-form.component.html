@@ -12,7 +12,7 @@
           <div class='row form-group'>
             <div class='input-field col s12'>
               <input required class='validate' type='password' name='password' id='password' [(ngModel)]='userinfo.password' #password="ngModel" />
-              <label for='password'>Entrez votre mot de passe</label>
+              <label for='password'>Mot de passe</label>
             </div>
           </div>
 
@@ -30,14 +30,14 @@
           <div class='row form-group'>
             <div class='input-field col s12'>
               <input required type="text" name='firstname' id='firstname' [(ngModel)]='userinfo.firstname' #fistname="ngModel" />
-              <label data-error="Veuillez rentrer un prénom" for='firstname'>Entrez votre prénom</label>
+              <label data-error="Veuillez rentrer un prénom" for='firstname'>Prénom</label>
             </div>
           </div>
 
           <div class='row form-group'>
             <div class='input-field col s12'>
               <input required type="text" name='lastname' id='lastname' [(ngModel)]='userinfo.lastname' #lastname="ngModel" />
-              <label data-error="Veuillez rentrer un nom de famille" for='lastname'>Entrez votre nom de famille</label>
+              <label data-error="Veuillez rentrer un nom de famille" for='lastname'>Nom de famille</label>
             </div>
           </div>
 
@@ -51,7 +51,7 @@
           <div *ngIf="userinfo.type=='user'" class='row form-group'>
             <div class='input-field col s12'>
               <input required type="text" name='ine' id='ine' [(ngModel)]='userinfo.ine' #ine="ngModel" />
-              <label data-error="Veuillez rentrer un INE" for='ine'>Entrez votre INE (11 caratères)</label>
+              <label data-error="Veuillez rentrer un INE" for='ine'>INE (11 caratères)</label>
             </div>
           </div>
 
