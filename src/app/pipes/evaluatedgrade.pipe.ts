@@ -14,13 +14,13 @@ export class EvaluatedGradePipe implements PipeTransform {
     if (!grades) {
       return false;
     } else {
-      if (grades.length > 1) {
+      if (grades.length > 0) {
         let gradeFiltered = grades.filter((grade) => {
           return grade.validator_eval;
         });
         return gradeFiltered;
       } else {
-        return (grades.validator) ? true: false;
+        return [];
       }
     }
   }
