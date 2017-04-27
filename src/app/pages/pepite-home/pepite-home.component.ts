@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { PepiteService } from '../../service/pepite.service';
 import { UsersService } from '../../service/users.service';
+import { AuthService } from '../../service/auth.service';
 
 import { Pepite } from '../../models/pepite.model';
 import { User } from '../../models/user.model';
@@ -24,8 +25,18 @@ export class PepiteHomeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private pepiteService: PepiteService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private authService: AuthService
   ) {
+
+  }
+
+  ngOnInit() {
+    this.authService.getUser().subscribe((user) => {
+      if (['admin','pepite-admin'].indexOf(user.type) == -1) {
+        this.router.navigate(['login']);
+      }
+    });
     this.route.params.subscribe((params) => {
       this.pepiteService.getPepite(params['id']).subscribe((pepite) => {
         this.currentPepite = pepite;
@@ -34,11 +45,10 @@ export class PepiteHomeComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
-
   initUserInfo(): void{
-    this.userInfo = new User(null, '', null, null, "user", this.currentPepite._id);
+    if( this.currentPepite) {
+      this.userInfo = new User(null, '', null, null, "user", this.currentPepite._id);
+    }
   }
 
   openUserForm(): void{
