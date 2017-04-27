@@ -99,11 +99,6 @@ export class AuthService {
     sessionStorage.setItem('user_id', id);
   }
 
-  storeUser(user) {
-    this.currentUser = new User (user._id, user.lastname, user.firstname, user.type, user.password, user.salt);
-    return user;
-  }
-
   logout(): Promise<any> {
     const userLoggedSubject = this.userLogged;
     return new Promise(function(resolve, reject) {

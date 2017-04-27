@@ -43,7 +43,11 @@
       <div class="row">
         <h5 class="light-blue-text">Liste des utilisateurs de la pépite:</h5>
       </div>
-      <app-userlist [changeUserList]="triggerUserListChange" [hideTypes]="['pepite-admin', 'admin']" [displayValidator]="true" [showGrades]="true"></app-userlist>
+      <app-userlist
+        [changeUserList]="triggerUserListChange"
+        [hideTypes]="['pepite-admin', 'admin']"
+        [displayValidator]="true"
+        [showGrades]="true"></app-userlist>
     </div>
   </div>
 </div>

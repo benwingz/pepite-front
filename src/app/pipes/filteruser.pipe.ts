@@ -19,7 +19,7 @@ export class FilterUserPipe implements PipeTransform {
         if (filtersProperties) {
           for (let y=0; y < filtersProperties.length; y++) {
             let userTested = userList[i];
-            if (userTested[filtersProperties[y]].indexOf(searchTerms) > -1) {
+            if (userTested[filtersProperties[y]] && userTested[filtersProperties[y]].indexOf(searchTerms) > -1) {
               filterList.push(userList[i]);
             }
           }

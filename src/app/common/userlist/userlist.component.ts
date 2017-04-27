@@ -74,7 +74,7 @@ export class UserlistComponent implements OnInit, OnChanges {
   }
 
   searchUser(term: string): Observable<User[]> {
-    return this.filteruser.transform(this.populateUserList(), term, ['fullname', 'email']);
+    return this.filteruser.transform(this.populateUserList(), term, ['fullname', 'email', 'ine']);
   }
 
   populateUserList(): Observable<User[]> {

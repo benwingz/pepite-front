@@ -2,7 +2,7 @@
   <div class="input-field">
     <i class="material-icons prefix">search</i>
     <input #searchBox id="icon_prefix" type="text" class="validate" (keyup)="search(searchBox.value)">
-    <label for="icon_prefix">Affiner votre recherche</label>
+    <label for="icon_prefix">Filtrer les utilisateurs (nom, prénom, email ou INE)</label>
   </div>
   <ul class="userList">
     <li
@@ -18,7 +18,7 @@
         <a *ngIf="user.type && user.type!='user'" [routerLink]="['/users', user._id]" [innerHtml]="user.getFullname()"></a>
         <a (click)="validatorAssign(user._id)" *ngIf="user._validator && user._validator.firstname">Validateur: {{user._validator.firstname}} {{user._validator.lastname}}</a>
         <div>email: {{user.email}}</div>
-        <div *ngIf="user.type=='user'">INE: {{user.ine}}</div>
+        <div *ngIf="user.type=='user' && user.ine">INE: {{user.ine}}</div>
       </div>
       <div class="user-status block" *ngIf="displayValidator && !user._validator && user.type!='validator'">
         <a (click)="validatorAssign(user._id)">Assigner un validateur</a>
