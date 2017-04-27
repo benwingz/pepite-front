@@ -20,25 +20,24 @@ export class CommentService {
   ) {
   };
 
-  getCategoryComments(categoryid: string): Observable<Comment[]> {
-    return this.authHttp.get(this.appConf.apiBaseUrl + 'category/' + categoryid + '/comments')
-      .map((comments) => {
-        let commentsReturned = comments.json();
-        if (commentsReturned.length > 0) {
-          commentsReturned.forEach((commentsJson, index) => {
-            commentsReturned[index] = new Comment(
-              commentsJson._id,
-              new Category(commentsJson._category._id, commentsJson._category.title, commentsJson._category.skills, commentsJson._category.order),
-              new User (commentsJson._user._id, commentsJson._user.lastname, commentsJson._user.firstname, commentsJson._user.type),
-              commentsJson.content,
-              commentsJson.date
-            );
-          });
-          return commentsReturned;
-        } else {
-          return [];
-        }
-      });
+  getCategoryComments(categoryid: string, user?: string): Observable<Comment[]> {
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'category/' + categoryid + '/comments', {params: {user: user}}).map((comments) => {
+      let commentsReturned = comments.json();
+      if (commentsReturned.length > 0) {
+        commentsReturned.forEach((commentsJson, index) => {
+          commentsReturned[index] = new Comment(
+            commentsJson._id,
+            new Category(commentsJson._category._id, commentsJson._category.title, commentsJson._category.skills, commentsJson._category.order),
+            new User (commentsJson._user._id, commentsJson._user.email, commentsJson._user.lastname, commentsJson._user.firstname, commentsJson._user.type),
+            commentsJson.content,
+            commentsJson.date
+          );
+        });
+        return commentsReturned;
+      } else {
+        return [];
+      }
+    });
   }
 
   deleteComment(commentid: string): any {
@@ -46,13 +45,14 @@ export class CommentService {
       .map(response => response.json());
   }
 
-  createComment(text: string, userId: string, categoryId: string): Observable<any> {
+  createComment(text: string, userId: string, categoryId: string, userlink?: string): Observable<any> {
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     var content = new URLSearchParams();
     content.set('category', categoryId);
     content.set('user', userId);
     content.set('content', text);
+    content.set('userlink', (userlink)? userlink: userId);
     return this.authHttp.post(this.appConf.apiBaseUrl + 'comment', content.toString(), {headers: headers})
       .map(response => response.json());
   }

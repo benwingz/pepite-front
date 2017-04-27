@@ -9,15 +9,15 @@
         <div class="z-depth-1 grey lighten-4 row">
           <div class="col s12">
             <form (ngSubmit)="getNewToken()">
-              <div class='row'>
-                <div class='col s12'>
+              <div class='row error-message' *ngIf="errorMessage">
+                <div class='col s12' [innerHtml]="errorMessage">
                 </div>
               </div>
 
               <div class='row form-group'>
                 <div class='input-field col s12'>
                   <input class='validate' type='email' name='email' id='email' [(ngModel)]='userInfo.email' #email="ngModel" />
-                  <label for='email'>Entrez votre email</label>
+                  <label data-error="Veuillez rentrer un email" for='email'>Entrez votre email</label>
                 </div>
               </div>
 

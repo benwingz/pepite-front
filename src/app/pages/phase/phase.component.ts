@@ -16,6 +16,7 @@ export class PhaseComponent implements OnInit {
   private phase_id: string;
   private phase: Phase;
   private categories: Array<Category>;
+  private userid: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +24,12 @@ export class PhaseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => this.phase_id = params['id']);
+    this.route.queryParams.subscribe((queryParams) => {
+      if (queryParams['user']) {
+        this.userid = queryParams['user'];
+      }
+      this.route.params.subscribe(params => this.phase_id = params['id']);
+    });
     this.referenceService.getPhase(this.phase_id)
       .subscribe((phase) => {
         this.phase = phase;

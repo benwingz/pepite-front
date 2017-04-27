@@ -16,6 +16,8 @@ export class CategoryComponent implements OnInit {
 
   @Input()
   private category: Category;
+  @Input()
+  private user: string;
   private focused: boolean;
   private legendActive: boolean;
   private buttonBool: boolean;
@@ -38,12 +40,17 @@ export class CategoryComponent implements OnInit {
   };
 
   getCatGrade(): void {
-    this.gradeService.getCategoryGrades(this.category)
-      .subscribe((grades) => {
-        if (grades.length > 0) {
-          this.categoryGrade = grades[0];
-        }
-      })
+    let query;
+    if (this.user) {
+      query = this.gradeService.getCategoryGrades(this.category, this.user);
+    } else {
+      query = this.gradeService.getCategoryGrades(this.category);
+    }
+    query.subscribe((grades) => {
+      if (grades.length > 0) {
+        this.categoryGrade = grades[0];
+      }
+    });
   }
 
   handleClick(event) {
@@ -62,20 +69,34 @@ export class CategoryComponent implements OnInit {
   };
 
   changeGrade($event) {
-    if ($event.emptyGrade) {
-      this.gradeService.postGrade($event.userId, $event.categoryId, $event.value)
-        .subscribe((result) => {
+    if ($event.removeGrade) {
+      delete this.categoryGrade;
+    } else {
+      let query;
+      if ($event.emptyGrade) {
+        if ($event.type != 'validation-eval') {
+          query = this.gradeService.postGrade($event.userId, $event.categoryId, $event.value);
+        } else {
+          query = this.gradeService.postGrade(this.user, $event.categoryId, $event.value, $event.userId, $event.value);
+        }
+        query.subscribe((result) => {
           if (result.success) {
             this.getCatGrade();
           }
         });
-    } else {
-      this.gradeService.patchGrade({id: $event.gradeId, user_eval: {value: $event.value} })
-        .subscribe((result) => {
+      } else {
+        if ($event.type != 'validation-eval') {
+          query = this.gradeService.patchGrade({id: $event.gradeId, user_eval: {value: $event.value} });
+        } else {
+          console.log('event type validation-eval');
+          query = this.gradeService.patchGrade({id: $event.gradeId, _validator:$event.userId, validator_eval: {value: $event.value} })
+        }
+        query.subscribe((result) => {
           if (result.nModified == 1) {
             this.getCatGrade();
           }
         });
+      }
     }
   }
 

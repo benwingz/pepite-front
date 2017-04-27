@@ -1,0 +1,61 @@
+<nav>
+  <div class="nav-wrapper blue-grey darken-4">
+     <!-- Modal Trigger -->
+    <a *ngIf="currentPepite" class="brand-logo center">{{currentPepite.name}}</a>
+  </div>
+</nav>
+<section class="col m8 offset-m2 s12 center-align">
+  <div class="row">
+      <a class="waves-effect waves-light btn modal-trigger" (click)="openUserForm()">Ajout d'utilisateur</a>
+      <!-- <a class="waves-effect waves-light btn modal-trigger" (click)="openUserForm()">Ajout d'utilisateur Multiple</a> -->
+  </div>
+  <div class="row" *ngIf="addUsersOpen">
+    <div class='row error-message' *ngIf="errorMessage">
+      <div class='col s12' [innerHtml]="errorMessage">
+      </div>
+    </div>
+    <form class="col m6 offset-m3 s12" (ngSubmit)="submitUsersForm()">
+      <div class='row form-group'>
+        <div class='input-field'>
+          <input class='validate' type='email' name='email' id='email' [(ngModel)]='userInfo.email' #email="ngModel" required />
+          <label data-error="Cet email n'est pas valide" for='email'>Entrez un email</label>
+        </div>
+      </div>
+
+      <div class='row form-group'>
+        <p>
+          <input class="with-gap" name="type" [(ngModel)]="userInfo.type" type="radio" id="test1" value="user" checked />
+          <label for="test1">Utilisateur</label>
+        </p>
+        <p>
+          <input class="with-gap" name="type" [(ngModel)]="userInfo.type" type="radio" value="validator" id="test2" />
+          <label for="test2">Validateur</label>
+        </p>
+      </div>
+
+      <button class="waves-effect waves-light btn modal-trigger" type="submit">Ajout</button>
+    </form>
+  </div>
+</section>
+<div class="sestion">
+  <div class="row">
+    <div class="container col m8 offset-m2 s12" *ngIf="currentPepite">
+      <div class="row">
+        <h5 class="light-blue-text">Liste des utilisateurs de la pépite:</h5>
+      </div>
+      <app-userlist [changeUserList]="triggerUserListChange" [hideTypes]="['pepite-admin', 'admin']" [displayValidator]="true" [showGrades]="true"></app-userlist>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal bottom-sheet">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat">Close</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>

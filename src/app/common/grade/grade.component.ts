@@ -37,6 +37,7 @@ export class GradeComponent implements OnChanges {
     private gradeService: GradeService,
     private authService: AuthService
   ) {
+    this.user = authService.currentUser;
   }
 
   createEmptyGrade(): Grade {
@@ -52,13 +53,18 @@ export class GradeComponent implements OnChanges {
 
   changeGrade(value: number): void {
     if (!this.readOnly) {
-      this.gradeEvent.emit({
+      let gradeEmmit = {
         gradeId: (!this.emptyGrade)? this.grade._id: null,
         value: value,
         userId: this.user._id,
         categoryId: this.category._id,
-        emptyGrade: this.emptyGrade
-      });
+        emptyGrade: this.emptyGrade,
+        type: 'auto-eval'
+      }
+      if (this.user.type == 'validator' || this.user.type == 'admin' || this.user.type == 'pepite-admin' ) {
+        gradeEmmit.type = 'validation-eval';
+      }
+      this.gradeEvent.emit(gradeEmmit);
       if(this.emptyGrade) {
         this.emptyGrade = false;
       }
@@ -66,13 +72,30 @@ export class GradeComponent implements OnChanges {
   }
 
   removeGrade(): void {
-    this.gradeService.removeGrade(this.grade)
-      .subscribe((result) => {
-        if(result.success) {
-          this.emptyGrade = true;
-          this.grade = this.createEmptyGrade();
-        }
-      });
+    let gradeEmmit
+    if (this.user.type == 'validator' || this.user.type == 'admin' || this.user.type == 'pepite-admin' ) {
+      console.log('emmit as validator');
+      gradeEmmit = {
+        gradeId: (!this.emptyGrade)? this.grade._id: null,
+        value: 0,
+        userId: this.user._id,
+        categoryId: this.category._id,
+        emptyGrade: false,
+        type: 'validation-eval'
+      }
+    } else {
+      gradeEmmit = {
+        removeGrade: true
+      }
+      this.gradeService.removeGrade(this.grade)
+        .subscribe((result) => {
+          if(result.success) {
+            this.emptyGrade = true;
+            this.grade = this.createEmptyGrade();
+          }
+        });
+    }
+    this.gradeEvent.emit(gradeEmmit);
   }
 
   changeHover(value: number) {
@@ -97,7 +120,6 @@ export class GradeComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    this.user = this.authService.currentUser;
     if (!this.grade) {
       this.emptyGrade = true;
       this.grade = this.createEmptyGrade();

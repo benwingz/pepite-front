@@ -39,6 +39,8 @@ export class AuthService {
             this.storeUserId(responseJson.user_id);
           }
           resolve(responseJson);
+        }, (error) => {
+            reject(error.json());
         });
     });
   }
@@ -63,7 +65,7 @@ export class AuthService {
       return this.authHttp.get(this.appConf.apiBaseUrl + 'user/' + this.getUserIdFromLocalStorage())
         .map(userReturned => {
           let user = userReturned.json();
-          this.currentUser = new User (user._id, user.lastname, user.firstname, user.type, user.password, user.salt);
+          this.currentUser = new User (user._id, user.email, user.lastname, user.firstname, user.type, user._pepite);
           this.userLoggedIn(this.currentUser);
           return this.currentUser;
         });
@@ -72,12 +74,21 @@ export class AuthService {
     }
   }
 
-  getUser(userId: string): Observable<User> {
-    return this.authHttp.get(this.appConf.apiBaseUrl + 'user/' + userId)
-      .map(userReturned => {
+  getUser(userId?: string): Observable<User> {
+    if (this.getUserIdFromLocalStorage()) {
+      let userDataObservable;
+      if (!userId) {
+        userDataObservable = this.authHttp.get(this.appConf.apiBaseUrl + 'user/' + this.getUserIdFromLocalStorage());
+      } else {
+        userDataObservable = this.authHttp.get(this.appConf.apiBaseUrl + 'user/' + userId);
+      }
+      return userDataObservable.map(userReturned => {
         let user = userReturned.json();
-        return new User (user._id, user.lastname, user.firstname, user.type);
+        return new User (user._id, user.email, user.lastname, user.firstname, user.type);
       });
+    } else {
+      return Observable.of(null);
+    }
   }
 
   getUserIdFromLocalStorage(): string {

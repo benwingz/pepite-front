@@ -7,20 +7,8 @@
     </div>
   </nav>
 </div>
-<div class="chips-container center-align" *ngIf="categories && grades">
-  <span class="card-metadata chip">
-    <span class="card-metadata__counter light-blue blue-grey-text text-lighten-5">{{categories.length}}</span> Compétences
-    <i class="material-icons right">star_border</i>
-  </span>
-  <span class="card-metadata chip">
-    <span class="card-metadata__counter light-green blue-grey-text text-lighten-5">{{grades.length}}</span> Auto-évaluées
-    <i class="material-icons right">star</i>
-  </span>
-  <span class="card-metadata chip">
-    <span class="card-metadata__counter red accent-4 blue-grey-text text-lighten-5">{{(grades | evaluatedgrade).length}}</span> Validées
-    <i class="material-icons right">done</i>
-  </span>
-</div>
+<app-userstat *ngIf="currentValidatedUser" [user]='currentValidatedUser._id'></app-userstat>
+<app-userstat *ngIf="!currentValidatedUser && currentUser._id" [user]='currentUser._id'></app-userstat>
 <br/>
 <div class="action-container center-align">
   <a
@@ -34,9 +22,9 @@
   </a>
 </div>
 <br/>
-<div class="phases-wrapper" *ngIf="reference">
+<div class="phases-wrapper" *ngIf="reference.length > 0">
     <div class="phase-card" *ngFor="let phase of reference; let i = index;">
-      <div [routerLink]="['/phase', phase._id]" class="hoverable card-panel" *ngIf="phase">
+      <div (click)="navigateToCategories(phase)" class="hoverable card-panel" *ngIf="phase">
           <span class="phase-card__icon white-text left">
               <i class="material-icons medium">{{icons[i]}}</i>
           </span>

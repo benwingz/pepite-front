@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   getNewToken(token?:any): void {
-    console.log('newToken');
     let authInfo:any = {};
     if (token) {
       authInfo = token;
@@ -44,11 +43,13 @@ export class LoginComponent implements OnInit {
           this.retriveUserProfile().then(
             (user) => {
               this.currentUser = user;
-              console.log('user', user);
               switch (user.type) {
                 // case "user":
                 //   this.router.navigate(['home']);
                 //   break;
+                case "pepite-admin":
+                this.router.navigate(['pepite/', user._pepite]);
+                  break;
                 case "validator":
                   this.router.navigate(['users']);
                   break;
@@ -60,6 +61,9 @@ export class LoginComponent implements OnInit {
         } else {
           this.errorMessage = response.message;
         }
+      },
+      (error) => {
+        this.errorMessage = error.error;
       });
   }
 
@@ -67,7 +71,7 @@ export class LoginComponent implements OnInit {
     const authServ = this.authService;
     return new Promise(function(resolve, reject) {
       authServ.getCurrentUser().subscribe(user => {
-        resolve(new User(user._id, user.lastname, user.firstname, user.type));
+        resolve(new User(user._id, user.email, user.lastname, user.firstname, user.type, (user._pepite)? user._pepite: null));
       });
     })
   }
