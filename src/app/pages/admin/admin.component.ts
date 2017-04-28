@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PepiteService } from '../../service/pepite.service';
+import { UsersService } from '../../service/users.service';
 
 import { Pepite } from '../../models/pepite.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-admin',
@@ -15,10 +17,28 @@ export class AdminComponent implements OnInit {
   pepiteAssignMode: boolean = false;
   filterType: Array<string> = [];
   pepiteToPatch: string;
+  addUsersOpen: boolean = false;
+  addPepiteOpen: boolean = false;
+  userInfo: User;
+  errorMessage: string;
+  triggerUserListChange: number = 0;
+  newPepite: Pepite;
 
   constructor(
-    private pepiteService: PepiteService
-  ) { }
+    private pepiteService: PepiteService,
+    private usersService: UsersService
+  ) {
+    this.initUserInfo();
+    this.initNewPepite();
+  }
+
+  initNewPepite(): void{
+    this.newPepite = new Pepite(null, null, null, null);
+  }
+
+  initUserInfo(): void{
+    this.userInfo = new User(null, '', null, null, "user");
+  }
 
   ngOnInit() {
     this.loadPepite();
@@ -47,6 +67,58 @@ export class AdminComponent implements OnInit {
           this.pepiteToPatch = null;
         }
       });
+  }
+
+  toggleUserForm(): void{
+    this.addUsersOpen = !this.addUsersOpen;
+  }
+
+  togglePepiteForm(): void{
+    this.addPepiteOpen = !this.addPepiteOpen;
+  }
+
+  submitUsersForm(): void {
+    this.errorMessage = null;
+    if (this.userInfo && this.userInfo.email != "") {
+      this.usersService.createUser(this.userInfo).subscribe( (response) => {
+        if (response.success) {
+          this.addUsersOpen = false;
+          this.initUserInfo()
+          this.triggerUserListChange ++;
+        } else {
+          this.errorMessage = response.message;
+        }
+      });
+    } else {
+      this.errorMessage = 'Veuillez rentrer un email';
+    }
+  }
+
+  submitPepiteForm(): void{
+    this.errorMessage = null;
+    if (this.newPepite && this.newPepite.name) {
+      this.pepiteService.createPepite(this.newPepite)
+        .subscribe((response) => {
+          if (response.success) {
+            this.loadPepite();
+            this.addPepiteOpen = false;
+          } else {
+            this.errorMessage = response.message;
+          }
+        });
+    }
+  }
+
+  deletePepite(pepiteId: string): void{
+    this.errorMessage = null;
+    this.pepiteService.deletePepite(pepiteId)
+      .subscribe((response) => {
+        if (response.success) {
+          this.loadPepite();
+        } else {
+          this.errorMessage = response.message;
+        }
+      })
   }
 
 }

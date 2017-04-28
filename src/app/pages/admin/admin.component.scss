@@ -4,7 +4,7 @@
   ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
   }
@@ -15,9 +15,35 @@
     border-radius: 10px;
     display: inline-block;
     color: white;
+    margin: 10px;
 
     a {
       cursor: pointer;
     }
+    .btn {
+      display: none;
+    }
+    @media screen and (max-width: 1024px) {
+      .btn {
+        display: block;
+      }
+    }
+    &:hover {
+      .btn {
+        display: block;
+      }
+    }
+  }
+}
+
+.btn-container {
+  width: 100%;
+  text-align: center;
+}
+
+.form-container {
+  margin-top: 15px;
+  .btn {
+    width: 100%;
   }
 }

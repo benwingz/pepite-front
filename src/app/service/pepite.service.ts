@@ -53,4 +53,14 @@ export class PepiteService {
     return this.authHttp.patch(this.appConf.apiBaseUrl + 'pepite/', {id: pepiteId, _admin: userId})
       .map(response => response.json());
   }
+
+  createPepite(pepite: Pepite): Observable<any>{
+    return this.authHttp.post(this.appConf.apiBaseUrl + 'pepite/', {name: pepite.name})
+      .map(response => response.json());
+  }
+
+  deletePepite(pepiteId: string): Observable<any>{
+    return this.authHttp.delete(this.appConf.apiBaseUrl + 'pepite/' + pepiteId)
+      .map(response => response.json());
+  }
 }
