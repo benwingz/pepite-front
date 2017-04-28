@@ -74,7 +74,6 @@ export class GradeComponent implements OnChanges {
   removeGrade(): void {
     let gradeEmmit
     if (this.user.type == 'validator' || this.user.type == 'admin' || this.user.type == 'pepite-admin' ) {
-      console.log('emmit as validator');
       gradeEmmit = {
         gradeId: (!this.emptyGrade)? this.grade._id: null,
         value: 0,

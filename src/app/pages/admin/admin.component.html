@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col m10 offset-m1 s12">
+      <h5 class="text-center light-blue-text">
+        Administration
+      </h5>
+      <div class="pepite-list-container">
+        <p class="text-center">Liste des pépites :</p>
+        <ul>
+          <li class="pepite" *ngFor="let pepite of pepites">
+            <a [innerHtml]="pepite.name"></a>
+            <div *ngIf="pepite.admin">
+              Administrateur :<br/>
+              <div>{{pepite.admin.firstname}} {{pepite.admin.lastname}}</div>
+              <div>{{pepite.admin.email}}</div>
+            </div>
+            <div *ngIf="!pepite.admin">
+              <a (click)="switchToPepiteAssignMode(pepite._id)">Assigner un administrateur</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <p class="text-center">Liste des utilisateurs :</p>
+      <app-userlist
+        [hideTypes]="filterType"
+        [assignPepite]="pepiteAssignMode"
+        (emittUserId)="assignPepiteAdmin($event)">
+      </app-userlist>
+    </div>
+  </div>
+
+</div>

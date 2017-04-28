@@ -100,3 +100,8 @@ body {
   text-align: center;
   color: #F44336;
 }
+
+.text-center {
+  width: 100%;
+  text-align: center;
+}

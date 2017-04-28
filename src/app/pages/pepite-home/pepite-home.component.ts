@@ -11,7 +11,7 @@ import { User } from '../../models/user.model';
 @Component({
   selector: 'app-pepite-home',
   templateUrl: './pepite-home.component.html',
-  styleUrls: ['./pepite-home.component.css']
+  styleUrls: ['./pepite-home.component.scss']
 })
 export class PepiteHomeComponent implements OnInit {
 
@@ -58,7 +58,6 @@ export class PepiteHomeComponent implements OnInit {
   submitUsersForm(): void{
     if (this.userInfo && this.userInfo.email != "") {
       this.usersService.createUser(this.userInfo).subscribe( (response) => {
-        console.log(response);
         if (response.success) {
           this.addUsersOpen = false;
           this.initUserInfo()

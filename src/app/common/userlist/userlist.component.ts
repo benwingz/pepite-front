@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UsersService } from '../../service/users.service';
@@ -29,11 +29,16 @@ export class UserlistComponent implements OnInit, OnChanges {
   @Input()
   displayValidator: boolean = false;
   @Input()
-  hideTypes: string[];
+  hideTypes: string[] = [];
   @Input()
   externalUserList: Observable<User[]>;
   @Input()
   changeUserList: number;
+  @Input()
+  assignPepite: boolean = false;
+  @Output()
+  emittUserId = new EventEmitter();
+
 
   private oldTypeFilter: Array<string>;
   private assignMode: boolean = false;
@@ -111,7 +116,7 @@ export class UserlistComponent implements OnInit, OnChanges {
   }
 
   goToUser(user): void {
-    if (!this.assignMode) {
+    if (!this.assignMode && !this.assignPepite) {
       switch (user.type) {
         case 'validator':
           this.router.navigate(['/users', user._id]);
@@ -119,6 +124,8 @@ export class UserlistComponent implements OnInit, OnChanges {
         default:
           this.router.navigate(['/user', user._id]);
       }
+    } else if (this.assignPepite) {
+      this.emittUserId.emit(user._id);
     }
   }
 

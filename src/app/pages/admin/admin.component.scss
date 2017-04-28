@@ -1,0 +1,23 @@
+.pepite-list-container {
+  width: 100%;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  li.pepite {
+    padding: 20px;
+    background-color: #3a4d57;
+    border-radius: 10px;
+    display: inline-block;
+    color: white;
+
+    a {
+      cursor: pointer;
+    }
+  }
+}

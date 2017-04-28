@@ -40,6 +40,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { PepiteHomeComponent } from './pages/pepite-home/pepite-home.component';
 import { ActivateComponent } from './pages/activate/activate.component';
 import { UserFormComponent } from './common/user-form/user-form.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -69,7 +70,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     UserlistComponent,
     FilterUserTypePipe,
     ActivateComponent,
-    UserFormComponent
+    UserFormComponent,
+    AdminComponent
   ],
   imports: [
     NguiAutoCompleteModule,

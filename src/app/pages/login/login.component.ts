@@ -44,9 +44,9 @@ export class LoginComponent implements OnInit {
             (user) => {
               this.currentUser = user;
               switch (user.type) {
-                // case "user":
-                //   this.router.navigate(['home']);
-                //   break;
+                case "admin":
+                  this.router.navigate(['admin']);
+                  break;
                 case "pepite-admin":
                 this.router.navigate(['pepite/', user._pepite]);
                   break;
