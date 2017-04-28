@@ -1,14 +1,27 @@
-<div class="chips-container center-align" *ngIf="categories && grades">
+<div class="chips-container center-align" *ngIf="categories && grades" [class.hide]="display!='inline'">
   <span class="card-metadata chip" *ngIf="!hideCategories">
     <span class="card-metadata__counter light-blue blue-grey-text text-lighten-5">{{categories.length}}</span> Compétences
     <i class="material-icons right">star_border</i>
   </span>
   <span class="card-metadata chip">
-    <span class="card-metadata__counter light-green blue-grey-text text-lighten-5">{{grades.length}}</span> Auto-évaluées
+    <span class="card-metadata__counter background-unvalidate blue-grey-text text-lighten-5">{{grades.length}}</span> Auto-évaluées
     <i class="material-icons right">star</i>
   </span>
   <span class="card-metadata chip">
-    <span class="card-metadata__counter red accent-4 blue-grey-text text-lighten-5">{{(grades | evaluatedgrade).length}}</span> Validées
+    <span class="card-metadata__counter background-validate accent-4 blue-grey-text text-lighten-5">{{(grades | evaluatedgrade).length}}</span> Validées
     <i class="material-icons right">done</i>
   </span>
+</div>
+
+<div class="chart-container" *ngIf="categories && grades" [class.hide]="display!='chart'">
+  <canvas
+    id="canvas"
+    baseChart
+    [data]="[categories.length - grades.length, grades.length, (grades | evaluatedgrade).length]"
+    [labels]="doughnutChartLabels"
+    [chartType]="doughnutChartType"
+    [colors]="[{backgroundColor: ['#00C9E2','#80CBC5','#009688']}]"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)">
+  </canvas>
 </div>

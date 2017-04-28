@@ -1,4 +1,6 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { UsersService } from '../../service/users.service';
 
 import { Subject } from 'rxjs/Subject';
@@ -27,11 +29,18 @@ export class UserlistComponent implements OnInit, OnChanges {
   @Input()
   displayValidator: boolean = false;
   @Input()
-  hideTypes: string[];
+  hideTypes: string[] = [];
   @Input()
   externalUserList: Observable<User[]>;
   @Input()
   changeUserList: number;
+  @Input()
+  assignPepite: boolean = false;
+  @Input()
+  chartStyle: string = 'inline';
+  @Output()
+  emittUserId = new EventEmitter();
+
 
   private oldTypeFilter: Array<string>;
   private assignMode: boolean = false;
@@ -41,6 +50,7 @@ export class UserlistComponent implements OnInit, OnChanges {
   private searchTerms = new Subject<string>();
 
   constructor(
+    private router: Router,
     private usersService: UsersService,
     private filteruser: FilterUserPipe
   ) { }
@@ -60,6 +70,7 @@ export class UserlistComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+    console.log(this.chartStyle);
     if (this.changeUserList > this.changeUserListOld) {
       this.changeUserListOld = this.changeUserList;
       this.userList = this.populateUserList();
@@ -71,7 +82,7 @@ export class UserlistComponent implements OnInit, OnChanges {
   }
 
   searchUser(term: string): Observable<User[]> {
-    return this.filteruser.transform(this.populateUserList(), term, ['fullname', 'email']);
+    return this.filteruser.transform(this.populateUserList(), term, ['fullname', 'email', 'ine']);
   }
 
   populateUserList(): Observable<User[]> {
@@ -105,6 +116,20 @@ export class UserlistComponent implements OnInit, OnChanges {
           this.userAssignatedId = null;
         }
       });
+  }
+
+  goToUser(user): void {
+    if (!this.assignMode && !this.assignPepite) {
+      switch (user.type) {
+        case 'validator':
+          this.router.navigate(['/users', user._id]);
+          break;
+        default:
+          this.router.navigate(['/user', user._id]);
+      }
+    } else if (this.assignPepite) {
+      this.emittUserId.emit(user._id);
+    }
   }
 
 }

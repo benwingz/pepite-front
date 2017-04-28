@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Http, HttpModule, RequestOptions } from '@angular/http';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AppRoutingModule } from './app.routing.module';
 
@@ -38,6 +40,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { UsersComponent } from './pages/users/users.component';
 import { PepiteHomeComponent } from './pages/pepite-home/pepite-home.component';
 import { ActivateComponent } from './pages/activate/activate.component';
+import { UserFormComponent } from './common/user-form/user-form.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -66,9 +70,13 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     PepiteHomeComponent,
     UserlistComponent,
     FilterUserTypePipe,
-    ActivateComponent
+    ActivateComponent,
+    UserFormComponent,
+    AdminComponent
   ],
   imports: [
+    NguiAutoCompleteModule,
+    ChartsModule,
     BrowserModule,
     FormsModule,
     HttpModule,

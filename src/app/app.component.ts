@@ -26,10 +26,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  select(value: string) {}
-
-  toggleSidebar(): void {}
-
   ngOnInit(): void {
     this.authService.userIsLogged$.subscribe(user => {
       if (user) {
@@ -46,5 +42,9 @@ export class AppComponent implements OnInit {
         this.router.navigate(['login']);
       }
     });
+  }
+
+  toggleSidebar(): void {
+    this.sidebarShown = !this.sidebarShown;
   }
 }

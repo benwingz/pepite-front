@@ -1,0 +1,49 @@
+.pepite-list-container {
+  width: 100%;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  li.pepite {
+    padding: 20px;
+    background-color: #3a4d57;
+    border-radius: 10px;
+    display: inline-block;
+    color: white;
+    margin: 10px;
+
+    a {
+      cursor: pointer;
+    }
+    .btn {
+      display: none;
+    }
+    @media screen and (max-width: 1024px) {
+      .btn {
+        display: block;
+      }
+    }
+    &:hover {
+      .btn {
+        display: block;
+      }
+    }
+  }
+}
+
+.btn-container {
+  width: 100%;
+  text-align: center;
+}
+
+.form-container {
+  margin-top: 15px;
+  .btn {
+    width: 100%;
+  }
+}

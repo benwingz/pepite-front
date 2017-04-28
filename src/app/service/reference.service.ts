@@ -71,7 +71,7 @@ export class ReferenceService {
       query = this.authHttp.get(this.appConf.apiBaseUrl + 'phase/' + phase.getId() + '/grades');
     }
     return query.map((grades) => {
-      if (grades.json().length > 1) {
+      if (grades.json().length > 0) {
         let gradesReturned = grades.json();
         gradesReturned.forEach((grade, index) => {
           gradesReturned[index] = new Grade(grade._category, grade._user, grade.user_eval, grade._id, grade._validator, grade.validator_eval);

@@ -30,6 +30,10 @@
   background: -ms-linear-gradient(top, rgba(255,255,255,0.2) 0%, rgba(245,245,245,0.08) 47%, rgba(240,240,240,0) 77%, rgba(237,237,237,0) 100%);
   background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(245,245,245,0.08) 47%, rgba(240,240,240,0) 77%, rgba(237,237,237,0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+  @media only screen and (max-width: 992px){
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 .phase-card:nth-of-type(1) .card-panel {
@@ -51,6 +55,9 @@
 .phase-card__content {
   transition: all 120ms ease-in;
   display: inline-block;
+  @media only screen and (max-width: 992px){
+    font-size: 1rem;
+  }
 }
 
 .phase-card > .hoverable:hover .phase-card__content {

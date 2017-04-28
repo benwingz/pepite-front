@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="row">
+    <div class="col m10 offset-m1 s12">
+      <h5 class="text-center light-blue-text">
+        Administration
+      </h5>
+      <div class="btn-container">
+        <a class="waves-effect waves-light btn modal-trigger" (click)="toggleUserForm()">
+          <span *ngIf="!addUsersOpen">Ajout d'utilisateur</span>
+          <span *ngIf="addUsersOpen">Fermer le formulaire</span>
+        </a>
+        <a class="waves-effect waves-light btn modal-trigger" (click)="togglePepiteForm()">
+          <span *ngIf="!addPepiteOpen">Ajout de pépite</span>
+          <span *ngIf="addPepiteOpen">Fermer le formulaire</span>
+        </a>
+      </div>
+      <div class="row">
+        <div class='row error-message' *ngIf="errorMessage">
+          <div class='col s12' [innerHtml]="errorMessage">
+          </div>
+        </div>
+      </div>
+      <div class="form-container">
+        <div class="row" *ngIf="addUsersOpen">
+          <form class="col m6 offset-m3 s12" (ngSubmit)="submitUsersForm()">
+            <div class='row form-group'>
+              <div class='input-field'>
+                <input class='validate' type='email' name='email' id='email' [(ngModel)]='userInfo.email' #email="ngModel" required />
+                <label data-error="Cet email n'est pas valide" for='email'>Entrez un email</label>
+              </div>
+            </div>
+
+            <div class='row form-group'>
+              <p>
+                <input class="with-gap" name="type" [(ngModel)]="userInfo.type" type="radio" id="test1" value="user"/>
+                <label for="test1">Utilisateur</label>
+              </p>
+              <p>
+                <input class="with-gap" name="type" [(ngModel)]="userInfo.type" type="radio" value="validator" id="test2" />
+                <label for="test2">Validateur</label>
+              </p>
+              <p>
+                <input class="with-gap" name="type" [(ngModel)]="userInfo.type" type="radio" id="test1" value="pepite-admin" />
+                <label for="test1">Administrateur pépite</label>
+              </p>
+              <p>
+                <input class="with-gap" name="type" [(ngModel)]="userInfo.type" type="radio" value="admin" id="test2" />
+                <label for="test2">Administrateur</label>
+              </p>
+            </div>
+
+            <button class="waves-effect waves-light btn modal-trigger" type="submit">Ajouter l'utilisateur</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="form-container" *ngIf="addPepiteOpen">
+        <div class='row form-group'>
+          <form class="col m6 offset-m3 s12" (ngSubmit)="submitPepiteForm()">
+            <div class='input-field'>
+              <input class='validate' type='text' name='name' id='name' [(ngModel)]='newPepite.name' #name="ngModel" required />
+              <label for='name'>Entrez le nom de la nouvelle pépite</label>
+            </div>
+            <button class="waves-effect waves-light btn modal-trigger" type="submit">Ajouter la pépite</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="pepite-list-container">
+        <p class="text-center">Liste des pépites :</p>
+        <ul>
+          <li class="pepite" *ngFor="let pepite of pepites">
+            <a [innerHtml]="pepite.name"></a>
+            <div *ngIf="pepite.admin">
+              Administrateur :<br/>
+              <div>{{pepite.admin.firstname}} {{pepite.admin.lastname}}</div>
+              <div>{{pepite.admin.email}}</div>
+            </div>
+            <div *ngIf="!pepite.admin">
+              <a (click)="switchToPepiteAssignMode(pepite._id)">Assigner un administrateur</a>
+            </div>
+            <button class="waves-effect waves-light btn" (click)="deletePepite(pepite._id)">
+              Supprimer la pépite
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <br/>
+
+      <p class="text-center">Liste des utilisateurs :</p>
+      <app-userlist
+        [changeUserList]="triggerUserListChange"
+        [hideTypes]="filterType"
+        [assignPepite]="pepiteAssignMode"
+        (emittUserId)="assignPepiteAdmin($event)"
+        [showGrades]="true"
+        [chartStyle]="'chart'">
+      </app-userlist>
+    </div>
+  </div>
+
+</div>

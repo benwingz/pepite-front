@@ -9,8 +9,6 @@ export class User {
     public type: string,
     public _pepite?: string,
     public _validator?: string,
-    public password?: string,
-    public salt?: string,
     public gender?: string,
     public birthdate?: Date,
     public ine?: string,
@@ -19,7 +17,10 @@ export class User {
     public address?: string,
     public cp?: number,
     public town?: number,
-    public country?: number) {
+    public country?: number,
+    public project?: string,
+    public password?: string,
+    public salt?: string,) {
     this.fullname = this.getFullname();
   };
 

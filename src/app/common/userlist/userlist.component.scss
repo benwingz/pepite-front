@@ -2,13 +2,18 @@
   text-align: center;
 
   li {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     background-color: #E6E6E6;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
+    @media only screen and (max-width: 992px) {
+      justify-content: center;
+    }
 
     &.unvalidated {
       opacity: 0.4;
@@ -23,8 +28,24 @@
       justify-content: center;
     }
 
+    .user-info {
+      text-align: left;
+    }
+
     &.validator {
-      background-color: #ffcccc;
+      background-color: #009688;
+      color: #E6E6E6;
+      a {
+        color: white;
+      }
+    }
+    &.pepite {
+      background-color: #3a4d57;
+      color: white;
+    }
+    &.admin {
+      background-color: #ea3c38;
+      color: white;
     }
     .admin > a {
       color: black;

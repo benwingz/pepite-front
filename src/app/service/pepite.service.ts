@@ -17,13 +17,50 @@ export class PepiteService {
   ) {
   };
 
-  getPepite(pepiteId: string): Observable<any> {
-    return this.authHttp.get(this.appConf.apiBaseUrl + 'pepite/' + pepiteId)
-      .map(response => {
+  getAllPepites(): Observable<any> {
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'pepites/')
+      .map( (response) => {
         const jsonResponse = response.json();
-        if (jsonResponse._id) {
-          return new Pepite(jsonResponse._id, jsonResponse.name, jsonResponse.creation_date, jsonResponse.admin)
+        if (jsonResponse.success != false) {
+          let pepiteList: Pepite[] = [];
+          for (let i=0; i < jsonResponse.length; i++) {
+            pepiteList.push(new Pepite(
+              jsonResponse[i]._id,
+              jsonResponse[i].name,
+              jsonResponse[i].creation_date,
+              jsonResponse[i]._admin));
+          }
+          return pepiteList;
         }
       });
+  }
+
+  getPepite(pepiteId: string): Observable<any> {
+    return this.authHttp.get(this.appConf.apiBaseUrl + 'pepite/' + pepiteId)
+      .map( (response) => {
+        const jsonResponse = response.json();
+        if (jsonResponse._id) {
+          return new Pepite(
+            jsonResponse._id,
+            jsonResponse.name,
+            jsonResponse.creation_date,
+            jsonResponse._admin)
+        }
+      });
+  }
+
+  assignPepiteAdmin(userId: string, pepiteId: string): Observable<any> {
+    return this.authHttp.patch(this.appConf.apiBaseUrl + 'pepite/', {id: pepiteId, _admin: userId})
+      .map(response => response.json());
+  }
+
+  createPepite(pepite: Pepite): Observable<any>{
+    return this.authHttp.post(this.appConf.apiBaseUrl + 'pepite/', {name: pepite.name})
+      .map(response => response.json());
+  }
+
+  deletePepite(pepiteId: string): Observable<any>{
+    return this.authHttp.delete(this.appConf.apiBaseUrl + 'pepite/' + pepiteId)
+      .map(response => response.json());
   }
 }

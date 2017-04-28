@@ -33,7 +33,17 @@ export class UsersService {
       const jsonResponse = response.json();
       if (jsonResponse.length > 0) {
         for (let i = 0; i <= jsonResponse.length -1; i++) {
-          userList.push(new User(jsonResponse[i]._id, jsonResponse[i].email, jsonResponse[i].lastname, jsonResponse[i].firstname, jsonResponse[i].type, jsonResponse[i]._pepite, jsonResponse[i]._validator))
+          userList.push(new User(
+            jsonResponse[i]._id,
+            jsonResponse[i].email,
+            jsonResponse[i].lastname,
+            jsonResponse[i].firstname,
+            jsonResponse[i].type,
+            jsonResponse[i]._pepite,
+            jsonResponse[i]._validator,
+            jsonResponse[i].genre,
+            jsonResponse[i].birthdate,
+            jsonResponse[i].ine))
         }
         return userList;
       }
@@ -48,14 +58,12 @@ export class UsersService {
   activateUser(userId:string): Observable<any> {
     return this.http.get(this.appConf.apiBaseUrl + 'activate/' + userId)
       .map( (userReturned) => {
-        console.log(userReturned);
         let user = userReturned.json();
         return new User (user._id, user.email, user.lastname, user.firstname, user.type, user._pepite);
       });
   }
 
   doActivateUser(user: User, accountId: string): Observable<any> {
-    console.log('user', user);
     return this.http.post(this.appConf.apiBaseUrl + 'activate/',{
       email: user.email,
       password: user.password,
@@ -70,6 +78,7 @@ export class UsersService {
       cp: user.cp,
       town: user.town,
       country: user.country,
+      project: user.project,
       activationAccountId: accountId
     }).map(response => response.json());
   }

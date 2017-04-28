@@ -88,7 +88,6 @@ export class CategoryComponent implements OnInit {
         if ($event.type != 'validation-eval') {
           query = this.gradeService.patchGrade({id: $event.gradeId, user_eval: {value: $event.value} });
         } else {
-          console.log('event type validation-eval');
           query = this.gradeService.patchGrade({id: $event.gradeId, _validator:$event.userId, validator_eval: {value: $event.value} })
         }
         query.subscribe((result) => {
