@@ -16,7 +16,7 @@
           <li *ngIf="currentUser.type=='user'"><a [routerLink]="['/home']" [routerLinkActive]="['active']">Accueil</a></li>
           <li *ngIf="currentUser.type=='validator'"><a [routerLink]="['/users']" [routerLinkActive]="['active']">Retour aux utilisateurs</a></li>
           <li *ngIf="currentUser.type=='user'"><a [routerLink]="['/profile']" [routerLinkActive]="['active']" *ngIf="currentUser">Mon profile</a></li>
-          <li><a *ngIf="currentUser">Se déconnecter</a></li>
+          <li><a (click)="logout()"  *ngIf="currentUser">Se déconnecter</a></li>
           <!-- <li><app-dropdown [btnLabel]="'Sélectionner un scenario'" [values]="dropdownValues" (select)="select($event)"></app-dropdown></li> -->
         </ul>
       </div>
