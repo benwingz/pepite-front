@@ -4,11 +4,11 @@
     <i class="material-icons right">star_border</i>
   </span>
   <span class="card-metadata chip">
-    <span class="card-metadata__counter light-green blue-grey-text text-lighten-5">{{grades.length}}</span> Auto-évaluées
+    <span class="card-metadata__counter background-unvalidate blue-grey-text text-lighten-5">{{grades.length}}</span> Auto-évaluées
     <i class="material-icons right">star</i>
   </span>
   <span class="card-metadata chip">
-    <span class="card-metadata__counter red accent-4 blue-grey-text text-lighten-5">{{(grades | evaluatedgrade).length}}</span> Validées
+    <span class="card-metadata__counter background-validate accent-4 blue-grey-text text-lighten-5">{{(grades | evaluatedgrade).length}}</span> Validées
     <i class="material-icons right">done</i>
   </span>
 </div>

@@ -105,3 +105,11 @@ body {
   width: 100%;
   text-align: center;
 }
+
+.background-validate {
+  background-color:#009688;
+}
+
+.background-unvalidate {
+  background-color: #80CBC5;
+}
