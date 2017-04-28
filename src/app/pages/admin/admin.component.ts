@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PepiteService } from '../../service/pepite.service';
 import { UsersService } from '../../service/users.service';
+import { AuthService } from '../../service/auth.service';
 
 import { Pepite } from '../../models/pepite.model';
 import { User } from '../../models/user.model';
@@ -25,8 +27,10 @@ export class AdminComponent implements OnInit {
   newPepite: Pepite;
 
   constructor(
+    private router: Router,
     private pepiteService: PepiteService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private authService: AuthService
   ) {
     this.initUserInfo();
     this.initNewPepite();
@@ -41,7 +45,13 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadPepite();
+    this.authService.getUser().subscribe((user) => {
+      if (['admin'].indexOf(user.type) == -1) {
+        this.router.navigate(['login']);
+      } else {
+        this.loadPepite();
+      }
+    });
   }
 
   loadPepite(): void {
