@@ -17,8 +17,14 @@ export class UserstatComponent implements OnInit {
   user: string;
   @Input()
   hideCategories: boolean = false;
+  @Input()
+  display: string = 'inline';
+  
   categories: Category[];
   grades: Grade[];
+  public doughnutChartLabels:string[] = ['Non évaluées', 'Auto-évaluées', 'Validées'];
+  public doughnutChartData:number[] = [];
+  public doughnutChartType:string = 'doughnut';
 
   constructor(
     private referenceService: ReferenceService,
@@ -29,6 +35,7 @@ export class UserstatComponent implements OnInit {
     this.referenceService.getCategories().subscribe((categories) => {
       this.categories = categories;
     });
+
     this.gradeService.getGrades(this.user).subscribe((grades) => {
       this.grades = grades;
     });

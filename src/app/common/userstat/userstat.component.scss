@@ -1,0 +1,13 @@
+.hide {
+  display: none;
+}
+
+@media only screen and (max-width: 992px) {
+  .chips-container {
+    display: block!important;
+  }
+
+  .chart-container {
+    display: none!important;
+  }
+}

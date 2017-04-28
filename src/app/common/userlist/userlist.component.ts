@@ -36,6 +36,8 @@ export class UserlistComponent implements OnInit, OnChanges {
   changeUserList: number;
   @Input()
   assignPepite: boolean = false;
+  @Input()
+  chartStyle: string = 'inline';
   @Output()
   emittUserId = new EventEmitter();
 
@@ -68,6 +70,7 @@ export class UserlistComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+    console.log(this.chartStyle);
     if (this.changeUserList > this.changeUserListOld) {
       this.changeUserListOld = this.changeUserList;
       this.userList = this.populateUserList();

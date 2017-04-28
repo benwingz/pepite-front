@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AppRoutingModule } from './app.routing.module';
 
@@ -75,6 +76,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   ],
   imports: [
     NguiAutoCompleteModule,
+    ChartsModule,
     BrowserModule,
     FormsModule,
     HttpModule,

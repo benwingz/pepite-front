@@ -27,7 +27,7 @@
         <a (click)="doAssignValidator(user._id)">Assigner à ce validateur</a>
       </div>
       <div class="user-stats block" *ngIf="showGrades && user.type=='user'">
-        <app-userstat [user]="user._id" [hideCategories]="true"></app-userstat>
+        <app-userstat [user]="user._id" [hideCategories]="true" [display]="chartStyle"></app-userstat>
       </div>
     </li>
   </ul>
