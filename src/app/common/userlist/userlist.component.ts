@@ -70,7 +70,6 @@ export class UserlistComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.chartStyle);
     if (this.changeUserList > this.changeUserListOld) {
       this.changeUserListOld = this.changeUserList;
       this.userList = this.populateUserList();
