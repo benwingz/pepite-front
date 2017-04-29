@@ -38,6 +38,8 @@ export class UserlistComponent implements OnInit, OnChanges {
   assignPepite: boolean = false;
   @Input()
   chartStyle: string = 'inline';
+  @Input()
+  clickToAccess: boolean = false;
   @Output()
   emittUserId = new EventEmitter();
 
@@ -117,11 +119,15 @@ export class UserlistComponent implements OnInit, OnChanges {
       });
   }
 
-  goToUser(user): void {
-    if (!this.assignMode && !this.assignPepite) {
+  goToUser(user: User, access?: boolean): void {
+    const haveAccess = (access) ? access: this.clickToAccess;
+    if (!this.assignMode && !this.assignPepite && haveAccess && user.type!='admin') {
       switch (user.type) {
         case 'validator':
           this.router.navigate(['/users', user._id]);
+          break;
+        case 'pepite-admin':
+          this.router.navigate(['/pepite', user._pepite]);
           break;
         default:
           this.router.navigate(['/user', user._id]);

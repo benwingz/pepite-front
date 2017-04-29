@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 #Config
-src/app/app.config.ts
+/src/app/app.config.ts

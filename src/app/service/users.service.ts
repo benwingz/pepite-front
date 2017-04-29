@@ -41,9 +41,10 @@ export class UsersService {
             jsonResponse[i].type,
             jsonResponse[i]._pepite,
             jsonResponse[i]._validator,
-            jsonResponse[i].genre,
+            jsonResponse[i].gender,
             jsonResponse[i].birthdate,
-            jsonResponse[i].ine))
+            jsonResponse[i].ine,
+            jsonResponse[i].phone))
         }
         return userList;
       }
@@ -79,6 +80,9 @@ export class UsersService {
       town: user.town,
       country: user.country,
       project: user.project,
+      phone: user.phone,
+      school: user.school,
+      schoolType: user.schoolType,
       activationAccountId: accountId
     }).map(response => response.json());
   }
