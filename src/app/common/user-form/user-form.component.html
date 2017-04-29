@@ -41,10 +41,10 @@
             </div>
           </div>
 
-          <div *ngIf="userinfo.type=='user'" class='row form-group'>
+          <div *ngIf="userinfo.type =='user'" class='row form-group'>
             <div class='input-field col s12'>
-              <input required type="text" name='project' id='project' [(ngModel)]='userinfo.project' #project="ngModel" />
-              <label data-error="Veuillez rentrer le nom du projet ou de la société créée" for='lastname'>Nom du projet ou de la société créée</label>
+              <p style="color: #9E9E9E">Date de naissance :</p>
+              <input required type="date" name='birthdate' id='birthdate' [(ngModel)]='userinfo.birthdate' #birthdate="ngModel" />
             </div>
           </div>
 
@@ -52,13 +52,6 @@
             <div class='input-field col s12'>
               <input required type="text" name='ine' id='ine' [(ngModel)]='userinfo.ine' #ine="ngModel" />
               <label data-error="Veuillez rentrer un INE" for='ine'>INE (11 caratères)</label>
-            </div>
-          </div>
-
-          <div *ngIf="userinfo.type =='user'" class='row form-group'>
-            <div class='input-field col s12'>
-              <p style="color: #9E9E9E">Date de naissance :</p>
-              <input required type="date" name='birthdate' id='birthdate' [(ngModel)]='userinfo.birthdate' #birthdate="ngModel" />
             </div>
           </div>
 
@@ -73,6 +66,7 @@
             </div>
           </div>
 
+          <p *ngIf="userinfo.type =='user'" style="color: #9E9E9E">Discipline de ce dernier niveau d’étude le plus élevé :</p>
           <div *ngIf="userinfo.type =='user'" class='row form-group'>
             <p>
               <input
@@ -114,6 +108,101 @@
               value="Santé, paramédical et social"/>
               <label for="studyType4">Santé, paramédical et social</label>
             </p>
+          </div>
+
+          <div *ngIf="userinfo.type=='user'" class='row form-group'>
+            <div class='input-field col s12'>
+              <input required type="text" name='school' id='school' [(ngModel)]='userinfo.school' #school="ngModel" />
+              <label for='school'>Nom établissement où niveau d’étude obtenu le plus élevé</label>
+            </div>
+          </div>
+
+          <p *ngIf="userinfo.type =='user'" style="color: #9E9E9E">Type établissement où niveau d’étude obtenu le plus élevé :</p>
+          <div *ngIf="userinfo.type =='user'" class='row form-group'>
+            <p>
+              <input
+                id="schoolType1"
+                class="with-gap"
+                name="schoolType"
+                [(ngModel)]="userinfo.schoolType"
+                type="radio"
+                value="Université"/>
+              <label for="schoolType1">Université</label>
+            </p>
+            <p>
+              <input
+                id="schoolType2"
+                class="with-gap"
+                name="schoolType"
+                [(ngModel)]="userinfo.schoolType"
+                type="radio"
+                value="IUT"/>
+              <label for="schoolType2">IUT</label>
+            </p>
+            <p>
+              <input
+                id="schoolType3"
+                class="with-gap"
+                name="schoolType"
+                [(ngModel)]="userinfo.schoolType"
+                type="radio"
+                value="IAE"/>
+              <label for="schoolType3">IAE</label>
+            </p>
+            <p>
+            <input
+              id="schoolType4"
+              class="with-gap"
+              name="schoolType"
+              [(ngModel)]="userinfo.schoolType"
+              type="radio"
+              value="IEP"/>
+              <label for="schoolType4">Santé, paramédical et social</label>
+            </p>
+            <p>
+            <input
+              id="schoolType5"
+              class="with-gap"
+              name="schoolType"
+              [(ngModel)]="userinfo.schoolType"
+              type="radio"
+              value="Ecole d’ingénieur"/>
+              <label for="schoolType5">Ecole d’ingénieur</label>
+            </p>
+            <p>
+            <input
+              id="schoolType6"
+              class="with-gap"
+              name="schoolType"
+              [(ngModel)]="userinfo.schoolType"
+              type="radio"
+              value="Ecole de commerce"/>
+              <label for="schoolType6">Ecole de commerce</label>
+            </p>
+            <p>
+            <input
+              id="schoolType7"
+              class="with-gap"
+              name="schoolType"
+              [(ngModel)]="userinfo.schoolType"
+              type="radio"
+              value="Autre Ecole"/>
+              <label for="schoolType7">Autre Ecole</label>
+            </p>
+          </div>
+
+          <div *ngIf="userinfo.type=='user'" class='row form-group'>
+            <div class='input-field col s12'>
+              <input required type="text" name='project' id='project' [(ngModel)]='userinfo.project' #project="ngModel" />
+              <label data-error="Veuillez rentrer le nom du projet ou de la société créée" for='lastname'>Nom du projet ou de la société créée</label>
+            </div>
+          </div>
+
+          <div class='row form-group'>
+            <div class='input-field col s12'>
+              <input required type="tel" name='phone' id='phone' [(ngModel)]='userinfo.phone' #phone="ngModel" />
+              <label data-error="Veuillez rentrer votre numéro de téléphone" for='phone'>Téléphone</label>
+            </div>
           </div>
 
           <div class='row form-group'>
