@@ -14,8 +14,7 @@
       [class.pepite]="user.type=='pepite-admin'"
       [class.admin]="user.type=='admin'">
       <div class="user-info block">
-        <a *ngIf="user.type=='user' || !user.type" [routerLink]="['/user', user._id]" [innerHtml]="user.getFullname()"></a>
-        <a *ngIf="user.type && user.type!='user'" [routerLink]="['/users', user._id]" [innerHtml]="user.getFullname()"></a>
+        <a *ngIf="user.type" (click)="goToUser(user, true)" [innerHtml]="user.getFullname()"></a>
         <a (click)="validatorAssign(user._id)" *ngIf="user._validator && user._validator.firstname">Validateur: {{user._validator.firstname}} {{user._validator.lastname}}</a>
         <div>email: {{user.email}}</div>
         <div *ngIf="user.type=='user' && user.ine">INE: {{user.ine}}</div>
