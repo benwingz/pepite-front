@@ -148,8 +148,8 @@ export class UserlistComponent implements OnInit, OnChanges {
       })
   }
 
-  editUser(user: User): void {
-    
-  }
+  // editUser(user: User): void {
+  //
+  // }
 
 }
