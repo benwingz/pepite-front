@@ -20,8 +20,6 @@
     [data]="[categories.length - grades.length, grades.length, (grades | evaluatedgrade).length]"
     [labels]="doughnutChartLabels"
     [chartType]="doughnutChartType"
-    [colors]="[{backgroundColor: ['#00C9E2','#80CBC5','#009688']}]"
-    (chartHover)="chartHovered($event)"
-    (chartClick)="chartClicked($event)">
+    [colors]="[{backgroundColor: ['#00C9E2','#80CBC5','#009688']}]">
   </canvas>
 </div>

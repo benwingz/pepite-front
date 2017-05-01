@@ -6,9 +6,9 @@ export class Phase {
   public categories: Array<Category>;
   public grades: Array<Grade>;
 
-  constructor(public _id: number, public title: string, public order: number) {};
+  constructor(public _id: string, public title: string, public order: number) {};
 
-  getId(): number {
+  getId(): string {
     return this._id;
   }
 
