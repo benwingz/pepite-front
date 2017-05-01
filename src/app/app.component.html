@@ -3,6 +3,7 @@
     <nav class="z-depth-0">
       <div class="nav-wrapper light-blue accent-3 white-text">
         <ul id="nav-mobile" class="right hide-on-med-and-down" *ngIf="currentUser">
+            <li class="left" *ngIf="['admin', 'pepite-admin'].indexOf(currentUser.type) > -1"><a [routerLink]="['/']">Accueil</a></li>
             <li class="right"><a class="white-text disabled" [innerHTML]="currentUser.getFullname()"></a></li>
             <li class="left" *ngIf="currentUser.type=='user'"><a [routerLink]="['/home']" [routerLinkActive]="['active']">Accueil</a></li>
             <li class="left" *ngIf="currentUser.type=='validator'"><a [routerLink]="['/users']" [routerLinkActive]="['active']">Retour aux utilisateurs</a></li>
@@ -12,6 +13,7 @@
         </ul>
         <a class="button-collapse right" (click)="toggleSidebar()"><i class="material-icons">menu</i></a>
         <ul class="side-nav" [class.active]="sidebarShown" *ngIf="currentUser">
+          <li *ngIf="['admin', 'pepite-admin'].indexOf(currentUser.type) > -1"><a [routerLink]="['/']">Accueil</a></li>
           <li><a class="disabled center-align" [innerHTML]="currentUser.getFullname()"></a></li>
           <li *ngIf="currentUser.type=='user'"><a [routerLink]="['/home']" [routerLinkActive]="['active']">Accueil</a></li>
           <li *ngIf="currentUser.type=='validator'"><a [routerLink]="['/users']" [routerLinkActive]="['active']">Retour aux utilisateurs</a></li>

@@ -18,6 +18,17 @@
     &.unvalidated {
       opacity: 0.4;
     }
+    @media only screen and (min-width: 992px) {
+      &:hover {
+        .user-handlers {
+          display: block!important;
+        }
+      }
+
+      .user-handlers {
+        display: none!important;
+      }
+    }
     .chip {
       height: auto!important;
     }

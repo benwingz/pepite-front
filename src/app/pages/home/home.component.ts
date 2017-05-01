@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { ReferenceService } from '../../service/reference.service';
 import { GradeService } from '../../service/grade.service';
+import { NavigationService } from '../../service/navigation.service';
 
 import { User } from '../../models/user.model';
 import { Phase } from '../../models/phase.model';
@@ -43,7 +44,8 @@ export class HomeComponent implements OnInit {
     private authService: AuthService,
     private gradeService: GradeService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private navService: NavigationService
   ) {
 
   }
@@ -74,6 +76,7 @@ export class HomeComponent implements OnInit {
       this.referenceService.getPhases()
       .subscribe((phases) => {
         phases.forEach((phase, index) => {
+          this.navService.phases[phase.order] = phase._id;
           let getGradesByPhaseObserver: any;
           if (this.userId) {
             getGradesByPhaseObserver = this.referenceService.getGradesByPhase(phase, this.userId)
