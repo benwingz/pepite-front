@@ -28,6 +28,10 @@
       <div class="user-stats block" *ngIf="showGrades && user.type=='user'">
         <app-userstat [user]="user._id" [hideCategories]="true" [display]="chartStyle"></app-userstat>
       </div>
+      <div class="user-handlers block" *ngIf="showUserHanlder">
+        <a class="btn-floating btn-large waves-effect waves-light blue" (click)="editUser(user)"><i class="material-icons">mode_edit</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light red" (click)="deleteUser(user)"><i class="material-icons">delete</i></a>
+      </div>
     </li>
   </ul>
 </div>
