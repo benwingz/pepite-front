@@ -26,6 +26,18 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+
+      &.user-handlers {
+        width: 100%;
+        display: block;
+      }
+    }
+
+    .block-full {
+      &.user-stats {
+        display: block;
+        width: 25%;
+      }
     }
 
     .user-info {

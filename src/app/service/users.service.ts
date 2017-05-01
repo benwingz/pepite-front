@@ -92,4 +92,9 @@ export class UsersService {
       .map(raw => raw.json());
   }
 
+  deleteUser(userId): Observable<any> {
+    return this.authHttp.delete(this.appConf.apiBaseUrl + 'user/' + userId)
+      .map(response => response.json());
+  }
+
 }

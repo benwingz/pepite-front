@@ -40,6 +40,8 @@ export class UserlistComponent implements OnInit, OnChanges {
   chartStyle: string = 'inline';
   @Input()
   clickToAccess: boolean = false;
+  @Input()
+  showUserHanlder: boolean = false;
   @Output()
   emittUserId = new EventEmitter();
 
@@ -136,5 +138,18 @@ export class UserlistComponent implements OnInit, OnChanges {
       this.emittUserId.emit(user._id);
     }
   }
+
+  deleteUser(user: User): void {
+    this.usersService.deleteUser(user._id)
+      .subscribe( (response) => {
+        if(response.success) {
+          this.userList = this.populateUserList();
+        }
+      })
+  }
+
+  // editUser(user: User): void {
+  //
+  // }
 
 }
