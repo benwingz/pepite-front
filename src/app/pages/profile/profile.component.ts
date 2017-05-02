@@ -5,6 +5,7 @@ import {Component, OnInit, Output, EventEmitter, Input, HostListener} from '@ang
 // import {PdfGenerator} from '../../service/common/pdf/pdf-generator.service';
 import { ReferenceService } from '../../service/reference.service';
 import { AuthService } from '../../service/auth.service';
+import { ExportService } from '../../service/export.service';
 
 import { Phase } from '../../models/phase.model';
 import { Category } from '../../models/category.model';
@@ -30,12 +31,39 @@ export class ProfileComponent implements OnInit {
 
     constructor(
       private referenceService: ReferenceService,
-      private authService: AuthService
+      private authService: AuthService,
+      private exportService: ExportService
     ) {
     }
 
-    exportPdf(strategy?: number) {
+    exportPdf(strategy?: string) {
+      switch (strategy) {
+        case 'self':
+          this.exportService.exportSelf(this.currentUser._id)
+            .subscribe( (url) => {              
+              window.open(url);
+              //this.openPdf(raw);
+            });
+          break;
+        case 'full':
+          this.exportService.exportFull(this.currentUser._id)
+            .subscribe( (raw) => {
+              this.openPdf(raw);
+            });
+          break;
+        default:
+          this.exportService.exportValidate(this.currentUser._id)
+            .subscribe( (raw) => {
+              this.openPdf(raw);
+            });
+      }
+    }
 
+    openPdf(pdf): void {
+      //window.open(raw.url)
+      let blob = new Blob([pdf], {type:'application/pdf'});
+      let url = URL.createObjectURL(blob);
+      window.open(url);
     }
 
     ngOnInit() {
