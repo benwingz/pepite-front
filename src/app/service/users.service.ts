@@ -44,7 +44,8 @@ export class UsersService {
             jsonResponse[i].gender,
             jsonResponse[i].birthdate,
             jsonResponse[i].ine,
-            jsonResponse[i].phone))
+            jsonResponse[i].phone,
+            jsonResponse[i].certified))
         }
         return userList;
       }
@@ -83,7 +84,8 @@ export class UsersService {
       phone: user.phone,
       school: user.school,
       schoolType: user.schoolType,
-      activationAccountId: accountId
+      certified: false,
+      activationAccountId: accountId,
     }).map(response => response.json());
   }
 
@@ -95,6 +97,11 @@ export class UsersService {
   deleteUser(userId): Observable<any> {
     return this.authHttp.delete(this.appConf.apiBaseUrl + 'user/' + userId)
       .map(response => response.json());
+  }
+
+  certifiedUser(userId: string): Observable<any> {
+    return this.authHttp.patch(this.appConf.apiBaseUrl + 'user', {id: userId, certified: true})
+      .map(raw => raw.json());
   }
 
 }
