@@ -5,6 +5,7 @@ import { AuthService } from '../../service/auth.service';
 import { ReferenceService } from '../../service/reference.service';
 import { GradeService } from '../../service/grade.service';
 import { NavigationService } from '../../service/navigation.service';
+import { UsersService } from '../../service/users.service';
 
 import { User } from '../../models/user.model';
 import { Phase } from '../../models/phase.model';
@@ -45,7 +46,8 @@ export class HomeComponent implements OnInit {
     private gradeService: GradeService,
     private router: Router,
     private route: ActivatedRoute,
-    private navService: NavigationService
+    private navService: NavigationService,
+    private usersService: UsersService
   ) {
 
   }
@@ -122,6 +124,11 @@ export class HomeComponent implements OnInit {
     // let certification: Certification = user.getCertification();
     // let givenBy: User = this.userP.getUser(certification.getGivenBy());
     // this.pdfGenerator.buildCertificatePDF(user, givenBy, certification);
+  }
+
+  certifiedUser(userId): void {
+    this.usersService.certifiedUser(userId)
+      .subscribe(raw => console.log(raw));
   }
 
 }
