@@ -65,7 +65,20 @@ export class AuthService {
       return this.authHttp.get(this.appConf.apiBaseUrl + 'user/' + this.getUserIdFromLocalStorage())
         .map(userReturned => {
           let user = userReturned.json();
-          this.currentUser = new User (user._id, user.email, user.lastname, user.firstname, user.type, user._pepite);
+          this.currentUser = new User (
+            user._id,
+            user.email,
+            user.lastname,
+            user.firstname,
+            user.type,
+            user._pepite,
+            user._validator,
+            user.gender,
+            user.birthdate,
+            user.ine,
+            user.phone,
+            user.certified
+          );
           this.userLoggedIn(this.currentUser);
           return this.currentUser;
         });

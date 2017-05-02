@@ -10,15 +10,25 @@
 <app-userstat *ngIf="currentValidatedUser" [user]='currentValidatedUser._id'></app-userstat>
 <app-userstat *ngIf="!currentValidatedUser && currentUser._id" [user]='currentUser._id'></app-userstat>
 <br/>
-<div class="action-container center-align">
+<!-- <div class="action-container center-align" *ngIf="currentUser.type == 'user'">
   <a
       class="waves-effect waves-light btn download-certificate-btn"
-       [class.disabled]="!currentUser.isCertified"
+       [class.disabled]="!currentUser.certified"
       (click)="downloadCertificate()"
       *ngIf="currentUser"
     >
       <i class="material-icons left">school</i>
       Télécharger le certificat
+  </a>
+</div> -->
+<div class="action-container center-align" *ngIf="currentUser.type != 'user'">
+  <a
+      class="waves-effect waves-light btn download-certificate-btn"
+       [class.disabled]="currentUser.certified"
+      (click)="certifiedUser(currentValidatedUser._id)"
+    >
+      <i class="material-icons left">school</i>
+      Certifier l'utilisateur
   </a>
 </div>
 <br/>

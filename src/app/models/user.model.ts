@@ -13,6 +13,7 @@ export class User {
     public birthdate?: Date,
     public ine?: string,
     public phone?: number,
+    public certified?: boolean,
     public studyLevel?: number,
     public school?: string,
     public schoolType?: string,

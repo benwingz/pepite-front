@@ -29,6 +29,7 @@ import { CommentService } from './service/comment.service';
 import { UsersService } from './service/users.service';
 import { PepiteService } from './service/pepite.service';
 import { NavigationService } from './service/navigation.service';
+import { ExportService } from './service/export.service';
 
 import { EvaluatedGradePipe } from './pipes/evaluatedgrade.pipe'
 import { FilterUserPipe } from './pipes/filteruser.pipe';
@@ -95,6 +96,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     UsersService,
     PepiteService,
     NavigationService,
+    ExportService,
     FilterUserPipe,
     AppConfig
   ],

@@ -1,10 +1,7 @@
 import {Component, OnInit, Output, EventEmitter, Input, HostListener} from '@angular/core';
-// import {PhaseProvider} from '../../service/common/phase/phase-provider.service';
-// import {UserProvider} from '../../service/common/user/user-provider.service';
-// import {ProfileProvider} from '../../service/common/profile/profile-provider.service';
-// import {PdfGenerator} from '../../service/common/pdf/pdf-generator.service';
 import { ReferenceService } from '../../service/reference.service';
 import { AuthService } from '../../service/auth.service';
+import { ExportService } from '../../service/export.service';
 
 import { Phase } from '../../models/phase.model';
 import { Category } from '../../models/category.model';
@@ -30,12 +27,33 @@ export class ProfileComponent implements OnInit {
 
     constructor(
       private referenceService: ReferenceService,
-      private authService: AuthService
+      private authService: AuthService,
+      private exportService: ExportService
     ) {
     }
 
-    exportPdf(strategy?: number) {
-
+    exportPdf(strategy?: string) {
+      switch (strategy) {
+        case 'self':
+          this.exportService.exportSelf(this.currentUser._id)
+            .subscribe( (raw) => {
+              window.open(raw.url);
+            });
+          break;
+        case 'full':
+          this.exportService.exportFull(this.currentUser._id)
+            .subscribe( (raw) => {
+              window.open(raw.url);
+              //this.openPdf(raw.url);
+            });
+          break;
+        default:
+          this.exportService.exportValidate(this.currentUser._id)
+            .subscribe( (raw) => {
+              window.open(raw.url);
+              // this.openPdf(raw.url);
+            });
+      }
     }
 
     ngOnInit() {
