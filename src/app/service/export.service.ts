@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Rx';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { AuthConfig, AuthHttp } from 'angular2-jwt';
 import { ResponseContentType, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
+
+import { Http } from '@angular/http';
 
 import { AppConfig } from '../app.config';
 
@@ -17,25 +19,26 @@ export class ExportService {
   ) { }
 
   private extractFile(result: Response) {
-
-    //let blob = new Blob([result._body], {type: 'application/octet-binary'});
-    let url = URL.createObjectURL(result.blob());
-
-    return url;
+    return  URL.createObjectURL(result.blob());
   }
 
   exportFull(userId): Observable<any> {
-    return this.authHttp.get(this.appConfig.apiBaseUrl + 'export/full/' + userId, {responseType: ResponseContentType.Blob})
-      .map(this.extractFile);
+    return this.authHttp.get(this.appConfig.apiBaseUrl + 'export/full/' + userId, {
+        responseType: ResponseContentType.Blob
+      }).map(this.extractFile);
   }
 
   exportSelf(userId): Observable<any> {
-    return this.authHttp.get(this.appConfig.apiBaseUrl + '/export/self-evaluated/' + userId)
+    return this.authHttp.get(this.appConfig.apiBaseUrl + '/export/self-evaluated/' + userId, {
+        responseType: ResponseContentType.Blob
+      })
       .map(this.extractFile);
   }
 
   exportValidate(userId): Observable<any> {
-    return this.authHttp.get(this.appConfig.apiBaseUrl + '/export/validated/' + userId)
+    return this.authHttp.get(this.appConfig.apiBaseUrl + '/export/validated/' + userId, {
+        responseType: ResponseContentType.Blob
+      })
       .map(this.extractFile);
   }
 
