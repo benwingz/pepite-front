@@ -77,6 +77,10 @@ export class AdminComponent implements OnInit {
           this.pepiteToPatch = null;
         }
       });
+    this.usersService.assignPepiteToUser(userId, this.pepiteToPatch)
+      .subscribe((raw) => {
+        //console.log(raw)
+      });
   }
 
   toggleUserForm(): void{

@@ -104,4 +104,9 @@ export class UsersService {
       .map(raw => raw.json());
   }
 
+  assignPepiteToUser(userId: string, pepiteId: string): Observable<any> {
+    return this.authHttp.patch(this.appConf.apiBaseUrl + 'user', {id: userId, _pepite: pepiteId})
+      .map(raw => raw.json());
+  }
+
 }
