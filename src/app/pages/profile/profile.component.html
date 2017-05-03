@@ -3,9 +3,9 @@
 </div>
 <div class="section row">
   <div class="col s12 center-align btn-export">
-    <a class="waves-effect waves-light btn push-on-medium-screen" (click)='exportPdf(1)'>Exporter le profil complet</a>
-    <a class="waves-effect waves-light btn push-on-medium-screen" (click)='exportPdf(2)'>Exporter le profil auto-évaluée</a>
-    <a class="waves-effect waves-light btn push-on-medium-screen" (click)='exportPdf(3)'>Exporter le profil validé</a>
+    <a class="waves-effect waves-light btn push-on-medium-screen" (click)="exportPdf('full')">Exporter le profil complet</a>
+    <a class="waves-effect waves-light btn push-on-medium-screen" (click)="exportPdf('self')">Exporter le profil auto-évaluée</a>
+    <a class="waves-effect waves-light btn push-on-medium-screen" (click)="exportPdf('validate')">Exporter le profil validé</a>
     <a
         *ngIf="currentUser && currentUser.type == 'validator'"
         class="waves-effect waves-light btn deliver-certificate-btn push-on-medium-screen"
