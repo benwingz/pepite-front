@@ -36,28 +36,26 @@ export class ProfileComponent implements OnInit {
       switch (strategy) {
         case 'self':
           this.exportService.exportSelf(this.currentUser._id)
-            .subscribe( (raw) => {
-              window.open(raw.url);
+            .subscribe( (url) => {
+              window.open(url);
             });
           break;
         case 'full':
           this.exportService.exportFull(this.currentUser._id)
-            .subscribe( (raw) => {
-              window.open(raw.url);
-              //this.openPdf(raw.url);
+            .subscribe( (url) => {
+              window.open(url);
             });
           break;
         default:
           this.exportService.exportValidate(this.currentUser._id)
-            .subscribe( (raw) => {
-              window.open(raw.url);
-              // this.openPdf(raw.url);
+            .subscribe( (url) => {
+              window.open(url);
             });
       }
     }
 
     ngOnInit() {
-      //Then retrieve references
+      // Then retrieve references
       this.authService.getCurrentUser()
         .subscribe( user => this.currentUser = user);
       this.referenceService.getPhases()
