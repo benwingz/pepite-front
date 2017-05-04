@@ -8,6 +8,8 @@ import { AuthService } from '../../service/auth.service';
 import { Pepite } from '../../models/pepite.model';
 import { User } from '../../models/user.model';
 
+import { Observable } from 'rxjs/Observable';
+
 @Component({
   selector: 'app-pepite-home',
   templateUrl: './pepite-home.component.html',
@@ -20,6 +22,7 @@ export class PepiteHomeComponent implements OnInit {
   private userInfo:User;
   private errorMessage: string;
   private triggerUserListChange: number = 0;
+  private userList: Observable<User>;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,9 +43,15 @@ export class PepiteHomeComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.pepiteService.getPepite(params['id']).subscribe((pepite) => {
         this.currentPepite = pepite;
+        console.log(this.currentPepite);
+        this.initUserList();
         this.initUserInfo();
       });
     });
+  }
+
+  initUserList(): void{
+    this.userList = this.usersService.getUsers(null, this.currentPepite._id);
   }
 
   initUserInfo(): void{
@@ -60,7 +69,7 @@ export class PepiteHomeComponent implements OnInit {
       this.usersService.createUser(this.userInfo).subscribe( (response) => {
         if (response.success) {
           this.addUsersOpen = false;
-          this.initUserInfo()
+          this.initUserList();
           this.triggerUserListChange ++;
         } else {
           this.errorMessage = response.message;

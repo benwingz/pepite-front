@@ -20,10 +20,12 @@ export class UsersService {
   ) {
   };
 
-  getUsers(userId?: string): Observable<any> {
+  getUsers(userId?: string, pepiteId?: string): Observable<any> {
     let query;
     if (userId) {
        query = this.authHttp.get(this.appConf.apiBaseUrl + 'users', {params: {user: userId}});
+    } else if (pepiteId) {
+      query = this.authHttp.get(this.appConf.apiBaseUrl + 'users', {params: {pepite: pepiteId}});
     } else {
       query = this.authHttp.get(this.appConf.apiBaseUrl + 'users');
     }

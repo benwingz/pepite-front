@@ -44,7 +44,7 @@ export class PepiteService {
             jsonResponse._id,
             jsonResponse.name,
             jsonResponse.creation_date,
-            jsonResponse._admin)
+            jsonResponse._admin._id)
         }
       });
   }
