@@ -49,7 +49,9 @@
         [displayValidator]="true"
         [showGrades]="true"
         [chartStyle]="'chart'"
-        [showUserHanlder]="true"></app-userlist>
+        [showUserHanlder]="true"
+        [externalUserList]="userList"
+        (listChanges)="reloadUserList()"></app-userlist>
     </div>
   </div>
 </div>

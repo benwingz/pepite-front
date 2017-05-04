@@ -90,7 +90,14 @@ export class UserlistComponent implements OnInit, OnChanges {
 
   populateUserList(): Observable<User[]> {
     if (this.externalUserList) {
-      return this.externalUserList;
+      return this.externalUserList
+        .map((users) => {
+          if (users.length > 0) {
+            return users;
+          } else {
+            return [];
+          }
+        });
     } else {
       return this.usersService.getUsers()
         .map((users) => {
