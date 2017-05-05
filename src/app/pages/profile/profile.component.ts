@@ -46,6 +46,12 @@ export class ProfileComponent implements OnInit {
               window.open(url);
             });
           break;
+        case 'certificate':
+          this.exportService.exportCertificate(this.currentUser._id)
+            .subscribe( (url) => {
+              window.open(url);
+            });
+          break;
         default:
           this.exportService.exportValidate(this.currentUser._id)
             .subscribe( (url) => {

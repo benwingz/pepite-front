@@ -9,13 +9,22 @@
     <a
         *ngIf="currentUser && currentUser.type == 'validator'"
         class="waves-effect waves-light btn deliver-certificate-btn push-on-medium-screen"
-         [class.disabled]="currentUser.is_certified"
+         [class.disabled]="currentUser.certified"
         (click)="deliverCertificate()"
       >
         <i class="material-icons left">school</i>
-        <i class="material-icons right" *ngIf="currentUser.is_certified">done</i>
-        <template [ngIf]="!currentUser.is_certified">Délivrer le certificat</template>
-        <template [ngIf]="currentUser.is_certified">Certificat délivré</template>
+        <i class="material-icons right" *ngIf="currentUser.certified">done</i>
+        <template [ngIf]="!currentUser.certified">Délivrer le certificat</template>
+        <template [ngIf]="currentUser.certified">Certificat délivré</template>
+    </a>
+    <a
+        *ngIf="currentUser && currentUser.type == 'user'"
+        class="waves-effect waves-light btn deliver-certificate-btn push-on-medium-screen"
+         [class.disabled]="!currentUser.certified"
+        (click)="exportPdf('certificate')"
+      >
+        <i class="material-icons left">school</i>
+        Télécharger le certificat
     </a>
     <br/>
     <br/>

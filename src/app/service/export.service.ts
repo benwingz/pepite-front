@@ -29,14 +29,21 @@ export class ExportService {
   }
 
   exportSelf(userId): Observable<any> {
-    return this.authHttp.get(this.appConfig.apiBaseUrl + '/export/self-evaluated/' + userId, {
+    return this.authHttp.get(this.appConfig.apiBaseUrl + 'export/self-evaluated/' + userId, {
         responseType: ResponseContentType.Blob
       })
       .map(this.extractFile);
   }
 
   exportValidate(userId): Observable<any> {
-    return this.authHttp.get(this.appConfig.apiBaseUrl + '/export/validated/' + userId, {
+    return this.authHttp.get(this.appConfig.apiBaseUrl + 'export/validated/' + userId, {
+        responseType: ResponseContentType.Blob
+      })
+      .map(this.extractFile);
+  }
+
+  exportCertificate(userId): Observable<any> {
+    return this.authHttp.get(this.appConfig.apiBaseUrl + 'export/certificate/' + userId, {
         responseType: ResponseContentType.Blob
       })
       .map(this.extractFile);
