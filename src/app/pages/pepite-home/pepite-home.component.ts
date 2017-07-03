@@ -43,7 +43,6 @@ export class PepiteHomeComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.pepiteService.getPepite(params['id']).subscribe((pepite) => {
         this.currentPepite = pepite;
-        console.log(this.currentPepite);
         this.initUserList();
         this.initUserInfo();
       });

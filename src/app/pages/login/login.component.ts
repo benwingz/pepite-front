@@ -78,4 +78,8 @@ export class LoginComponent implements OnInit {
 
   getRole(): void{}
 
+  goToForgotPassword(): void{
+    this.router.navigate(['reset']);
+  }
+
 }
