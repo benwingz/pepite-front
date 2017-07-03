@@ -111,4 +111,14 @@ export class UsersService {
       .map(raw => raw.json());
   }
 
+  requestResetPassword(email: string): Observable<any> {
+    return this.http.post(this.appConf.apiBaseUrl + 'resetpassword/', {email: email})
+    .map(response => response.json());
+  }
+
+  doResetPassword(password: string, userId: string): Observable<any> {
+    return this.http.patch(this.appConf.apiBaseUrl + 'resetpassword/' + userId, {password: password})
+    .map(response => response.json());
+  }
+
 }

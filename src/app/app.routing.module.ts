@@ -8,6 +8,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { UsersComponent } from './pages/users/users.component';
 import { PepiteHomeComponent } from './pages/pepite-home/pepite-home.component';
 import { ActivateComponent } from './pages/activate/activate.component';
+import { ResetComponent } from './pages/reset/reset.component';
+import { ResetRequestComponent } from './pages/resetrequest/resetrequest.component';
 import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
@@ -22,6 +24,8 @@ import { AdminComponent } from './pages/admin/admin.component';
           { path: 'users/:id', component: UsersComponent },
           { path: 'pepite/:id', component: PepiteHomeComponent},
           { path: 'activate/:id', component: ActivateComponent},
+          { path: 'reset', component: ResetRequestComponent},
+          { path: 'reset/:id', component: ResetComponent},
           { path: 'admin', component: AdminComponent },
           { path: '', redirectTo: '/login', pathMatch:  'full'}
         ]),

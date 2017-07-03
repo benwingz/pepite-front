@@ -42,6 +42,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { UsersComponent } from './pages/users/users.component';
 import { PepiteHomeComponent } from './pages/pepite-home/pepite-home.component';
 import { ActivateComponent } from './pages/activate/activate.component';
+import { ResetComponent } from './pages/reset/reset.component';
+import { ResetRequestComponent } from './pages/resetrequest/resetrequest.component';
+import { PasswordFormComponent } from './common/password-form/password-form.component';
 import { UserFormComponent } from './common/user-form/user-form.component';
 import { AdminComponent } from './pages/admin/admin.component';
 
@@ -73,7 +76,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     UserlistComponent,
     FilterUserTypePipe,
     ActivateComponent,
+    ResetComponent,
+    ResetRequestComponent,
     UserFormComponent,
+    PasswordFormComponent,
     AdminComponent
   ],
   imports: [

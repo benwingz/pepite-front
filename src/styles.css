@@ -102,6 +102,11 @@ body {
   color: #F44336;
 }
 
+.success-message {
+  text-align: center;
+  color: #00c9ea;
+}
+
 .text-center {
   width: 100%;
   text-align: center;
