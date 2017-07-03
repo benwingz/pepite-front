@@ -34,7 +34,7 @@ export class UsersComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.validatorUserList = this.usersService.getUsers(params.id)
         .map((users) => {
-          if (users.length > 0) {
+          if (users.success != false && users.length > 0) {
             return users;
           } else {
             return [];
