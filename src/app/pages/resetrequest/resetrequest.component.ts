@@ -28,7 +28,7 @@ export class ResetRequestComponent implements OnInit {
         this.successMessage = 'Le mail de ré-activation de mot de passe à été envoyé, vérifiez votre boîte mail.'
       } else {
         this.successMessage = null;
-        this.errorMessage = response.error;
+        this.errorMessage = response.message;
       }
     });
   }
