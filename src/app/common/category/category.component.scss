@@ -12,7 +12,10 @@
 .category-card .card-content {
   overflow: visible;
 }
-
+.title-evaluate {
+  position: absolute;
+  font-size: 20px;
+}
 .category-card .collection {
   border: none;
 
@@ -70,7 +73,7 @@
 .grade-levels__tooltip {
   position: absolute;
   right: 0;
-  top: 80px;
+  top: 110px;
   border-top: none;
   font-size: 0.5em;
   color: #ffffff;

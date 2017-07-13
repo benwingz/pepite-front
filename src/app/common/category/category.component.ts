@@ -53,19 +53,9 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  handleClick(event) {
-    this.focused = !this.focused;
-  };
-
   toggleLegend(event): void {
     event.stopPropagation();
     this.legendActive = !this.legendActive;
-  };
-
-  expendCat(event): void {
-     event.stopPropagation();
-     this.buttonBool = true;
-     this.handleClick(event);
   };
 
   changeGrade($event) {
