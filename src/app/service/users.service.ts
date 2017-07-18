@@ -88,6 +88,7 @@ export class UsersService {
       schoolType: user.schoolType,
       certified: false,
       activationAccountId: accountId,
+      otheremail: user.otheremail
     }).map(response => response.json());
   }
 
