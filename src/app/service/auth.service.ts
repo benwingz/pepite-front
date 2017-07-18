@@ -97,7 +97,7 @@ export class AuthService {
       }
       return userDataObservable.map(userReturned => {
         let user = userReturned.json();
-        return new User (user._id, user.email, user.lastname, user.firstname, user.type);
+        return new User (user._id, user.email, user.lastname, user.firstname, user.type, null, null, null, null, null, null, user.certified);
       });
     } else {
       return Observable.of(null);
