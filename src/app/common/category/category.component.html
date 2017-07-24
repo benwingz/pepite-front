@@ -4,13 +4,13 @@
         <li class="collection-header card-title center-align">
           <h4>
             <span class="card-title__content">{{category.title}}</span>
-            <i class="material-icons right grade-levels__icon" (mouseover)="toggleLegend($event)" (mouseleave)="toggleLegend($event)" [class.active]="legendActive">star_half</i>
+            <span class="right title-evaluate" (mouseover)="toggleLegend($event)" (mouseleave)="toggleLegend($event)"> échelle d’évaluation</span>
             <ul class="grade-levels__tooltip" *ngIf="legendActive">
-              <li class="grade-levels__tooltip-item"><i class="material-icons" *ngFor="let key of [1,2,3,4]">star_border</i> Non repéré</li>
-              <li class="grade-levels__tooltip-item"><i class="material-icons">star</i><i class="material-icons" *ngFor="let key of [1,2,3]">star_border</i> Notions ou outils connus</li>
-              <li class="grade-levels__tooltip-item"><i class="material-icons" *ngFor="let key of [1,2]">star</i><i class="material-icons" *ngFor="let key of [1,2]">star_border</i> Compétence émergente</li>
-              <li class="grade-levels__tooltip-item"><i class="material-icons" *ngFor="let key of [1,2,3]">star</i><i class="material-icons">star_border</i> Compétence mobilisée</li>
-              <li class="grade-levels__tooltip-item"><i class="material-icons" *ngFor="let key of [1,2,3,4]">star</i> Compétence maîtrisée</li>
+              <li class="grade-levels__tooltip-item"><i class="material-icons" *ngFor="let key of [1,2,3,4]">star_border</i> Non pertinent</li>
+              <li class="grade-levels__tooltip-item"><i class="material-icons">star</i><i class="material-icons" *ngFor="let key of [1,2,3]">star_border</i> Non réalisé</li>
+              <li class="grade-levels__tooltip-item"><i class="material-icons" *ngFor="let key of [1,2]">star</i><i class="material-icons" *ngFor="let key of [1,2]">star_border</i> Activité en cours</li>
+              <li class="grade-levels__tooltip-item"><i class="material-icons" *ngFor="let key of [1,2,3]">star</i><i class="material-icons">star_border</i> Activité réalisée</li>
+              <li class="grade-levels__tooltip-item"><i class="material-icons" *ngFor="let key of [1,2,3,4]">star</i> Activité réalisée avec livrable</li>
             </ul>
           </h4>
           <div class="grade-category">
@@ -22,32 +22,22 @@
               class="teal-text grade-container">
             </app-grade>
           </div>
-          <a class="btn-floating waves-effect waves-light grey" title="plus de détail">
-            <i class="material-icons" *ngIf="focused" (click)="expendCat($event)">expand_less</i>
-            <i class="material-icons" *ngIf="!focused" (click)="expendCat($event)">expand_more</i>
-          </a>
         </li>
-        <p *ngIf="focused" class="collection-item-label">{{category.title}} c'est:</p>
-        <li class="collection-item category__skill" [class.shown]="focused" *ngFor="let skill of category.skills" [innerHTML]="skill"></li>
+        <p class="collection-item-label">{{category.title}} c'est:</p>
+        <li class="collection-item category__skill" [class.shown]="true" *ngFor="let skill of category.skills" [innerHTML]="skill"></li>
       </ul>
     </div>
     <div class="card-action center-align">
       <div class="card-metadata-container">
-        <span class="card-metadata chip">
-          <span class="card-metadata__counter light-blue blue-grey-text text-lighten-5">1</span> Compétences
-          <i class="material-icons right">star_border</i>
+        <span class="card-metadata chip background-unvalidate">
+           <span *ngIf="categoryGrade">Auto-évalué</span>
+           <span *ngIf="!categoryGrade">À auto-évalué</span>
+          <i class="material-icons right white-text">star</i>
         </span>
-        <span class="card-metadata chip">
-          <span *ngIf="categoryGrade" class="card-metadata__counter background-unvalidate blue-grey-text text-lighten-5">1</span>
-          <span *ngIf="!categoryGrade" class="card-metadata__counter background-unvalidate blue-grey-text text-lighten-5">0</span>
-           Auto-évaluées
-          <i class="material-icons right">star</i>
-        </span>
-        <span class="card-metadata chip">
-          <span *ngIf="(categoryGrade | evaluatedgrade)" class="card-metadata__counter background-validate accent-4 blue-grey-text text-lighten-5">1</span>
-          <span *ngIf="!(categoryGrade | evaluatedgrade)" class="card-metadata__counter background-validate accent-4 blue-grey-text text-lighten-5">0</span>
-           Validées
-          <i class="material-icons right">done</i>
+        <span class="card-metadata chip background-validate">
+           <span *ngIf="(categoryGrade | evaluatedgrade)">Validées</span>
+           <span *ngIf="!(categoryGrade | evaluatedgrade)">À validées</span>
+          <i class="material-icons right white-text">done</i>
         </span>
       </div>
       <div class="comments-container center-align">

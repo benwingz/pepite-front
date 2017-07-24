@@ -128,7 +128,14 @@ export class HomeComponent implements OnInit {
 
   certifiedUser(userId): void {
     this.usersService.certifiedUser(userId)
-      .subscribe(raw => console.log(raw));
+      .subscribe(raw => {
+        if (raw.ok) {
+          this.authService.getUser(this.userId)
+            .subscribe((user) => {
+              this.currentValidatedUser = user;
+            });
+        }
+      });
   }
 
 }

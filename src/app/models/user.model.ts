@@ -24,7 +24,8 @@ export class User {
     public country?: number,
     public project?: string,
     public password?: string,
-    public salt?: string,) {
+    public salt?: string,
+    public otheremail?: string) {
     this.fullname = this.getFullname();
   };
 
