@@ -16,6 +16,14 @@
             </div>
           </div>
 
+          <div class='row form-group form-informed'>
+            <div class='input-field col s12'>
+              <input required class='validate' type='email' name='second-email' id='second-email' [(ngModel)]='userinfo.otheremail' #secondemail="ngModel" />
+              <label for='password'>second email de contact</label>
+            </div>
+          </div>
+          <span class="form-info">Ce champ est facultatif</span>
+
           <div class='row form-group'>
             <p>
               <input class="with-gap" id="gender1" name="gender" [(ngModel)]="userinfo.gender" type="radio" value="homme" checked/>
@@ -76,7 +84,7 @@
                 [(ngModel)]="userinfo.studyType"
                 type="radio"
                 value="Droit, science politiques, science économiques, science de gestion, AES"/>
-              <label for="studyType1">Droit, science politiques, science économiques, science de gestion, AES</label>
+              <label for="studyType1">Droit, science politiques, sciences économiques, sciences de gestion, AES</label>
             </p>
             <p>
               <input
@@ -85,8 +93,8 @@
                 name="studyType"
                 [(ngModel)]="userinfo.studyType"
                 type="radio"
-                value="Lettres, art, langues, sciences humaines"/>
-              <label for="studyType2">Lettres, art, langues, sciences humaines</label>
+                value="Sciences et sciences de l’ingénieur"/>
+              <label for="studyType2">Sciences et sciences de l’ingénieur</label>
             </p>
             <p>
               <input
@@ -95,18 +103,28 @@
                 name="studyType"
                 [(ngModel)]="userinfo.studyType"
                 type="radio"
+                value="Lettres, art, langues, sciences humaines"/>
+              <label for="studyType3">Lettres, art, langues, sciences humaines</label>
+            </p>
+            <p>
+              <input
+                id="studyType4"
+                class="with-gap"
+                name="studyType"
+                [(ngModel)]="userinfo.studyType"
+                type="radio"
                 value="STAPS"/>
-              <label for="studyType3">STAPS</label>
+              <label for="studyType4">STAPS</label>
             </p>
             <p>
             <input
-              id="studyType4"
+              id="studyType5"
               class="with-gap"
               name="studyType"
               [(ngModel)]="userinfo.studyType"
               type="radio"
               value="Santé, paramédical et social"/>
-              <label for="studyType4">Santé, paramédical et social</label>
+              <label for="studyType5">Santé, paramédical et social</label>
             </p>
           </div>
 
@@ -195,49 +213,6 @@
             <div class='input-field col s12'>
               <input required type="text" name='project' id='project' [(ngModel)]='userinfo.project' #project="ngModel" />
               <label data-error="Veuillez rentrer le nom du projet ou de la société créée" for='lastname'>Nom du projet ou de la société créée</label>
-            </div>
-          </div>
-
-          <div class='row form-group'>
-            <div class='input-field col s12'>
-              <input required type="tel" name='phone' id='phone' [(ngModel)]='userinfo.phone' #phone="ngModel" />
-              <label data-error="Veuillez rentrer votre numéro de téléphone" for='phone'>Téléphone</label>
-            </div>
-          </div>
-
-          <div class='row form-group'>
-            <div class='input-field col s12'>
-              <input required type="text" name='address' [(ngModel)]='userinfo.address' #address="ngModel" />
-              <label data-error="Veuillez rentrer votre adresse postale" for='address'>Adresse postale</label>
-            </div>
-          </div>
-
-          <div class='row form-group'>
-            <div class='input-field col s12'>
-              <input required type="number" name='cp' [(ngModel)]='userinfo.cp' #cp="ngModel" />
-              <label data-error="Veuillez rentrer votre code postal" for='cp'>Code postal</label>
-            </div>
-          </div>
-
-          <div class='row form-group'>
-            <div class='input-field col s12'>
-              <input required type="text" name='town' [(ngModel)]='userinfo.town' #town="ngModel" />
-              <label data-error="Veuillez rentrer votre ville" for='town'>Ville</label>
-            </div>
-          </div>
-
-          <div class='row form-group'>
-            <div class='input-field col s12'>
-              <input
-                required
-                autocomplete="off"
-                auto-complete type="text"
-                name='country'
-                placeholder="Pays"
-                [max-num-list]="3"
-                [(ngModel)]='userinfo.country'
-                #country="ngModel"
-                [source]="countrySource" />
             </div>
           </div>
 

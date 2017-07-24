@@ -21,14 +21,15 @@
       Télécharger le certificat
   </a>
 </div> -->
-<div class="action-container center-align" *ngIf="currentUser.type != 'user'">
+<div class="action-container center-align" *ngIf="currentUser.type != 'user' && currentValidatedUser">
   <a
       class="waves-effect waves-light btn download-certificate-btn"
-       [class.disabled]="currentUser.certified"
+       [class.disabled]="currentValidatedUser.certified"
       (click)="certifiedUser(currentValidatedUser._id)"
     >
       <i class="material-icons left">school</i>
-      Certifier l'utilisateur
+      <span *ngIf="!currentValidatedUser.certified">Certifier l'utilisateur</span>
+      <span *ngIf="currentValidatedUser.certified">Utilisateur certifié</span>
   </a>
 </div>
 <br/>

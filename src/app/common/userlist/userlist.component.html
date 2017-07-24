@@ -14,7 +14,8 @@
       [class.pepite]="user.type=='pepite-admin'"
       [class.admin]="user.type=='admin'">
       <div class="user-info block">
-        <a *ngIf="user.type" (click)="goToUser(user, true)" [innerHtml]="user.getFullname()"></a>
+        <span *ngIf="user.type" [innerHtml]="user.getFullname()"></span>
+        <a *ngIf="user.type" (click)="goToUser(user, true)" >Afficher le profil utilisateur</a>
         <a (click)="validatorAssign(user._id)" *ngIf="user._validator && user._validator.firstname">Validateur: {{user._validator.firstname}} {{user._validator.lastname}}</a>
         <div>email: {{user.email}}</div>
         <div *ngIf="user.firstname ==''">Cet utilisateur est en attente d'activation</div>
