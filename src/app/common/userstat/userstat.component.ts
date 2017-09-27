@@ -19,7 +19,6 @@ export class UserstatComponent implements OnInit {
   hideCategories: boolean = false;
   @Input()
   display: string = 'inline';
-  
   categories: Category[];
   grades: Grade[];
   public doughnutChartLabels:string[] = ['Non évaluées', 'Auto-évaluées', 'Validées'];

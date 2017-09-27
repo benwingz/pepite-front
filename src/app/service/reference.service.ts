@@ -24,8 +24,9 @@ export class ReferenceService {
   getPhases(): Observable<Phase[]> {
     return this.authHttp.get(this.appConf.apiBaseUrl + 'phases/')
       .map((phases) => {
-        let phasesReturned = phases.json();
-        phasesReturned.forEach((phase) => {
+        let phasesJson = phases.json();
+        let phasesReturned = [];
+        phasesJson.forEach((phase) => {
           phasesReturned[phase.order] = new Phase(phase._id, phase.title, phase.order);
         });
         return phasesReturned;
@@ -44,9 +45,10 @@ export class ReferenceService {
   getCategories(): Observable<Category[]> {
     return this.authHttp.get(this.appConf.apiBaseUrl + 'categories/')
       .map((categories) => {
-        let categoriesReturned = categories.json();
-        categoriesReturned.forEach((categoriesJson) => {
-          categoriesReturned[categoriesJson.order] = new Category(categoriesJson._id, categoriesJson.title, categoriesJson.skills, categoriesJson.order);
+        let categoriesJson = categories.json();
+        let categoriesReturned = [];
+        categoriesJson.forEach((categorie) => {
+          categoriesReturned.push(new Category(categorie._id, categorie.title, categorie.skills, categorie.order));
         });
         return categoriesReturned;
       });
@@ -55,9 +57,10 @@ export class ReferenceService {
   getPhaseCategories(phase): Observable<Category[]> {
     return this.authHttp.get(this.appConf.apiBaseUrl + 'phase/' + phase.getId() + '/categories')
       .map((categories) => {
-        let categoriesReturned = categories.json();
-        categoriesReturned.forEach((categoriesJson) => {
-          categoriesReturned[categoriesJson.order] = new Category(categoriesJson._id, categoriesJson.title, categoriesJson.skills, categoriesJson.order);
+        let categoriesJson = categories.json();
+        let categoriesReturned = [];
+        categoriesJson.forEach((categorie) => {
+          categoriesReturned[categorie.order] = new Category(categorie._id, categorie.title, categorie.skills, categorie.order);
         });
         return categoriesReturned;
       });
