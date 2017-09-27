@@ -31,12 +31,12 @@
       <div class="card-metadata-container">
         <span class="card-metadata chip background-unvalidate">
            <span *ngIf="categoryGrade">Auto-évalué</span>
-           <span *ngIf="!categoryGrade">À auto-évalué</span>
+           <span *ngIf="!categoryGrade">À auto-évaluer</span>
           <i class="material-icons right white-text">star</i>
         </span>
         <span class="card-metadata chip background-validate">
-           <span *ngIf="(categoryGrade | evaluatedgrade)">Validées</span>
-           <span *ngIf="!(categoryGrade | evaluatedgrade)">À validées</span>
+           <span *ngIf="(categoryGrade | evaluatedgrade)">Validée</span>
+           <span *ngIf="!(categoryGrade | evaluatedgrade)">À valider</span>
           <i class="material-icons right white-text">done</i>
         </span>
       </div>

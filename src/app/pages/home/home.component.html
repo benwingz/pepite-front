@@ -44,8 +44,20 @@
           <br/>
           <span class="home-chips-container__hover">
             <span id="home-chips-total">{{ phase.categories.length }} compétences au total</span>
-            <span class="home-chips__hover">{{ phase.grades.length }} compétences auto-évaluées</span>
-            <span class="home-chips__hover">{{ (phase.grades | evaluatedgrade).length }} compétence validées</span>
+            <span class="home-chips__hover">{{ phase.grades.length }} compétences
+              <span [ngPlural]="phase.grades.length">
+                <ng-template ngPluralCase="=0">auto-évaluée</ng-template>
+                <ng-template ngPluralCase="=1">auto-évaluée</ng-template>
+                <ng-template ngPluralCase="other">auto-évaluées</ng-template>
+              </span>
+            </span>
+            <span class="home-chips__hover">{{ (phase.grades | evaluatedgrade).length }}
+              <span [ngPlural]="(phase.grades | evaluatedgrade).length">
+                <ng-template ngPluralCase="=0">compétence validée</ng-template>
+                <ng-template ngPluralCase="=1">compétence validée</ng-template>
+                <ng-template ngPluralCase="other">compétences validées</ng-template>
+              </span>
+            </span>
           </span>
         </span>
         <span class="phase-badge right">

@@ -4,11 +4,21 @@
     <i class="material-icons right">star_border</i>
   </span>
   <span class="card-metadata chip">
-    <span class="card-metadata__counter background-unvalidate blue-grey-text text-lighten-5">{{grades.length}}</span> Auto-évaluées
+    <span class="card-metadata__counter background-unvalidate blue-grey-text text-lighten-5">{{grades.length}}</span>
+    <span [ngPlural]="grades.length">
+      <ng-template ngPluralCase="=0">Auto-évaluée</ng-template>
+      <ng-template ngPluralCase="=1">Auto-évaluée</ng-template>
+      <ng-template ngPluralCase="other">Auto-évaluées</ng-template>
+    </span>
     <i class="material-icons right">star</i>
   </span>
   <span class="card-metadata chip">
-    <span class="card-metadata__counter background-validate accent-4 blue-grey-text text-lighten-5">{{(grades | evaluatedgrade).length}}</span> Validées
+    <span class="card-metadata__counter background-validate accent-4 blue-grey-text text-lighten-5">{{(grades | evaluatedgrade).length}}</span>
+    <span [ngPlural]="(grades | evaluatedgrade).length">
+      <ng-template ngPluralCase="=0">Validée</ng-template>
+      <ng-template ngPluralCase="=1">Validée</ng-template>
+      <ng-template ngPluralCase="other">Validées</ng-template>
+    </span>
     <i class="material-icons right">done</i>
   </span>
 </div>
